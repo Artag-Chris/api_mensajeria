@@ -2,7 +2,7 @@ import { envs } from './config/envs';
 import { AppRoutes } from './presentation/routes';
 import { Server } from './presentation/server';
 import { createServer } from 'http';
-import { WssService } from './presentation/services/wss.service';
+import { WssService } from './notifications/wss.service';
 
 
 (async()=> {

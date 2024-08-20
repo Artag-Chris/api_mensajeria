@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { TicketRoutes } from './tickets/routes';
+import { whatsappRoutes } from './whatsaap/whatsaap.routes';
 
 
 
@@ -12,9 +12,9 @@ export class AppRoutes {
     const router = Router();
     
     // Definir las rutas
-    // router.use('/api/todos', /*TodoRoutes.routes */ );
-router.use(`/api/tickets`,TicketRoutes.routes);
-
+  
+//rutas de whatssapp 
+router.use(`/api/whatsapp`,whatsappRoutes.routes);
 
     return router;
   }
