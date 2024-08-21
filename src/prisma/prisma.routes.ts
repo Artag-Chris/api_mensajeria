@@ -1,14 +1,17 @@
 import { Router } from "express";
-import { WhatsaapController } from "./whatsaap.controller";
+import { PrismaController } from "./prisma.controller";
 
-export class whatsappRoutes{
+export class PrismaRoutes {
 
 
     static get routes(){ 
     const router= Router();
-    const whatsaapController =new WhatsaapController();
+    const prismaController =new PrismaController();
 
-    router.get(`/`,whatsaapController.senBatch);
+    router.get(`/users`,prismaController.getUsers);
+    router.post(`/users`,prismaController.createUser);
+    router.put(`/users`,prismaController.updateUser);
+
     // router.get(`/last`,whatsaapController.getLastTicketNumber);
     // router.get(`/pending`,whatsaapController.pendingTickets);
 
