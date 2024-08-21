@@ -7,6 +7,7 @@ generator client {
 datasource db {
   provider = "mysql" // Cambia esto si usas otro proveedor
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 // Enums
@@ -84,7 +85,7 @@ model Notification {
   type       NotificationType
   timestamp  DateTime         @default(now())
 }
-model User {
+model user {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   name      String?

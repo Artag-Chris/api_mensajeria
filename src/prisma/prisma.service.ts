@@ -9,13 +9,15 @@ class PrismaService extends PrismaClient {
     const dbPassword = envs.DB_PASSWORD;
     const database = envs.DATABASE;
 
-    super({
-      datasources: {
-        db: {
-            url: `mysql://${dbUser}:${dbPassword}@${dbHost}/${database}`,
-        },
-      },
-    });
+    super(
+    //   {
+    //   datasources: {
+    //     db: {
+    //         url: `mysql://${dbUser}:${dbPassword}@${dbHost}/${database}`,
+    //     },
+    //   },
+    // }
+  );
 
     this.init(); 
   }
@@ -23,7 +25,7 @@ class PrismaService extends PrismaClient {
   async init() {
     try {
       await this.$connect();
-      console.log('Conexión a la base de datos establecida correctamente.');
+      console.log(`Conexión a la base de datos establecida correctamente.`);
     } catch (error) {
       console.error('Error al conectar con la base de datos:', error);
     }
