@@ -1,95 +1,85 @@
-// prisma/schema.prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql" // Cambia esto si usas otro proveedor
+  provider = "mysql"
   url      = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-// Enums
 enum MessageStatus {
-  READ
-  UNREAD
-  DELIVERED
+  read
+  unread
+  delivered
 }
 
 enum MessageType {
-  TEXT
-  REACTION
-  VIDEO
-  IMAGE
-  AUDIO
-  LOCATION
-  CONTACTS
-  INTERACTIVE
-  TEMPLATE
+  text
+  reaction
+  video
+  image
+  audio
+  location
+  contacts
+  interactive
+  template
 }
 
 enum MessageDirection {
-  INCOMING
-  OUTGOING
+  incoming
+  outgoing
 }
 
 enum WhatsappStatus {
-  INITIAL
-  ON_MAIN_MENU
-  SELECTING_STATE
-  ATTENDED
-  BLOCKED
-}
-
-enum NotificationType {
-  SUCCESS
-  ERROR
-  INFO
-  WARNING
-}
-
-// Models
-model Customer {
-  id             Int              @id @default(autoincrement())
-  name           String?
-  phone          String?          @unique
-  email          String?          @unique
-  identification String?          @unique
-  attending      Int
-  lastActive     DateTime
-  wppStatus      WhatsappStatus
-  detail         String           @default("")
-  messages       WhatsappMessage[]
+  initial
+  onMainMenu
+  selectingState
+  attended
+  blocked
 }
 
 model WhatsappMessage {
   id         String           @id
-  message    String
-  to         String
+  customer   Customer         @relation(fields: [customerId], references: [id])
+  message    String           @db.VarChar(4096)
+  to         String // Whatsapp account id receiving the message
   status     MessageStatus
   direction  MessageDirection
   type       MessageType
   mediaId    String           @default("")
   timestamp  DateTime         @default(now())
   customerId Int
-  customer   Customer         @relation(fields: [customerId], references: [id])
   attendant  Int
 }
 
-model Notification {
-  id         Int              @id @default(autoincrement())
-  userId     Int
-  title      String
-  body       String
-  type       NotificationType
-  timestamp  DateTime         @default(now())
+model Customer {
+  id              Int               @id @default(autoincrement())
+  name            String? // Customer name
+  phone           String?           @unique // Customer phone Number
+  email           String?           @unique // Customer email
+  identification  String?           @unique // Customer identification
+  attending       Int // id of the attending user 0 = bot
+  lastActive      DateTime
+  wppStatus       WhatsappStatus
+  WhatsappMessage WhatsappMessage[]
+  detail          String            @default("")
 }
-model user {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  phone     String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+enum NotificationType {
+  success
+  error
+  info
+  warning
+}
+
+model Notification {
+  id        Int              @id @default(autoincrement())
+  userId    Int
+  title     String
+  body      String           @db.VarChar(4200)
+  type      NotificationType
+  timestamp DateTime         @default(now())
 }

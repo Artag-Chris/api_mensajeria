@@ -9,8 +9,9 @@ export class PrismaRoutes {
     const prismaController =new PrismaController();
 
     router.get(`/users`,prismaController.getUsers);
-    router.post(`/users`,prismaController.createUser);
-    router.put(`/users`,prismaController.updateUser);
+    router.get(`/users/:id`,prismaController.getUserById);
+    //router.post(`/user`,prismaController.createUser);
+    //router.put(`/user`,prismaController.updateUser);
 
     // router.get(`/last`,whatsaapController.getLastTicketNumber);
     // router.get(`/pending`,whatsaapController.pendingTickets);
