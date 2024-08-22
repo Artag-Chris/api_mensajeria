@@ -7,7 +7,7 @@ export class WhatsaapController {
   constructor(
     private readonly  whatsaapService=new WhatsaapService(),
   ) {}
-
+///esta sera la funcion para enviar los mensajes
   public senBatch = async (req: Request, res: Response) => {
     const messages = req.body;
 res.json("funciona");

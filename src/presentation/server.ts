@@ -4,7 +4,6 @@ import cors from "cors";
 
 interface Options {
   port: number;
- 
   public_path?: string;
 }
 

@@ -6,7 +6,6 @@ interface Options {
   path?: string; // ws
 }
 
-
 export class WssService {
 
   private static _instance: WssService;
@@ -31,9 +30,9 @@ export class WssService {
     WssService._instance = new WssService(options);
   }
 
-
   public sendMessage( type: string, payload: Object ) {
     //aqui se manda a todos los clientes incluso uno
+    //se debera configurar para que solo mande a un cliente con identificador especifico
     this.wss.clients.forEach( client => {
       if ( client.readyState === WebSocket.OPEN ) {
         client.send( JSON.stringify({ type, payload }) );

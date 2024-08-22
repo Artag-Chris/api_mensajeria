@@ -14,10 +14,7 @@ function main() {
 
   const server = new Server({
     port: envs.PORT,
-   
   });
-
-
   const httpServer= createServer(server.app);
   WssService.initWss({server: httpServer});
   

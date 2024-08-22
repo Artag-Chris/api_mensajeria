@@ -15,20 +15,20 @@ export class PrismaController {
         }
     };
 
-     public getUserById = async (req: Request, res: Response) => {
-         const { id } = req.params;
-         try {
-             const user = await prismaService.customer.findUnique({
-                 where: {
-                     id: parseInt(id),
-                 },
-             });
-             res.json(user);
-         } catch (error) {
-             console.error('Error al obtener usuario:', error);
-             res.status(500).json({ error: 'Error al obtener usuario' });
-         }
-    };
+    //  public getUserById = async (req: Request, res: Response) => {
+    //      const { id } = req.params;
+    //      try {
+    //          const user = await prismaService.customer.findUnique({
+    //              where: {
+    //                  id: parseInt(id),
+    //              },
+    //          });
+    //          res.json(user);
+    //      } catch (error) {
+    //          console.error('Error al obtener usuario:', error);
+    //          res.status(500).json({ error: 'Error al obtener usuario' });
+    //      }
+    // };
 
 
     // public createUser = async (req: Request, res: Response) => {
