@@ -3,7 +3,7 @@ import { WhatsaapService} from "../services/whatsaap.services";
 import axios from 'axios';
 import { urlSendMessage, headers, bodyBienvenidoTemplate } from "../../config/url/whatsappPostUrl";
 import { EmptyBatchException } from "../../exceptions/index";
-import { phonesUrls } from "../../config/url/whatsappGetUrl";
+import { phonesUrls, templatesUrls } from "../../config/url/whatsappGetUrl";
 
 export class WhatsaapController {
   //aqui ira la inyeccion de dependencia con el wss
@@ -14,6 +14,13 @@ export class WhatsaapController {
   public senBatch = async (req: Request, res: Response) => {
     const messages = req.body;
 res.json("funciona");
+  };
+  
+///de aqui se pueden traer las plantillas y despues se arreglan a las necesidades 
+  public getTemplates = async (req: Request, res: Response) => {
+    const templates = await axios.get(templatesUrls,{ headers });
+    const { data } = templates;
+    res.json(data); 
   };
 
 ///funcion para mandar el mensaje de bienvenida

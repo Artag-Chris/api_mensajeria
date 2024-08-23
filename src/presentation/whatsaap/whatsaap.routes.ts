@@ -13,6 +13,7 @@ export class whatsappRoutes{
     
     router.get(`/getphones`,whatsaapController.getPhones);
     router.get(`/getCustomers`,whatsaapController.getCustomers);
+    router.get(`/getTemplates`,whatsaapController.getTemplates);
     
     router.post(`/welcome`,whatsaapController.sendWelcome);
     // router.get(`/last`,whatsaapController.getLastTicketNumber);
