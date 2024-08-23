@@ -8,7 +8,13 @@ export class whatsappRoutes{
     const router= Router();
     const whatsaapController =new WhatsaapController();
 
-    router.get(`/`,whatsaapController.senBatch);
+    //esta ruta sera para enviar el batch y deberia ser post
+    //router.get(`/`,whatsaapController.senBatch);
+    
+    router.get(`/getphones`,whatsaapController.getPhones);
+    router.get(`/getCustomers`,whatsaapController.getCustomers);
+    
+    router.post(`/welcome`,whatsaapController.sendWelcome);
     // router.get(`/last`,whatsaapController.getLastTicketNumber);
     // router.get(`/pending`,whatsaapController.pendingTickets);
 

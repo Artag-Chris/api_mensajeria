@@ -1,6 +1,4 @@
 import { UuuiAdapter } from "../../config/uuid.adapter";
-//import { Ticket } from "../../domain/interfaces/ticket"; hay que pasar todas las interfaces
-//de whatsapp, aqui ira toda la logica las funciones de las rutas y
 //no olvidar que aqui tambien iran las notificaciones del websocket
 import{ WssService } from "../../notifications/wss.service";
  

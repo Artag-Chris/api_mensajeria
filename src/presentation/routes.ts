@@ -13,7 +13,7 @@ export class AppRoutes {
 
     //ruta para el whatsapp
     router.use(`/api/whatsapp`, whatsappRoutes.routes);
-
+   
     //ruta para la base de datos
     router.use(`/api/prisma`, PrismaRoutes.routes);
 

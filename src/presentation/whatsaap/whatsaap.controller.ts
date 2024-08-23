@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { WhatsaapService} from "../services/whatsaap.services";
+import axios from 'axios';
+import { urlSendMessage, headers, bodyBienvenidoTemplate } from "../../config/url/whatsappPostUrl";
 import { EmptyBatchException } from "../../exceptions/index";
+import { phonesUrls } from "../../config/url/whatsappGetUrl";
 
 export class WhatsaapController {
   //aqui ira la inyeccion de dependencia con el wss
@@ -11,6 +14,80 @@ export class WhatsaapController {
   public senBatch = async (req: Request, res: Response) => {
     const messages = req.body;
 res.json("funciona");
+  };
+
+///funcion para mandar el mensaje de bienvenida
+  public sendWelcome = async (req: Request, res: Response) => {
+    const messages = req.body; 
+    
+    try{
+      const response = await axios.post(urlSendMessage, bodyBienvenidoTemplate, { headers })
+      res.status(200).json({
+        status: 'success',
+        data: response.data
+        //TODO aqui ira la concexion al wss y la base de datos 
+    });
+      
+    }catch(error){
+      console.error("error al enviar el mensaje");
+    }
+  };
+   //funcion para obtener los numeros de whatsapp desde donde se enviara los mensajes
+  public getPhones = async (req: Request, res: Response) => {
+    const phones = await axios.get(phonesUrls, { headers });
+    res.json(phones.data);
+    console.log(phones.data);
+  };
+//// ira a la base de datos me traera los ultimos clientes que esten esperando mensaje por el userId
+  public getCustomers = async (req: Request, res: Response) => {
+    const userId = req.params.userId;
+    //cambiar axios por prisma
+    const customers = await axios.get("de la base de datos los clientes barridos que esten esperando");
+    res.json(customers);
+  };
+ 
+   public getMessages = async (req: Request, res: Response) => {
+    const userId = req.params.userId;
+  if(!userId){
+    throw new EmptyBatchException();
+   }
+  try{
+    const customers = await axios.get("de la base de datos los clientes barridos que esten esperando");
+    res.json(customers);
+    //despues se usaran query para barrer la base de datos  donde el estatus es not: read
+  }catch(error){
+    console.log(error);
+  }
+
+  }
+  // async getCustomers(userId: number): Promise<Customer[]> {
+  //   try {
+  //     const customers = await this.prisma.customer.findMany({
+  //       orderBy: {
+  //         lastActive: 'desc',
+  //       },
+  //       where: {
+  //         attending: userId,
+  //       },
+  //       include: {
+  //         WhatsappMessage: {
+  //           take: 1,
+  //           orderBy: {
+  //             timestamp: 'desc',
+  //           },
+  //         },
+  //       },
+  //     });
+  //     this.logger.log(
+  //       `Retrieved ${customers.length} customers for user ${userId}`,
+  //     );
+  //     return customers;
+  //   } catch (error) {
+  //     this.logger.error(`no se encontro el usuario ${userId}`, error.stack);
+  //     throw new Error('no se encontraron usuarios ');
+  //   }
+  // }
+
 
   //   if (messages.length === 0) {
   //       throw new EmptyBatchException();
@@ -68,7 +145,7 @@ res.json("funciona");
   // console.log(`Sent ${messages.length - failed}, Failed ${failed}/${messages.length}`);
 };
 
-  };
+  
 
   
 
