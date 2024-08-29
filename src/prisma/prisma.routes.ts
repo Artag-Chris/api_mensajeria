@@ -8,6 +8,8 @@ export class PrismaRoutes {
     const router= Router();
     const prismaController =new PrismaController();
 
+    router.post(`/DB`,prismaController.saveOnDB);
+
     //router.get(`/users`,prismaController.getUsers);
     //router.get(`/users/:id`,prismaController.getUserById);
     //router.post(`/user`,prismaController.createUser);

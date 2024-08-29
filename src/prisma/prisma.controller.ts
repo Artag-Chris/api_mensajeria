@@ -1,19 +1,32 @@
 import { Request, Response } from 'express';
 import prismaService from './prisma.service';
+import { IncomingWhatsappMessage } from '../domain/interfaces/whatsappMessage.interface';
 
 
 export class PrismaController {
 
-    public  getUsers = async (req: Request, res: Response) => {
-        try {
+    public saveOnDB = async(req:Request, res:Response) =>{
+    const payload= req.body;
+    res.status(200).json(payload)
+    console.log(payload)
+    }
+
+    
+
+
+
+    // public  getUsers = async (req: Request, res: Response) => {
+    //     try {
             
-            const usuarios = await prismaService.customer.findMany();
-            res.json(usuarios);
-        } catch (error) {
-            console.error('Error al obtener usuarios:', error);
-            res.status(500).json({ error: 'Error al obtener usuarios' });
-        }
-    };
+    //         const usuarios = await prismaService.customer.findMany();
+    //         res.json(usuarios);
+    //     } catch (error) {
+    //         console.error('Error al obtener usuarios:', error);
+    //         res.status(500).json({ error: 'Error al obtener usuarios' });
+    //     }
+    // };
+    
+
 
     //  public getUserById = async (req: Request, res: Response) => {
     //      const { id } = req.params;
