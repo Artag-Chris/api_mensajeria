@@ -6,28 +6,16 @@ export class PrismaRoutes {
 
     static get routes(){ 
     const router= Router();
+
     const prismaController =new PrismaController();
 
-    router.post(`/DB`,prismaController.onReceived);
+    router.post(`/DB`,prismaController.onReceivedMessage);
+    router.post(`/user`,prismaController.onCreateUser);
 
-    //router.get(`/users`,prismaController.getUsers);
-    //router.get(`/users/:id`,prismaController.getUserById);
-    //router.post(`/user`,prismaController.createUser);
-    //router.put(`/user`,prismaController.updateUser);
-
-    // router.get(`/last`,whatsaapController.getLastTicketNumber);
-    // router.get(`/pending`,whatsaapController.pendingTickets);
-
-
-    // router.post(`/`,whatsaapController.createTicket);
-
-    // router.get(`/draw/:desk`,whatsaapController.drawTicket);
-    // router.put(`/done/:ticketId`,whatsaapController.ticketFinished);
-
-
-    // router.get(`/working-on`,whatsaapController.workingOn);
-
-
+    router.get(`/users`,prismaController.onRequestUsers);
+    router.get(`/users/:id`,prismaController.onSearchForUser);
+    
+    router.put(`/user/:id`,prismaController.onUpdateUser);
 
 
 return router;

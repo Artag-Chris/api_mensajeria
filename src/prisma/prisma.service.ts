@@ -29,12 +29,26 @@ class PrismaService extends PrismaClient {
      const { id } = messages[0];
      const { timestamp } = messages[0];
      const { wa_id } = contacts[0];
-     
+     console.log('OnmessageReceived');
      
   }
 
-  async OnmessageSent( ) {
-    console.log('OnmessageSent');
+  async onRequestUsers( payload:any) {
+    console.log('traera los usuarios');
+  
+  }
+
+  async onSearchForUser( payload:any) {
+    console.log('traera el usuario buscado por la base de datos');
+  }
+
+  async onCreateUser( payload:any) {
+    console.log('creara el usuario en la base de datos y respondera con un json');
+  }
+  async onUpdateUser( payload:any) {
+   
+    console.log('actualizara el usuario en la base de datos y respondera con un json');
+
   }
 
   async init() {
