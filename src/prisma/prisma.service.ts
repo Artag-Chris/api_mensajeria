@@ -17,6 +17,7 @@ class PrismaService extends PrismaClient {
   
    ///se cambiara los metodos 
   async OnmessageReceived(payload: IncomingWhatsappMessage) {
+    //estudiar un nested create para crear un usuario nuevo y un nuevo mensaje 
      const { object, entry } = payload;
      const { changes } = entry[0];
      const { value } = changes[0];
@@ -30,6 +31,35 @@ class PrismaService extends PrismaClient {
      const { timestamp } = messages[0];
      const { wa_id } = contacts[0];
      console.log('OnmessageReceived');
+
+     //esto es un ejemplo: 
+    //  const result = await prisma.user.create({
+    //   data: {
+    //     email: 'yvette@prisma.io',
+    //     name: 'Yvette',
+    //     posts: {
+    //       create: [
+    //         {
+    //           title: 'How to make an omelette',
+    //           categories: {
+    //             create: {
+    //               name: 'Easy cooking',
+    //             },
+    //           },
+    //         },
+    //         { title: 'How to eat an omelette' },
+    //       ],
+    //     },
+    //   },
+    //   include: {
+    //     // Include posts
+    //     posts: {
+    //       include: {
+    //         categories: true, // Include post categories
+    //       },
+    //     },
+    //   },
+    // })
      
   }
 
