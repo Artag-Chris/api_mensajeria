@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { envs } from '../config/envs';
+import { IncomingWhatsappMessage } from '../domain/interfaces';
 
 class PrismaService extends PrismaClient {
   constructor() {
@@ -9,17 +10,31 @@ class PrismaService extends PrismaClient {
     const dbPassword = envs.DB_PASSWORD;
     const database = envs.DATABASE;
 
-    super(
-    //   {
-    //   datasources: {
-    //     db: {
-    //         url: `mysql://${dbUser}:${dbPassword}@${dbHost}/${database}`,
-    //     },
-    //   },
-    // }
-  );
+    super( );
 
     this.init(); 
+  }
+  
+   ///se cambiara los metodos 
+  async OnmessageReceived(payload: IncomingWhatsappMessage) {
+     const { object, entry } = payload;
+     const { changes } = entry[0];
+     const { value } = changes[0];
+     const { messaging_product, metadata, contacts, messages } = value;
+     const { profile } = contacts[0];
+     const { text } = messages[0];
+     const { body } = text;
+     const { name } = profile;
+     const { from } = messages[0];
+     const { id } = messages[0];
+     const { timestamp } = messages[0];
+     const { wa_id } = contacts[0];
+     
+     
+  }
+
+  async OnmessageSent( ) {
+    console.log('OnmessageSent');
   }
 
   async init() {
@@ -48,4 +63,4 @@ process.on('SIGTERM', async () => {
   process.exit(0);
 });
 
-export default prismaService;
+export default PrismaService;

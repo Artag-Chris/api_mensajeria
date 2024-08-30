@@ -33,6 +33,13 @@ enum MessageDirection {
   outgoing
 }
 
+enum NotificationType {
+  success
+  error
+  info
+  warning
+}
+
 enum WhatsappStatus {
   initial
   onMainMenu
@@ -68,12 +75,6 @@ model Customer {
   detail          String            @default("")
 }
 
-enum NotificationType {
-  success
-  error
-  info
-  warning
-}
 
 model Notification {
   id        Int              @id @default(autoincrement())

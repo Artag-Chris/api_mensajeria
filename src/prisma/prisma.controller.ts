@@ -1,18 +1,25 @@
 import { Request, Response } from 'express';
-import prismaService from './prisma.service';
+import PrismaService from './prisma.service';
 import { IncomingWhatsappMessage } from '../domain/interfaces/whatsappMessage.interface';
 
 
 export class PrismaController {
-
-    public saveOnDB = async(req:Request, res:Response) =>{
-    const payload= req.body;
-    res.status(200).json(payload)
-    console.log(payload)
-    }
-
+    constructor(
+        private readonly prismaService = new PrismaService(),
+    ) {}
     
+    // public saveOnDB = async(req:Request, res:Response) =>{
+    // const payload= req.body;
+    // res.status(200).json(payload)
+    // console.log(payload)
+    // }
 
+    onReceived= async(req:Request, res:Response) =>{
+        const payload= req.body;
+        this.prismaService.OnmessageReceived(payload);
+        res.status(200).send("ok");
+    }
+    
 
 
     // public  getUsers = async (req: Request, res: Response) => {
