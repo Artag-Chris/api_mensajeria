@@ -68,8 +68,7 @@ onRequesForTemplates = async (): Promise<WhatsappTemplateDto[]> => {
 }
 
 onSendWelcome = async (id: any): Promise<any> => {
-  console.log();
-
+ 
   const template = {
     name: "bienvenido",
     language: {
