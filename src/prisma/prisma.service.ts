@@ -64,8 +64,27 @@ class PrismaService extends PrismaClient {
   }
 
   async onRequestUsers( payload:any) {
-    console.log('traera los usuarios');
-  
+    try {
+      const customers = await prismaService.customer.findMany({
+        orderBy: {
+          lastActive: 'desc',
+        },
+        where: {
+          attending: 0,
+        },
+        include: {
+          WhatsappMessage: {
+            take: 1,
+            orderBy: {
+              timestamp: 'desc',
+            },
+          },
+        },
+      });
+      return customers;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async onSearchForUser( payload:any) {
@@ -79,6 +98,55 @@ class PrismaService extends PrismaClient {
    
     console.log('actualizara el usuario en la base de datos y respondera con un json');
 
+  }
+
+  async onResearchforSpecificMessages( payload:any) {
+    //se deberia desfragmentar el id del payload
+    const customerId = payload;
+
+    if (!customerId) {
+     // this.logger.error('numero invalido del cliente');
+      throw new Error('numero invalido  del cliente');
+    }
+
+    try {
+      // marca mensajes leidos y habre chat
+      await prismaService.whatsappMessage.updateMany({
+        data: { status: 'read' },
+        where: {
+          customerId: customerId,
+          status: { not: 'read' },
+        },
+      });
+
+      // Busca los mensajes
+      const query = await prismaService.whatsappMessage.findMany({
+        orderBy: { timestamp: 'asc' },
+        where: { customerId: customerId },
+        include: {
+          customer: {
+            select: { phone: true },
+          },
+        },
+      });
+
+      // Transforma el query en los mensajes
+      const messages = query.map((message) => ({
+        ...message,
+        from: message.customer.phone,
+      }));
+
+      // this.logger.log(
+      //   `regreso ${messages.length} mensages del cliente ${customerId}`,
+      // );
+      return messages;
+    } catch (error) {
+      // this.logger.error(
+      //   `no regreso mensajes del cliente ${customerId}`,
+      //   error.stack,
+      // );
+      throw new Error('no pudo regresar ningun mensaje');
+    }
   }
 
   async init() {

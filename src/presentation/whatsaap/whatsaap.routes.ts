@@ -16,18 +16,7 @@ export class whatsappRoutes{
     router.get(`/getTemplates`,whatsaapController.getTemplates);
     
     router.post(`/welcome`,whatsaapController.sendWelcome);
-    // router.get(`/last`,whatsaapController.getLastTicketNumber);
-    // router.get(`/pending`,whatsaapController.pendingTickets);
-
-
-    // router.post(`/`,whatsaapController.createTicket);
-
-    // router.get(`/draw/:desk`,whatsaapController.drawTicket);
-    // router.put(`/done/:ticketId`,whatsaapController.ticketFinished);
-
-
-    // router.get(`/working-on`,whatsaapController.workingOn);
-
+    
 
 
 

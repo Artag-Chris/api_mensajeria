@@ -18,6 +18,7 @@ export class PrismaController {
 
     onRequestUsers = async (req: Request, res: Response) => {
         const payload = req.body;
+        //desfragmentar el id del payload
         
             const users = await this.prismaService.onRequestUsers(payload);
             res.status(200).send("respondera con los clientes con un json");

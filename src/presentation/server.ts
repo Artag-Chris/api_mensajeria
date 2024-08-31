@@ -23,6 +23,7 @@ export class Server {
   }
 
   private configure() {
+    
     //* Middlewares aqui se configuran los middlewares del server
     this.app.use(cors());
     this.app.use(express.json()); // raw

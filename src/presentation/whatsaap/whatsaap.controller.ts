@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { Request, Response } from "express";
 import { WhatsaapService} from "../services/whatsaap.services";
-import axios from 'axios';
 import { urlSendMessage, headers, bodyBienvenidoTemplate } from "../../config/url/whatsappPostUrl";
 import { EmptyBatchException } from "../../exceptions/index";
 import { phonesUrls, templatesUrls } from "../../config/url/whatsappGetUrl";
