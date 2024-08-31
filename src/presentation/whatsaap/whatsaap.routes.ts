@@ -15,8 +15,10 @@ export class whatsappRoutes{
     router.get(`/getCustomers`,whatsaapController.getCustomers);
     router.get(`/getTemplates`,whatsaapController.getTemplates);
     
+    //se crearan rutas para plantillas especificas de whatsapp 
+    //se mandara por parametro el numero al que enviaremos la plantilla
     router.post(`/welcome`,whatsaapController.sendWelcome);
-    
+    router.post(`/templateforcollections`,whatsaapController.sendWelcome);
 
 
 

@@ -4,6 +4,8 @@ import { WhatsaapService} from "../services/whatsaap.services";
 import { urlSendMessage, headers, bodyBienvenidoTemplate } from "../../config/url/whatsappPostUrl";
 import { EmptyBatchException } from "../../exceptions/index";
 import { phonesUrls, templatesUrls } from "../../config/url/whatsappGetUrl";
+import { json } from 'stream/consumers';
+import { measureMemory } from 'vm';
 
 export class WhatsaapController {
   //aqui ira la inyeccion de dependencia con el wss
@@ -18,32 +20,23 @@ res.json("funciona");
   
 ///de aqui se pueden traer las plantillas y despues se arreglan a las necesidades 
   public getTemplates = async (req: Request, res: Response) => {
-    const templates = await axios.get(templatesUrls,{ headers });
-    const { data } = templates;
-    res.json(data); 
+    this.whatsaapService.onRequesForTemplates().then((data) => res.json(data));
   };
 
-///funcion para mandar el mensaje de bienvenida
+
   public sendWelcome = async (req: Request, res: Response) => {
-    const messages = req.body; 
-    
-    try{
-      const response = await axios.post(urlSendMessage, bodyBienvenidoTemplate, { headers })
-      res.status(200).json({
-        status: 'success',
-        data: response.data
-        //TODO aqui ira la concexion al wss y la base de datos 
-    });
-      
-    }catch(error){
-      console.error("error al enviar el mensaje");
-    }
+    //const messages = req.body; 
+    const id = req.body.id;
+
+    //const id = JSON.stringify(messages);
+    this.whatsaapService.onSendWelcome(id).then((data) => res.json(data));
+
   };
    //funcion para obtener los numeros de whatsapp desde donde se enviara los mensajes
   public getPhones = async (req: Request, res: Response) => {
-    const phones = await axios.get(phonesUrls, { headers });
-    res.json(phones.data);
-    console.log(phones.data);
+   this.whatsaapService.onRequestForPhones().then((data) => res.json(data));
+  
+   
   };
 //// ira a la base de datos me traera los ultimos clientes que esten esperando mensaje por el userId
   public getCustomers = async (req: Request, res: Response) => {
@@ -65,6 +58,8 @@ res.json("funciona");
   }catch(error){
     console.log(error);
   }
+
+
 
   }
   // async getCustomers(userId: number): Promise<Customer[]> {
