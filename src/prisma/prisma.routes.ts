@@ -14,8 +14,8 @@ export class PrismaRoutes {
 
 
     router.get(`/users`,prismaController.onRequestUsers);
-    router.get(`/users/:id`,prismaController.onSearchForUser);
-    router.get(`/messagesfromuser/`,prismaController.onRequesFortSpecificMessages);
+    router.get(`/user`,prismaController.onSearchForUser);
+    router.get(`/messagesfromuser`,prismaController.onRequesFortSpecificMessages);
     
     router.put(`/user/:id`,prismaController.onUpdateUser);
 

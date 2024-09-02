@@ -31,10 +31,7 @@ class PrismaService extends PrismaClient {
      const { id } = messages[0];
      const { timestamp } = messages[0];
      const { wa_id } = contacts[0];
-     //crear la funcion que guarde en prisma de forma nidada el mensaje
-
-     console.log(body);
-
+     
      await prismaService.customer.upsert({
        where: { phone: from }, // Campo único para buscar el registro
        update: {
@@ -61,7 +58,6 @@ class PrismaService extends PrismaClient {
        create: {
          name: name,
          phone: from,
-         email: wa_id,
          identification: from,
          attending: 0,
          lastActive: new Date(),
@@ -81,7 +77,7 @@ class PrismaService extends PrismaClient {
          },
        },
      });
-     
+    
   }
 
   async onRequestUsers( payload:any) {
@@ -109,42 +105,73 @@ class PrismaService extends PrismaClient {
   }
 
   async onSearchForUser( payload:any) {
-    console.log('traera el usuario buscado por la base de datos');
+    const { id } = payload;
+
+    try {
+      const user = await prismaService.customer.findUnique({
+        where: {
+          phone: id,
+        },
+        include: {
+          WhatsappMessage: {
+            take: 1,
+            orderBy: {
+              timestamp: 'desc',
+            },
+          },
+        },
+      });
+      return user;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  async onCreateUser( payload:any) {
-    console.log('creara el usuario en la base de datos y respondera con un json');
+  async onCreateUser( payload:any) {/*  se creara mejor logica aqui
+    const newUser= await prismaService.customer.create({data:payload});
+    return newUser*/
   }
   async onUpdateUser( payload:any) {
+    const { id } = payload;
    
-    console.log('actualizara el usuario en la base de datos y respondera con un json');
+    if(!id){
+      throw new Error('no se recibio el id');
+    };
+    const data : {email?:string,detail?:string}={}
+    if(payload.email){
+      data.email = payload.email
+    }
+    if (payload.detail) {
+      data.detail = payload.detail
+    }
 
+    try{
+      const user = await prismaService.customer.update({
+        where: { phone: id },
+        data: data
+      });
+      return user;
+    }catch(error){
+      throw new Error(`no se pudo actualizar el usuario ${id}`);
+      
+    }
+    
+    
+  
   }
 
   async onResearchforSpecificMessages( payload:any) {
 
-    const { id} = payload;
-    // const { changes } = entry[0];
-    // const { value } = changes[0];
-    // const { messaging_product, metadata, contacts, messages } = value;
-    // const { from } = messages[0];
-    // const { id } = messages[0];
+    const { id } = payload;
+   
 
     //se deberia desfragmentar el id del payload
     
 
 
      try {
-       // marca mensajes leidos y habre chat
-      //  await prismaService.whatsappMessage.updateMany({
-      //    data: { status: 'read' },
-      //    where: {
-      //      customerId: id,
-      //      status: { not: 'read' },
-      //    },
-      //  });
-
-       // Busca los mensajes
+      //escojer que hacer con los mensajes no leidos
+      
        const query = await prismaService.whatsappMessage.findMany({
          orderBy: { timestamp: 'asc' },
          where: { to: id },
@@ -155,14 +182,11 @@ class PrismaService extends PrismaClient {
          },
        });
 
-       // Transforma el query en los mensajes
        const messages = query.map((message) => ({
          ...message,
          from: message.customer.phone,
        }));
-       
-       //console.log(messages);
-     
+           
        return messages;
      } catch (error) {
        throw new Error('no pudo regresar ningun mensaje');

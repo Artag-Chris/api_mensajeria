@@ -12,23 +12,22 @@ export class PrismaController {
 
     onReceivedMessage= async(req:Request, res:Response) =>{
         const payload= req.body;
-        this.prismaService.OnmessageReceived(payload);
-        res.status(200).send("mensaje guardado en la base de datos");
+        const mensaje =await this.prismaService.OnmessageReceived(payload);
+        res.status(200).send(mensaje);
     }
 
     onRequestUsers = async (req: Request, res: Response) => {
         const payload = req.body;
         //desfragmentar el id del payload
-        
+         console.log(payload)
             const users = await this.prismaService.onRequestUsers(payload);
-            res.status(200).send("respondera con los clientes con un json");
-            console.log(users);
+            res.status(200).send(users);
+            
     
     };
 
     onRequesFortSpecificMessages = async (req: Request, res: Response) => {
         const payload = req.body;
-
             const messages = await this.prismaService.onResearchforSpecificMessages(payload);
             res.status(200).send(messages);
     
@@ -37,11 +36,11 @@ export class PrismaController {
 
     
      onSearchForUser = async (req: Request, res: Response) => {
-          const payload = req.params;
+          const payload = req.body;
         
           const user = await this.prismaService.onSearchForUser(payload);
-          res.status(200).send("respondera con el usuario con un json");
-        console.log(user);
+          res.status(200).send(user);
+      
         
      };
 
@@ -55,7 +54,7 @@ export class PrismaController {
     onUpdateUser = async (req: Request, res: Response) => {
         const payload = req.body;
         const updatedUser = await this.prismaService.onUpdateUser(payload);
-        res.status(200).send("respondera con un json que el usuario ha sido actualizado");
+        res.status(200).send(updatedUser);
     }
 
 

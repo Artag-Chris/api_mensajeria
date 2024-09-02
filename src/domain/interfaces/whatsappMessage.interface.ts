@@ -1,6 +1,7 @@
 export interface IncomingWhatsappMessage {
     object: string;
     entry:  Entry[];
+    
 }
 interface Entry {
     id:      string;
