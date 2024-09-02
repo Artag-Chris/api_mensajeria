@@ -17,6 +17,7 @@ class PrismaService extends PrismaClient {
   
    ///se cambiara los metodos 
   async OnmessageReceived(payload: IncomingWhatsappMessage) {
+    const response =payload;
     //estudiar un nested create para crear un usuario nuevo y un nuevo mensaje 
      const { object, entry } = payload;
      const { changes } = entry[0];
@@ -30,36 +31,56 @@ class PrismaService extends PrismaClient {
      const { id } = messages[0];
      const { timestamp } = messages[0];
      const { wa_id } = contacts[0];
-     console.log('OnmessageReceived');
+     //crear la funcion que guarde en prisma de forma nidada el mensaje
 
-     //esto es un ejemplo: 
-    //  const result = await prisma.user.create({
-    //   data: {
-    //     email: 'yvette@prisma.io',
-    //     name: 'Yvette',
-    //     posts: {
-    //       create: [
-    //         {
-    //           title: 'How to make an omelette',
-    //           categories: {
-    //             create: {
-    //               name: 'Easy cooking',
-    //             },
-    //           },
-    //         },
-    //         { title: 'How to eat an omelette' },
-    //       ],
-    //     },
-    //   },
-    //   include: {
-    //     // Include posts
-    //     posts: {
-    //       include: {
-    //         categories: true, // Include post categories
-    //       },
-    //     },
-    //   },
-    // })
+     console.log(body);
+
+     await prismaService.customer.upsert({
+       where: { phone: from }, // Campo único para buscar el registro
+       update: {
+         name: name,
+         phone: from,
+         identification: from,
+         attending: 0,
+         lastActive: new Date(),
+         wppStatus: "initial",
+         detail: "",
+         WhatsappMessage: {
+           create: {
+             id: id,
+             message: body,
+             to: from,
+             status: "unread",
+             direction: "outgoing",
+             type: "text",
+             mediaId: "",
+             attendant: 0,
+           },
+         },
+       },
+       create: {
+         name: name,
+         phone: from,
+         email: wa_id,
+         identification: from,
+         attending: 0,
+         lastActive: new Date(),
+         wppStatus: "initial",
+         detail: "",
+         WhatsappMessage: {
+           create: {
+             id: id,
+             message: body,
+             to: from,
+             status: "unread",
+             direction: "outgoing",
+             type: "text",
+             mediaId: "",
+             attendant: 0,
+           },
+         },
+       },
+     });
      
   }
 
@@ -136,15 +157,9 @@ class PrismaService extends PrismaClient {
         from: message.customer.phone,
       }));
 
-      // this.logger.log(
-      //   `regreso ${messages.length} mensages del cliente ${customerId}`,
-      // );
+     
       return messages;
     } catch (error) {
-      // this.logger.error(
-      //   `no regreso mensajes del cliente ${customerId}`,
-      //   error.stack,
-      // );
       throw new Error('no pudo regresar ningun mensaje');
     }
   }

@@ -1,11 +1,7 @@
 import axios from 'axios';
 import { Request, Response } from "express";
 import { WhatsaapService} from "../services/whatsaap.services";
-import { urlSendMessage, headers, bodyBienvenidoTemplate } from "../../config/url/whatsappPostUrl";
 import { EmptyBatchException } from "../../exceptions/index";
-import { phonesUrls, templatesUrls } from "../../config/url/whatsappGetUrl";
-import { json } from 'stream/consumers';
-import { measureMemory } from 'vm';
 
 export class WhatsaapController {
   //aqui ira la inyeccion de dependencia con el wss
@@ -15,7 +11,7 @@ export class WhatsaapController {
 ///esta sera la funcion para enviar los mensajes
   public senBatch = async (req: Request, res: Response) => {
     const messages = req.body;
-res.json("funciona");
+     res.json("funciona");
   };
   
 ///de aqui se pueden traer las plantillas y despues se arreglan a las necesidades 
@@ -38,7 +34,8 @@ res.json("funciona");
   
    
   };
-//// ira a la base de datos me traera los ultimos clientes que esten esperando mensaje por el userId
+
+// ira a la base de datos me traera los ultimos clientes que esten esperando mensaje por el userId
   public getCustomers = async (req: Request, res: Response) => {
     const userId = req.params.userId;
     //cambiar axios por prisma
@@ -151,53 +148,3 @@ res.json("funciona");
 
   
 
-//   public getLastTicketNumber = async (req: Request, res: Response) => {
-//     res.json(this.ticketService.lastTicketNumber);
-//   };
-
-//   public pendingTickets = async (req: Request, res: Response) => {
-//     res.json(this.ticketService.pendingTickets);
-//   };
-
-//   public createTicket = async (req: Request, res: Response) => {
-//     res.status(201).json( this.ticketService.createTicket());
-//   };
-
-//   public drawTicket = async (req: Request, res: Response) => {
-//    const {desk}=req.params;
-//     res.json(this.ticketService.drawTicket(desk));
-//   };
-
-//   public ticketFinished = async (req: Request, res: Response) => {
-//     const { ticketId } = req.params;
-//     res.json(this.ticketService.onFinishedTicket(ticketId));
-//   };
-
-//   public workingOn = async (req: Request, res: Response) => {
-//     res.json(this.ticketService.lastWorkingOnTickets);
-//   };
-
-// Ruta para obtener teléfonos
-// app.get('/whatsapp/getPhones', async (req, res) => {
-//     const phones = await whatsappService.getPhones();
-//     res.status(200).json(phones);
-//   });
-  
-//   // Ruta para obtener plantillas
-//   app.get('/whatsapp/getTemplates', async (req, res) => {
-//     const templates = await whatsappService.getTemplates();
-//     res.status(200).json(templates);
-//   });
-  
-//   // Hook para recibir mensajes de WhatsApp
-//   app.get('/whatsapp/hook', HookGuard, async (req, res) => {
-//     const challenge = req.query['hub.challenge'];
-//     const response = await whatsappService.hookLifeTest(challenge);
-//     res.status(200).send(response);
-//   });
-  
-//   app.post('/whatsapp/hook', HookGuard, async (req, res) => {
-//     const message = req.body;
-//     const response = await whatsappService.receive(message);
-//     res.status(200).send(response);
-//   });

@@ -13,7 +13,7 @@ export class PrismaController {
     onReceivedMessage= async(req:Request, res:Response) =>{
         const payload= req.body;
         this.prismaService.OnmessageReceived(payload);
-        res.status(200).send("respondera con un json que el mensaje ha sido creado");
+        res.status(200).send("mensaje guardado en la base de datos");
     }
 
     onRequestUsers = async (req: Request, res: Response) => {

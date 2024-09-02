@@ -1,17 +1,15 @@
 import { UuuiAdapter } from "../../config/uuid.adapter";
 import axios from "axios"
-//no olvidar que aqui tambien iran las notificaciones del websocket
 import{ WssService } from "../../notifications/wss.service";
 import { PhoneNumbersDTO, WhatsappTemplateDto } from "../../domain/dto";
 import {envs } from "../../config/envs";
 import { bodyBienvenidoTemplate, headers, urlSendMessage } from "../../config/url/whatsappPostUrl";
 import { textTemplate } from "../../domain/interfaces";
- 
 
+//no olvidar que aqui tambien iran las notificaciones del websocket
 
 
 export class WhatsaapService {
-
 constructor(
   private readonly wssService = WssService.instance,
 ) {}
@@ -83,7 +81,6 @@ onSendWelcome = async (id: any): Promise<any> => {
   };
 
   try {
-    
     const response = await axios
       .post(urlSendMessage, WelcomeTemplate, { headers });
       console.log(response.data);
@@ -92,6 +89,5 @@ onSendWelcome = async (id: any): Promise<any> => {
     console.error(`error al enviar el mensaje ${error}`);
   }
 }
-
 
 }
