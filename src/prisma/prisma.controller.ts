@@ -25,6 +25,16 @@ export class PrismaController {
             console.log(users);
     
     };
+
+    onRequesFortSpecificMessages = async (req: Request, res: Response) => {
+        const payload = req.body;
+
+            const messages = await this.prismaService.onResearchforSpecificMessages(payload);
+            res.status(200).send(messages);
+    
+    };
+
+
     
      onSearchForUser = async (req: Request, res: Response) => {
           const payload = req.params;

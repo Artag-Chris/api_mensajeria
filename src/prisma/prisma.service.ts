@@ -122,46 +122,51 @@ class PrismaService extends PrismaClient {
   }
 
   async onResearchforSpecificMessages( payload:any) {
+
+    const { id} = payload;
+    // const { changes } = entry[0];
+    // const { value } = changes[0];
+    // const { messaging_product, metadata, contacts, messages } = value;
+    // const { from } = messages[0];
+    // const { id } = messages[0];
+
     //se deberia desfragmentar el id del payload
-    const customerId = payload;
+    
 
-    if (!customerId) {
-     // this.logger.error('numero invalido del cliente');
-      throw new Error('numero invalido  del cliente');
-    }
 
-    try {
-      // marca mensajes leidos y habre chat
-      await prismaService.whatsappMessage.updateMany({
-        data: { status: 'read' },
-        where: {
-          customerId: customerId,
-          status: { not: 'read' },
-        },
-      });
+     try {
+       // marca mensajes leidos y habre chat
+      //  await prismaService.whatsappMessage.updateMany({
+      //    data: { status: 'read' },
+      //    where: {
+      //      customerId: id,
+      //      status: { not: 'read' },
+      //    },
+      //  });
 
-      // Busca los mensajes
-      const query = await prismaService.whatsappMessage.findMany({
-        orderBy: { timestamp: 'asc' },
-        where: { customerId: customerId },
-        include: {
-          customer: {
-            select: { phone: true },
-          },
-        },
-      });
+       // Busca los mensajes
+       const query = await prismaService.whatsappMessage.findMany({
+         orderBy: { timestamp: 'asc' },
+         where: { to: id },
+         include: {
+           customer: {
+             select: { phone: true },
+           },
+         },
+       });
 
-      // Transforma el query en los mensajes
-      const messages = query.map((message) => ({
-        ...message,
-        from: message.customer.phone,
-      }));
-
+       // Transforma el query en los mensajes
+       const messages = query.map((message) => ({
+         ...message,
+         from: message.customer.phone,
+       }));
+       
+       //console.log(messages);
      
-      return messages;
-    } catch (error) {
-      throw new Error('no pudo regresar ningun mensaje');
-    }
+       return messages;
+     } catch (error) {
+       throw new Error('no pudo regresar ningun mensaje');
+     }
   }
 
   async init() {
