@@ -26,6 +26,7 @@ enum MessageType {
   contacts
   interactive
   template
+  document
 }
 
 enum MessageDirection {
