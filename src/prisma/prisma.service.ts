@@ -130,7 +130,53 @@ class PrismaService extends PrismaClient {
     });
   }
   async onReceivedAudio(payload:any) {
-    console.log(payload.name)
+    const {name, phone,identification,message,type,id}= payload;
+
+    await prismaService.customer.upsert({
+      where: { phone }, // Campo único para buscar el registro
+      update: {
+        name,
+        phone,
+        identification,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: "initial",
+        detail: "",
+        WhatsappAudio: {
+          create: {
+            id,
+            message,
+            to:phone,
+            status: "unread",
+            direction: "outgoing",
+            type,
+            mediaId: "",
+            attendant: 0,
+          },
+        },        
+      },
+      create: {
+        name,
+        phone,
+        identification,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: "initial",
+        detail: "",
+        WhatsappAudio: {
+          create: {
+            id,
+            message,
+            to: phone,
+            status: "unread",
+            direction: "outgoing",
+            type,
+            mediaId: "",
+            attendant: 0,
+          },
+        },
+      },
+    });
   }
   async onRequestUsers( payload:any) {
     try {
