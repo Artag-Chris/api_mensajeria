@@ -11,7 +11,7 @@ export class PrismaRoutes {
      
     router.post(`/DB`,prismaController.onReceivedMessage);
     router.post(`/ImageDB`,prismaController.onReceivedImage);
-   // router.post(`/audioDB`,prismaController.onReceivedAudio);
+    router.post(`/audioDB`,prismaController.onReceivedAudio);
    // router.post(`/videoDB`,prismaController.onReceivedVideo);
    // router.post(`/documentDB`,prismaController.onReceivedDocument);
 

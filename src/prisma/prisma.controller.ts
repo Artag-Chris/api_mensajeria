@@ -22,6 +22,12 @@ export class PrismaController {
         res.status(200).send("imagen recibida");
     }
 
+    onReceivedAudio= async (req: Request, res: Response) => {
+        const payload = req.body;
+        const audio = await this.prismaService.onReceivedAudio(payload);
+        res.status(200).send("audio recibido");
+    }
+
     onRequestUsers = async (req: Request, res: Response) => {
         const payload = req.body;
         //desfragmentar el id del payload

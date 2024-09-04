@@ -129,6 +129,9 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+  async onReceivedAudio(payload:any) {
+    console.log(payload.name)
+  }
   async onRequestUsers( payload:any) {
     try {
       const customers = await prismaService.customer.findMany({
