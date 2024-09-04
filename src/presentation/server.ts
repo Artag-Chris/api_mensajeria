@@ -25,9 +25,10 @@ export class Server {
   private configure() {
     
     //* Middlewares aqui se configuran los middlewares del server
+     
     this.app.use(cors());
-    this.app.use(express.json()); // raw
-    this.app.use(express.urlencoded({ extended: true })); // x-www-form-urlencoded
+    this.app.use(express.json({ limit: '50mb' }));
+    this.app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
     //* Public Folder
     this.app.use(express.static(this.publicPath));

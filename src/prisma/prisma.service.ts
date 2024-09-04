@@ -16,7 +16,7 @@ class PrismaService extends PrismaClient {
   }
   
    ///se cambiara los metodos 
-  async OnmessageReceived(payload: IncomingWhatsappMessage) {
+  async onMessageReceived(payload: IncomingWhatsappMessage) {
     const response =payload;
     //estudiar un nested create para crear un usuario nuevo y un nuevo mensaje 
      const { object, entry } = payload;
@@ -79,7 +79,56 @@ class PrismaService extends PrismaClient {
      });
     
   }
+  async onImageReceived(payload:any) {
+    const {name, phone,identification,message,type,id}= payload;
 
+    await prismaService.customer.upsert({
+      where: { phone }, // Campo único para buscar el registro
+      update: {
+        name,
+        phone,
+        identification,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: "initial",
+        detail: "",
+        WhatsappImage: {
+          create: {
+            id,
+            message,
+            to:phone,
+            status: "unread",
+            direction: "outgoing",
+            type,
+            mediaId: "",
+            attendant: 0,
+
+          },
+        },        
+      },
+      create: {
+        name,
+        phone,
+        identification,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: "initial",
+        detail: "",
+        WhatsappImage: {
+          create: {
+            id,
+            message,
+            to: phone,
+            status: "unread",
+            direction: "outgoing",
+            type,
+            mediaId: "",
+            attendant: 0,
+          },
+        },
+      },
+    });
+  }
   async onRequestUsers( payload:any) {
     try {
       const customers = await prismaService.customer.findMany({

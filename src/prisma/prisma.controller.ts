@@ -12,14 +12,14 @@ export class PrismaController {
 
     onReceivedMessage= async(req:Request, res:Response) =>{
         const payload= req.body;
-        const mensaje =await this.prismaService.OnmessageReceived(payload);
+        const mensaje =await this.prismaService.onMessageReceived(payload);
         res.status(200).send(mensaje);
     }
     onReceivedImage= async (req: Request, res: Response) => {
         const payload = req.body;
-        console.log(payload)
+        const imagen= await this.prismaService.onImageReceived(payload);
        // const image = await this.prismaService.onReceivedImage(payload);
-       // res.status(200).send(image);
+        res.status(200).send("imagen recibida");
     }
 
     onRequestUsers = async (req: Request, res: Response) => {

@@ -73,6 +73,7 @@ model Customer {
   lastActive      DateTime
   wppStatus       WhatsappStatus
   WhatsappMessage WhatsappMessage[]
+  WhatsappImage   WhatsappImage[]
   detail          String            @default("")
 }
 
@@ -84,4 +85,18 @@ model Notification {
   body      String           @db.VarChar(4200)
   type      NotificationType
   timestamp DateTime         @default(now())
+}
+
+model WhatsappImage {
+  id         String           @id
+  customer   Customer         @relation(fields: [customerId], references: [id])
+  message    Bytes            @db.LongBlob
+  to         String // Whatsapp account id receiving the message
+  status     MessageStatus
+  direction  MessageDirection
+  type       MessageType
+  mediaId    String           @default("")
+  timestamp  DateTime         @default(now())
+  customerId Int
+  attendant  Int
 }
