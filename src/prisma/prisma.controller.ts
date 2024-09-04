@@ -8,8 +8,6 @@ export class PrismaController {
         private readonly prismaService = new PrismaService(),
     ) {}
     
-
-
     onReceivedMessage= async(req:Request, res:Response) =>{
         const payload= req.body;
         const mensaje =await this.prismaService.onMessageReceived(payload);
@@ -24,8 +22,18 @@ export class PrismaController {
 
     onReceivedAudio= async (req: Request, res: Response) => {
         const payload = req.body;
-        const audio = await this.prismaService.onReceivedAudio(payload);
+        const audio = await this.prismaService.onAudioReceived(payload);
         res.status(200).send("audio recibido");
+    }
+    onReceivedVideo= async (req: Request, res: Response) =>{
+        const payload = req.body;
+        const video = await this.prismaService.onVideoReceived(payload);
+        res.status(200).send("Video recibido");
+    } 
+    onReceivedDocument= async (req: Request, res: Response) => {
+        const payload = req.body;
+        const doc = await this.prismaService.onDocumentReceived(payload);
+        res.status(200).send("documento recibido");
     }
 
     onRequestUsers = async (req: Request, res: Response) => {

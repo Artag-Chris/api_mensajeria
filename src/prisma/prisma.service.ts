@@ -17,8 +17,13 @@ class PrismaService extends PrismaClient {
   
    ///se cambiara los metodos 
   async onMessageReceived(payload: IncomingWhatsappMessage) {
+
+    //TODO cambiar guardado de mensajes con nueva implementacion
+    //TODO crear un return para ver el guardado de exito
+    //TODO crear bloques de try catch para el guardado
+    //TODO crear interfaces para los mensajes recibidos
     const response =payload;
-    //estudiar un nested create para crear un usuario nuevo y un nuevo mensaje 
+   
      const { object, entry } = payload;
      const { changes } = entry[0];
      const { value } = changes[0];
@@ -129,7 +134,7 @@ class PrismaService extends PrismaClient {
       },
     });
   }
-  async onReceivedAudio(payload:any) {
+  async onAudioReceived(payload:any) {
     const {name, phone,identification,message,type,id}= payload;
 
     await prismaService.customer.upsert({
@@ -164,6 +169,103 @@ class PrismaService extends PrismaClient {
         wppStatus: "initial",
         detail: "",
         WhatsappAudio: {
+          create: {
+            id,
+            message,
+            to: phone,
+            status: "unread",
+            direction: "outgoing",
+            type,
+            mediaId: "",
+            attendant: 0,
+          },
+        },
+      },
+    });
+  }
+
+  async onVideoReceived(payload:any) {
+    const {name, phone,identification,message,type,id}= payload;
+    await prismaService.customer.upsert({
+      where: { phone }, // Campo único para buscar el registro
+      update: {
+        name,
+        phone,
+        identification,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: "initial",
+        detail: "",
+        WhatsappVideo: {
+          create: {
+            id,
+            message,
+            to:phone,
+            status: "unread",
+            direction: "outgoing",
+            type,
+            mediaId: "",
+            attendant: 0,
+          },
+        },        
+      },
+      create: {
+        name,
+        phone,
+        identification,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: "initial",
+        detail: "",
+        WhatsappVideo: {
+          create: {
+            id,
+            message,
+            to: phone,
+            status: "unread",
+            direction: "outgoing",
+            type,
+            mediaId: "",
+            attendant: 0,
+          },
+        },
+      },
+    });
+  }
+  async onDocumentReceived(payload:any) {
+    const {name, phone,identification,message,type,id}= payload;
+    await prismaService.customer.upsert({
+      where: { phone }, // Campo único para buscar el registro
+      update: {
+        name,
+        phone,
+        identification,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: "initial",
+        detail: "",
+        WhatsappDoc: {
+          create: {
+            id,
+            message,
+            to:phone,
+            status: "unread",
+            direction: "outgoing",
+            type,
+            mediaId: "",
+            attendant: 0,
+          },
+        },        
+      },
+      create: {
+        name,
+        phone,
+        identification,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: "initial",
+        detail: "",
+        WhatsappDoc: {
           create: {
             id,
             message,

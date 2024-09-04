@@ -12,8 +12,8 @@ export class PrismaRoutes {
     router.post(`/DB`,prismaController.onReceivedMessage);
     router.post(`/ImageDB`,prismaController.onReceivedImage);
     router.post(`/audioDB`,prismaController.onReceivedAudio);
-   // router.post(`/videoDB`,prismaController.onReceivedVideo);
-   // router.post(`/documentDB`,prismaController.onReceivedDocument);
+    router.post(`/videoDB`,prismaController.onReceivedVideo);
+    router.post(`/docDB`,prismaController.onReceivedDocument);
 
     router.post(`/user`,prismaController.onCreateUser);
 
@@ -21,6 +21,7 @@ export class PrismaRoutes {
 
     router.get(`/users`,prismaController.onRequestUsers);
     router.get(`/user`,prismaController.onSearchForUser);
+    //implementar una funcion que barra todas las tablas si tiene mensajes
     router.get(`/messagesfromuser`,prismaController.onRequesFortSpecificMessages);
     
     router.put(`/user/:id`,prismaController.onUpdateUser);
