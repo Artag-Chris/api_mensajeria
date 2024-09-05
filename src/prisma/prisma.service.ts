@@ -344,41 +344,31 @@ class PrismaService extends PrismaClient {
       
     }
     
-    
   
   }
 
   async onResearchforSpecificMessages( payload:any) {
-
     const { id } = payload;
-   
-
-    //se deberia desfragmentar el id del payload
     
+   try{
+    const customerData = await this.customer.findUnique({
+      where: { phone: id },
+      include: {
+        WhatsappMessage: true,
+        WhatsappImage: true,
+        WhatsappAudio: true,
+        WhatsappVideo: true,
+        WhatsappDoc: true,
+      },
+    });
 
+    return customerData;
+   }catch(error){
+    console.error('Error al obtener los datos del cliente:', error);
+    throw new Error('No se pudieron obtener los datos del cliente');
+   }
 
-     try {
-      //escojer que hacer con los mensajes no leidos
-      
-       const query = await prismaService.whatsappMessage.findMany({
-         orderBy: { timestamp: 'asc' },
-         where: { to: id },
-         include: {
-           customer: {
-             select: { phone: true },
-           },
-         },
-       });
-
-       const messages = query.map((message) => ({
-         ...message,
-         from: message.customer.phone,
-       }));
-           
-       return messages;
-     } catch (error) {
-       throw new Error('no pudo regresar ningun mensaje');
-     }
+  
   }
 
   async init() {
