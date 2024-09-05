@@ -20,7 +20,7 @@ export class PrismaRoutes {
     router.post(`/user`,prismaController.onCreateUser);
     
     router.get(`/users`,prismaController.onRequestUsers);
-    router.get(`/user`,prismaController.onSearchForUser);
+    router.get(`/user/:id`,prismaController.onRequestForUser);
     router.put(`/user/:id`,prismaController.onUpdateUser);
 
     //funciones de busqueda de mensajes
@@ -31,8 +31,6 @@ export class PrismaRoutes {
     router.get(`/searchForVideoMessages/:id`,prismaController.onRequesForVideoMessages);
     router.get(`/searchForDocumentMessages/:id`,prismaController.onRequesForDocumentMessages);
     
-
-
 return router;
  }
 }

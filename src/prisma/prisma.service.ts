@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 import { envs } from '../config/envs';
-import { IncomingWhatsappMessage } from '../domain/interfaces';
 
 class PrismaService extends PrismaClient {
   constructor() {
@@ -18,15 +17,8 @@ class PrismaService extends PrismaClient {
    ///se cambiara los metodos 
   async onMessageReceived(payload: any) {
 
-    //TODO cambiar guardado de mensajes con nueva implementacion
-    //TODO crear un return para ver el guardado de exito
-    //TODO crear bloques de try catch para el guardado
-    //TODO crear interfaces para los mensajes recibidos
     const {name,phone,message,type,id,body,display_phone_number} =payload;
    
-   
-   
-    
      await prismaService.customer.upsert({
        where: { phone}, // Campo único para buscar el registro
        update: {
@@ -268,7 +260,10 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+
+  //zona usuario
   async onRequestUsers( payload:any) {
+    //todos los usuarios
     try {
       const customers = await prismaService.customer.findMany({
         orderBy: {
@@ -291,10 +286,8 @@ class PrismaService extends PrismaClient {
       console.log(error);
     }
   }
-
-  async onSearchForUser( payload:any) {
-    const { id } = payload;
-
+  async onSearchForUser( id:any) {
+  //usuario especifico
     try {
       const user = await prismaService.customer.findUnique({
         where: {
@@ -314,7 +307,6 @@ class PrismaService extends PrismaClient {
       console.log(error);
     }
   }
-
   async onCreateUser( payload:any) {/*  se creara mejor logica aqui
     const newUser= await prismaService.customer.create({data:payload});
     return newUser*/
@@ -347,6 +339,7 @@ class PrismaService extends PrismaClient {
   
   }
 
+  // zona de mensajes 
   async onResearchForALLTypesOfMessages( id:any ) {
     if (!id) {
       throw new Error('El id es requerido');

@@ -11,39 +11,30 @@ export class PrismaController {
     onReceivedMessage= async(req:Request, res:Response) =>{
         const payload= req.body;
         const mensaje =await this.prismaService.onMessageReceived(payload);   
-        res.status(200).send("mensaje recibido");
+        res.status(200).send(mensaje);
     }
     onReceivedImage= async (req: Request, res: Response) => {
         const payload = req.body;
         const imagen= await this.prismaService.onImageReceived(payload);
-        res.status(200).send("imagen recibida");
+        res.status(200).send(imagen);
     }
-
     onReceivedAudio= async (req: Request, res: Response) => {
         const payload = req.body;
         const audio = await this.prismaService.onAudioReceived(payload);
-        res.status(200).send("audio recibido");
+        res.status(200).send(audio);
     }
     onReceivedVideo= async (req: Request, res: Response) =>{
         const payload = req.body;
         const video = await this.prismaService.onVideoReceived(payload);
-        res.status(200).send("Video recibido");
+        res.status(200).send(video);
     } 
     onReceivedDocument= async (req: Request, res: Response) => {
         const payload = req.body;
         const doc = await this.prismaService.onDocumentReceived(payload);
-        res.status(200).send("documento recibido");
+        res.status(200).send(doc);
     }
 
-    onRequestUsers = async (req: Request, res: Response) => {
-        const payload = req.body;
-        //desfragmentar el id del payload
-         console.log(payload)
-            const users = await this.prismaService.onRequestUsers(payload);
-            res.status(200).send(users);
-            
-    
-    };
+  
     //busqueda de mensajes
 
     onRequesForAlltypesOfMessages = async (req: Request, res: Response) => {
@@ -79,26 +70,31 @@ export class PrismaController {
             const messages = await this.prismaService.onResearchDocumentMessages(id);
             res.status(200).send(messages);
     }
-
-    onSearchForUser = async (req: Request, res: Response) => {
-          const payload = req.body;
+     
+    // zona de usuarios
+    onRequestUsers = async (req: Request, res: Response) => {
+        const payload = req.body;
+        //desfragmentar el id del payload
+            const users = await this.prismaService.onRequestUsers(payload);
+            res.status(200).send(users);   
+    };
+    onRequestForUser = async (req: Request, res: Response) => {
+          const {id} = req.params;
         
-          const user = await this.prismaService.onSearchForUser(payload);
+          const user = await this.prismaService.onSearchForUser(id);
           res.status(200).send(user);
-     };
+    };
     onCreateUser = async (req: Request, res: Response) => {
          const payload = req.body;
          const newUser = await this.prismaService.onCreateUser(payload);
          res.status(200).send("respondera con un json que el usuario ha sido creado");
-    }
+    };
 
     onUpdateUser = async (req: Request, res: Response) => {
         const payload = req.body;
         const updatedUser = await this.prismaService.onUpdateUser(payload);
         res.status(200).send(updatedUser);
-    }
-
-
+    };
 
 }
 
