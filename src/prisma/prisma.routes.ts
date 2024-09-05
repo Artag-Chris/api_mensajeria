@@ -24,12 +24,12 @@ export class PrismaRoutes {
     router.put(`/user/:id`,prismaController.onUpdateUser);
 
     //funciones de busqueda de mensajes
-    router.get(`/deepSearchForAllMessages`,prismaController.onRequesForAlltypesOfMessages);
-    router.get(`/searchForTextMessages`,prismaController.onRequesForTextMessages);
-    router.get(`/searchForImageMessages`,prismaController.onRequesForImageMessages);
-    router.get(`/searchForAudioMessages`,prismaController.onRequesForAudioMessages);
-    router.get(`/searchForVideoMessages`,prismaController.onRequesForVideoMessages);
-    router.get(`/searchForDocumentMessages`,prismaController.onRequesForDocumentMessages);
+    router.get(`/deepSearchForAllMessages/:id`,prismaController.onRequesForAlltypesOfMessages);
+    router.get(`/searchForTextMessages/:id`,prismaController.onRequesForTextMessages);
+    router.get(`/searchForImageMessages/:id`,prismaController.onRequesForImageMessages);
+    router.get(`/searchForAudioMessages/:id`,prismaController.onRequesForAudioMessages);
+    router.get(`/searchForVideoMessages/:id`,prismaController.onRequesForVideoMessages);
+    router.get(`/searchForDocumentMessages/:id`,prismaController.onRequesForDocumentMessages);
     
 
 

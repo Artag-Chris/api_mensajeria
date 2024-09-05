@@ -44,42 +44,43 @@ export class PrismaController {
             
     
     };
+    //busqueda de mensajes
 
     onRequesForAlltypesOfMessages = async (req: Request, res: Response) => {
-        const payload = req.body;
-            const messages = await this.prismaService.onResearchForALLTypesOfMessages(payload);
+        const {id} = req.params;
+            const messages = await this.prismaService.onResearchForALLTypesOfMessages(id);
             res.status(200).send(messages);
     
     };
-
     onRequesForTextMessages = async (req: Request, res: Response) => {
-        const payload = req.body;
-            const messages = await this.prismaService.onResearchTextMessages(payload);
+        const {id} = req.params;
+            const messages = await this.prismaService.onResearchTextMessages(id);
             res.status(200).send(messages);
     }
     onRequesForImageMessages = async (req: Request, res: Response) => {
-        const payload = req.body;
-            const messages = await this.prismaService.onResearchImageMessages(payload);
-            res.status(200).send(messages);
+        const {id} = req.params;
+        const messages = await this.prismaService.onResearchImageMessages(id);
+        res.status(200).send(messages);
+       
+          
     }
     onRequesForAudioMessages = async (req: Request, res: Response) => {
-        const payload = req.body;
-            const messages = await this.prismaService.onResearchAudioMessages(payload);
+        const {id} = req.params;
+            const messages = await this.prismaService.onResearchAudioMessages(id);
             res.status(200).send(messages);
     }
     onRequesForVideoMessages = async (req: Request, res: Response) => {
-        const payload = req.body;
-            const messages = await this.prismaService.onResearchVideoMessages(payload);
+        const {id} = req.params;
+            const messages = await this.prismaService.onResearchVideoMessages(id);
             res.status(200).send(messages);
     }
-
     onRequesForDocumentMessages = async (req: Request, res: Response) => {
-        const payload = req.body;
-            const messages = await this.prismaService.onResearchDocumentMessages(payload);
+        const {id} = req.params;
+            const messages = await this.prismaService.onResearchDocumentMessages(id);
             res.status(200).send(messages);
     }
 
-     onSearchForUser = async (req: Request, res: Response) => {
+    onSearchForUser = async (req: Request, res: Response) => {
           const payload = req.body;
         
           const user = await this.prismaService.onSearchForUser(payload);

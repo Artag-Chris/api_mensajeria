@@ -347,8 +347,10 @@ class PrismaService extends PrismaClient {
   
   }
 
-  async onResearchForALLTypesOfMessages( payload:any) {
-    const { id } = payload;
+  async onResearchForALLTypesOfMessages( id:any ) {
+    if (!id) {
+      throw new Error('El id es requerido');
+  }
     
    try{
     const customerData = await this.customer.findUnique({
@@ -369,10 +371,11 @@ class PrismaService extends PrismaClient {
    }
   
   }
-
-  onResearchTextMessages(payload:any) {
-    const { id } = payload;
-
+  async onResearchTextMessages(id:any) {
+    
+    if (!id) {
+      throw new Error('El id es requerido');
+  }
     return this.customer.findMany({
       where: { phone: id },
       include: {
@@ -385,8 +388,11 @@ class PrismaService extends PrismaClient {
       },
     });
   }
-  onResearchImageMessages(payload:any) {
-    const { id } = payload;
+  async onResearchImageMessages(id:any) {
+    
+    if (!id) {
+      throw new Error('El id es requerido');
+  }
     return this.customer.findMany({
       where: { phone: id },
       include: {
@@ -399,9 +405,11 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+  async onResearchAudioMessages(id:any) {
 
-  onResearchAudioMessages(payload:any) {
-    const { id } = payload;
+    if (!id) {
+      throw new Error('El id es requerido');
+  }
     return this.customer.findMany({
       where: { phone: id },
       include: {
@@ -414,9 +422,11 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+  async onResearchVideoMessages(id:any) {
 
-  onResearchVideoMessages(payload:any) {
-    const { id } = payload;
+    if (!id) {
+      throw new Error('El id es requerido en el payload');
+  }
     return this.customer.findMany({
       where: { phone: id },
       include: {
@@ -430,8 +440,11 @@ class PrismaService extends PrismaClient {
     });
   }
 
-  onResearchDocumentMessages(payload:any) {
-    const { id } = payload;
+  async onResearchDocumentMessages(id:any) {
+
+    if (!id) {
+      throw new Error('El id es requerido');
+  }
     return this.customer.findMany({
       where: { phone: id },
       include: {
