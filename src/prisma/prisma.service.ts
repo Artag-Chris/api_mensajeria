@@ -16,33 +16,22 @@ class PrismaService extends PrismaClient {
   }
   
    ///se cambiara los metodos 
-  async onMessageReceived(payload: IncomingWhatsappMessage) {
+  async onMessageReceived(payload: any) {
 
     //TODO cambiar guardado de mensajes con nueva implementacion
     //TODO crear un return para ver el guardado de exito
     //TODO crear bloques de try catch para el guardado
     //TODO crear interfaces para los mensajes recibidos
-    const response =payload;
+    const {name,phone,message,type,id,body,display_phone_number} =payload;
    
-     const { object, entry } = payload;
-     const { changes } = entry[0];
-     const { value } = changes[0];
-     const { messaging_product, metadata, contacts, messages } = value;
-     const { profile } = contacts[0];
-     const { text } = messages[0];
-     const { body } = text;
-     const { name } = profile;
-     const { from } = messages[0];
-     const { id } = messages[0];
-     const { timestamp } = messages[0];
-     const { wa_id } = contacts[0];
-     
+   
+   
+    
      await prismaService.customer.upsert({
-       where: { phone: from }, // Campo único para buscar el registro
+       where: { phone}, // Campo único para buscar el registro
        update: {
-         name: name,
-         phone: from,
-         identification: from,
+         name,
+         phone,
          attending: 0,
          lastActive: new Date(),
          wppStatus: "initial",
@@ -51,38 +40,37 @@ class PrismaService extends PrismaClient {
            create: {
              id: id,
              message: body,
-             to: from,
+             to:display_phone_number,
              status: "unread",
              direction: "outgoing",
-             type: "text",
+             type,
              mediaId: "",
              attendant: 0,
            },
          },
        },
        create: {
-         name: name,
-         phone: from,
-         identification: from,
+         name,
+         phone,
          attending: 0,
          lastActive: new Date(),
          wppStatus: "initial",
          detail: "",
          WhatsappMessage: {
            create: {
-             id: id,
-             message: body,
-             to: from,
+             id,
+             message,
+             to: display_phone_number,
              status: "unread",
              direction: "outgoing",
-             type: "text",
+             type,
              mediaId: "",
              attendant: 0,
            },
          },
        },
      });
-    
+  
   }
   async onImageReceived(payload:any) {
     const {name, phone,identification,message,type,id}= payload;

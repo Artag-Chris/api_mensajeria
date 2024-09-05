@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import PrismaService from './prisma.service';
-import { IncomingWhatsappMessage } from '../domain/interfaces/whatsappMessage.interface';
+
 
 
 export class PrismaController {
@@ -11,7 +11,8 @@ export class PrismaController {
     onReceivedMessage= async(req:Request, res:Response) =>{
         const payload= req.body;
         const mensaje =await this.prismaService.onMessageReceived(payload);
-        res.status(200).send(mensaje);
+        //console.log(payload);
+        res.status(200).send("mensaje recibido");
     }
     onReceivedImage= async (req: Request, res: Response) => {
         const payload = req.body;
