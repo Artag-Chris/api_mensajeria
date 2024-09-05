@@ -8,19 +8,20 @@ export class PrismaRoutes {
     const router= Router();
 
     const prismaController =new PrismaController();
-     
+
+    //funciones de recepcion de mensajes 
     router.post(`/DB`,prismaController.onReceivedMessage);
     router.post(`/ImageDB`,prismaController.onReceivedImage);
     router.post(`/audioDB`,prismaController.onReceivedAudio);
     router.post(`/videoDB`,prismaController.onReceivedVideo);
     router.post(`/docDB`,prismaController.onReceivedDocument);
 
+    //relacionado para usuarios
     router.post(`/user`,prismaController.onCreateUser);
-
-
-
+    
     router.get(`/users`,prismaController.onRequestUsers);
     router.get(`/user`,prismaController.onSearchForUser);
+    router.put(`/user/:id`,prismaController.onUpdateUser);
 
     //funciones de busqueda de mensajes
     router.get(`/deepSearchForAllMessages`,prismaController.onRequesForAlltypesOfMessages);
@@ -30,7 +31,6 @@ export class PrismaRoutes {
     router.get(`/searchForVideoMessages`,prismaController.onRequesForVideoMessages);
     router.get(`/searchForDocumentMessages`,prismaController.onRequesForDocumentMessages);
     
-    router.put(`/user/:id`,prismaController.onUpdateUser);
 
 
 return router;
