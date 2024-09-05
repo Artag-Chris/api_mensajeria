@@ -33,10 +33,8 @@ export class PrismaController {
         const doc = await this.prismaService.onDocumentReceived(payload);
         res.status(200).send(doc);
     }
-
   
     //busqueda de mensajes
-
     onRequesForAlltypesOfMessages = async (req: Request, res: Response) => {
         const {id} = req.params;
             const messages = await this.prismaService.onResearchForALLTypesOfMessages(id);
