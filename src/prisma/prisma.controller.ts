@@ -55,6 +55,7 @@ export class PrismaController {
     }
     onRequesForAudioMessages = async (req: Request, res: Response) => {
         const {id} = req.params;
+        console.log(id);
             const messages = await this.prismaService.onResearchAudioMessages(id);
             res.status(200).send(messages);
     }

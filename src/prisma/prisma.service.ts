@@ -51,7 +51,7 @@ class PrismaService extends PrismaClient {
          WhatsappMessage: {
            create: {
              id,
-             message,
+             message: body,
              to: display_phone_number,
              status: "unread",
              direction: "outgoing",
@@ -62,7 +62,7 @@ class PrismaService extends PrismaClient {
          },
        },
      });
-  
+    return 'ok';
   }
   async onImageReceived(payload:any) {
     const {name, phone,identification,message,type,id}= payload;
