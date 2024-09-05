@@ -45,25 +45,46 @@ export class PrismaController {
     
     };
 
-    onRequesFortSpecificMessages = async (req: Request, res: Response) => {
+    onRequesForAlltypesOfMessages = async (req: Request, res: Response) => {
         const payload = req.body;
-            const messages = await this.prismaService.onResearchforSpecificMessages(payload);
+            const messages = await this.prismaService.onResearchForALLTypesOfMessages(payload);
             res.status(200).send(messages);
     
     };
 
+    onRequesForTextMessages = async (req: Request, res: Response) => {
+        const payload = req.body;
+            const messages = await this.prismaService.onResearchTextMessages(payload);
+            res.status(200).send(messages);
+    }
+    onRequesForImageMessages = async (req: Request, res: Response) => {
+        const payload = req.body;
+            const messages = await this.prismaService.onResearchImageMessages(payload);
+            res.status(200).send(messages);
+    }
+    onRequesForAudioMessages = async (req: Request, res: Response) => {
+        const payload = req.body;
+            const messages = await this.prismaService.onResearchAudioMessages(payload);
+            res.status(200).send(messages);
+    }
+    onRequesForVideoMessages = async (req: Request, res: Response) => {
+        const payload = req.body;
+            const messages = await this.prismaService.onResearchVideoMessages(payload);
+            res.status(200).send(messages);
+    }
 
-    
+    onRequesForDocumentMessages = async (req: Request, res: Response) => {
+        const payload = req.body;
+            const messages = await this.prismaService.onResearchDocumentMessages(payload);
+            res.status(200).send(messages);
+    }
+
      onSearchForUser = async (req: Request, res: Response) => {
           const payload = req.body;
         
           const user = await this.prismaService.onSearchForUser(payload);
           res.status(200).send(user);
-      
-        
      };
-
-
     onCreateUser = async (req: Request, res: Response) => {
          const payload = req.body;
          const newUser = await this.prismaService.onCreateUser(payload);

@@ -347,7 +347,7 @@ class PrismaService extends PrismaClient {
   
   }
 
-  async onResearchforSpecificMessages( payload:any) {
+  async onResearchForALLTypesOfMessages( payload:any) {
     const { id } = payload;
     
    try{
@@ -367,9 +367,84 @@ class PrismaService extends PrismaClient {
     console.error('Error al obtener los datos del cliente:', error);
     throw new Error('No se pudieron obtener los datos del cliente');
    }
-
   
   }
+
+  onResearchTextMessages(payload:any) {
+    const { id } = payload;
+
+    return this.customer.findMany({
+      where: { phone: id },
+      include: {
+        WhatsappMessage: {
+         // take: 1, cuantos debe traer
+          orderBy: {
+            timestamp: 'desc',
+          },
+        },
+      },
+    });
+  }
+  onResearchImageMessages(payload:any) {
+    const { id } = payload;
+    return this.customer.findMany({
+      where: { phone: id },
+      include: {
+        WhatsappImage: {
+         // take: 1,
+          orderBy: {
+            timestamp: 'desc',
+          },
+        },
+      },
+    });
+  }
+
+  onResearchAudioMessages(payload:any) {
+    const { id } = payload;
+    return this.customer.findMany({
+      where: { phone: id },
+      include: {
+        WhatsappAudio: {
+         // take: 1,
+          orderBy: {
+            timestamp: 'desc',
+          },
+        },
+      },
+    });
+  }
+
+  onResearchVideoMessages(payload:any) {
+    const { id } = payload;
+    return this.customer.findMany({
+      where: { phone: id },
+      include: {
+        WhatsappVideo: {
+         // take: 1,
+          orderBy: {
+            timestamp: 'desc',
+          },
+        },
+      },
+    });
+  }
+
+  onResearchDocumentMessages(payload:any) {
+    const { id } = payload;
+    return this.customer.findMany({
+      where: { phone: id },
+      include: {
+        WhatsappDoc: {
+         // take: 1,
+          orderBy: {
+            timestamp: 'desc',
+          },
+        },
+      },
+    });
+  }
+
 
   async init() {
     try {

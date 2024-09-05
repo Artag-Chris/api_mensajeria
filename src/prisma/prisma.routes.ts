@@ -21,8 +21,14 @@ export class PrismaRoutes {
 
     router.get(`/users`,prismaController.onRequestUsers);
     router.get(`/user`,prismaController.onSearchForUser);
-    //implementar una funcion que barra todas las tablas si tiene mensajes
-    router.get(`/messagesfromuser`,prismaController.onRequesFortSpecificMessages);
+
+    //funciones de busqueda de mensajes
+    router.get(`/deepSearchForAllMessages`,prismaController.onRequesForAlltypesOfMessages);
+    router.get(`/searchForTextMessages`,prismaController.onRequesForTextMessages);
+    router.get(`/searchForImageMessages`,prismaController.onRequesForImageMessages);
+    router.get(`/searchForAudioMessages`,prismaController.onRequesForAudioMessages);
+    router.get(`/searchForVideoMessages`,prismaController.onRequesForVideoMessages);
+    router.get(`/searchForDocumentMessages`,prismaController.onRequesForDocumentMessages);
     
     router.put(`/user/:id`,prismaController.onUpdateUser);
 
