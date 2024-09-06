@@ -17,8 +17,9 @@ class PrismaService extends PrismaClient {
    ///se cambiara los metodos 
   async onMessageReceived(payload: any) {
 
-    const {name,phone,message,type,id,body,display_phone_number} =payload;
+    const {name,phone,type,id,body,display_phone_number} =payload;
    
+    
      await prismaService.customer.upsert({
        where: { phone}, // Campo único para buscar el registro
        update: {
@@ -28,6 +29,7 @@ class PrismaService extends PrismaClient {
          lastActive: new Date(),
          wppStatus: "initial",
          detail: "",
+         identification: phone,
          WhatsappMessage: {
            create: {
              id: id,
@@ -48,6 +50,7 @@ class PrismaService extends PrismaClient {
          lastActive: new Date(),
          wppStatus: "initial",
          detail: "",
+        identification: phone ,
          WhatsappMessage: {
            create: {
              id,
@@ -62,17 +65,19 @@ class PrismaService extends PrismaClient {
          },
        },
      });
+     
     return 'ok';
   }
   async onImageReceived(payload:any) {
-    const {name, phone,identification,message,type,id}= payload;
+    const {name, phone,to,message,type,id}= payload;
+    console.log(to);
 
     await prismaService.customer.upsert({
       where: { phone }, // Campo único para buscar el registro
       update: {
         name,
         phone,
-        identification,
+        identification: phone,
         attending: 0,
         lastActive: new Date(),
         wppStatus: "initial",
@@ -81,7 +86,7 @@ class PrismaService extends PrismaClient {
           create: {
             id,
             message,
-            to:phone,
+            to,
             status: "unread",
             direction: "outgoing",
             type,
@@ -94,7 +99,7 @@ class PrismaService extends PrismaClient {
       create: {
         name,
         phone,
-        identification,
+        identification:phone,
         attending: 0,
         lastActive: new Date(),
         wppStatus: "initial",
@@ -103,7 +108,7 @@ class PrismaService extends PrismaClient {
           create: {
             id,
             message,
-            to: phone,
+            to,
             status: "unread",
             direction: "outgoing",
             type,
@@ -113,16 +118,17 @@ class PrismaService extends PrismaClient {
         },
       },
     });
+    
   }
   async onAudioReceived(payload:any) {
-    const {name, phone,identification,message,type,id}= payload;
+    const {name, phone,to,message,type,id}= payload;
 
     await prismaService.customer.upsert({
       where: { phone }, // Campo único para buscar el registro
       update: {
         name,
         phone,
-        identification,
+        identification:phone,
         attending: 0,
         lastActive: new Date(),
         wppStatus: "initial",
@@ -131,7 +137,7 @@ class PrismaService extends PrismaClient {
           create: {
             id,
             message,
-            to:phone,
+            to,
             status: "unread",
             direction: "outgoing",
             type,
@@ -143,7 +149,7 @@ class PrismaService extends PrismaClient {
       create: {
         name,
         phone,
-        identification,
+        identification:phone,
         attending: 0,
         lastActive: new Date(),
         wppStatus: "initial",
@@ -152,7 +158,7 @@ class PrismaService extends PrismaClient {
           create: {
             id,
             message,
-            to: phone,
+            to,
             status: "unread",
             direction: "outgoing",
             type,
@@ -165,13 +171,13 @@ class PrismaService extends PrismaClient {
   }
 
   async onVideoReceived(payload:any) {
-    const {name, phone,identification,message,type,id}= payload;
+    const {name, phone,to,message,type,id}= payload;
     await prismaService.customer.upsert({
       where: { phone }, // Campo único para buscar el registro
       update: {
         name,
         phone,
-        identification,
+        identification:phone,
         attending: 0,
         lastActive: new Date(),
         wppStatus: "initial",
@@ -180,7 +186,7 @@ class PrismaService extends PrismaClient {
           create: {
             id,
             message,
-            to:phone,
+            to,
             status: "unread",
             direction: "outgoing",
             type,
@@ -192,7 +198,7 @@ class PrismaService extends PrismaClient {
       create: {
         name,
         phone,
-        identification,
+        identification:phone,
         attending: 0,
         lastActive: new Date(),
         wppStatus: "initial",
@@ -201,7 +207,7 @@ class PrismaService extends PrismaClient {
           create: {
             id,
             message,
-            to: phone,
+            to,
             status: "unread",
             direction: "outgoing",
             type,
@@ -213,13 +219,13 @@ class PrismaService extends PrismaClient {
     });
   }
   async onDocumentReceived(payload:any) {
-    const {name, phone,identification,message,type,id}= payload;
+    const {name, phone,to,message,type,id}= payload;
     await prismaService.customer.upsert({
       where: { phone }, // Campo único para buscar el registro
       update: {
         name,
         phone,
-        identification,
+        identification:phone,
         attending: 0,
         lastActive: new Date(),
         wppStatus: "initial",
@@ -228,7 +234,7 @@ class PrismaService extends PrismaClient {
           create: {
             id,
             message,
-            to:phone,
+            to,
             status: "unread",
             direction: "outgoing",
             type,
@@ -240,7 +246,7 @@ class PrismaService extends PrismaClient {
       create: {
         name,
         phone,
-        identification,
+        identification:phone,
         attending: 0,
         lastActive: new Date(),
         wppStatus: "initial",
@@ -249,7 +255,7 @@ class PrismaService extends PrismaClient {
           create: {
             id,
             message,
-            to: phone,
+            to,
             status: "unread",
             direction: "outgoing",
             type,

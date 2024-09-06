@@ -12,7 +12,7 @@ export class WssService {
   private wss: WebSocketServer;
 
   private constructor( options: Options ) {
-    const { server, path = '/ws' } = options; /// ws://localhost:3000/ws
+    const { server, path = '/ws' } = options; /// ws://localhost:4000/ws
 
     this.wss = new WebSocketServer({ server, path });
     this.start();
@@ -22,7 +22,6 @@ export class WssService {
     if ( !WssService._instance ) {
       throw 'WssService is not initialized';
     }
-
     return WssService._instance;
   }
 
@@ -39,10 +38,11 @@ export class WssService {
       }
     })
   }
-
-
- 
-
+  //TODO crear funcion para reconocer cuando llegan los mensajes 
+  // y enviar notificaciones para usuarios activos y especificos 
+  // entender el protocolo de notificaciones para mandar notificaciones
+  // estudiar si es buena idea conectarse por websocket a la base de datos
+  
 
   public start() {
 
