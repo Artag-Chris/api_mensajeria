@@ -48,6 +48,13 @@ export class WssService {
 
     this.wss.on('connection', (ws: WebSocket ) => {
 
+      //aqui van las notificaciones de websocket
+
+      // Aquí agregamos el manejador de eventos para el evento 'message'
+      ws.on('message', (message: string) => {
+        console.log('Received message:', message);
+    });
+
       console.log('Client connected');
 
       ws.on('close', () => console.log('Client disconnected') )

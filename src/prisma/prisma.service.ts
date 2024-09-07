@@ -70,7 +70,6 @@ class PrismaService extends PrismaClient {
   }
   async onImageReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;
-    console.log(to);
 
     await prismaService.customer.upsert({
       where: { phone }, // Campo único para buscar el registro
