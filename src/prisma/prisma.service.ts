@@ -66,7 +66,7 @@ class PrismaService extends PrismaClient {
        },
      });
      
-    return 'ok';
+    return 'Texto recibido';
   }
   async onImageReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;
@@ -117,7 +117,7 @@ class PrismaService extends PrismaClient {
         },
       },
     });
-    
+    return 'Imagen recibida';
   }
   async onAudioReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;
@@ -167,6 +167,7 @@ class PrismaService extends PrismaClient {
         },
       },
     });
+    return 'Audio recibido';
   }
 
   async onVideoReceived(payload:any) {
@@ -216,6 +217,7 @@ class PrismaService extends PrismaClient {
         },
       },
     });
+    return 'Video recibido';
   }
   async onDocumentReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;
@@ -264,6 +266,7 @@ class PrismaService extends PrismaClient {
         },
       },
     });
+    return 'Documento recibido';
   }
 
   //zona usuario
@@ -277,14 +280,38 @@ class PrismaService extends PrismaClient {
         where: {
           attending: 0,
         },
-        include: {
-          WhatsappMessage: {
-            take: 1,
-            orderBy: {
-              timestamp: 'desc',
-            },
-          },
-        },
+        // include: {
+        //   WhatsappMessage: {
+        //    // take: 1,
+        //     orderBy: {
+        //       timestamp: 'desc',
+        //     },
+        //   },
+        //   WhatsappAudio: {
+        //    // take: 1,
+        //     orderBy: {
+        //       timestamp: 'desc',
+        //     }
+        //   },
+        //   WhatsappImage: {
+        //    // take: 1,
+        //     orderBy: {
+        //       timestamp: 'desc',
+        //     }
+        //   },
+        //   WhatsappVideo: {
+        //    // take: 1,
+        //     orderBy: {
+        //       timestamp: 'desc',
+        //     }
+        //   },
+        //   WhatsappDoc: {
+        //    // take: 1,
+        //     orderBy: {
+        //       timestamp: 'desc',
+        //     }
+        //   },
+        // },
       });
       return customers;
     } catch (error) {
@@ -300,11 +327,35 @@ class PrismaService extends PrismaClient {
         },
         include: {
           WhatsappMessage: {
-            take: 1,
+            //take: 1,
             orderBy: {
               timestamp: 'desc',
             },
           },
+          WhatsappAudio: {
+            // take: 1,
+             orderBy: {
+               timestamp: 'desc',
+             }
+           },
+           WhatsappImage: {
+            // take: 1,
+             orderBy: {
+               timestamp: 'desc',
+             }
+           },
+           WhatsappVideo: {
+            // take: 1,
+             orderBy: {
+               timestamp: 'desc',
+             }
+           },
+           WhatsappDoc: {
+            // take: 1,
+             orderBy: {
+               timestamp: 'desc',
+             }
+           },
         },
       });
       return user;

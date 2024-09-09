@@ -51,8 +51,10 @@ export class WssService {
         const messageString = message.toString('utf8');
         try {
           const data = JSON.parse(messageString);
-          console.log('Received JSON message:', JSON.stringify(data, null, 2));
+          //console.log('Received JSON message:', JSON.stringify(data, null, 2));
+
           // Aquí puedes manejar el objeto JSON recibido
+          console.log("data wss", );
         } catch (error) {
           console.error('Invalid JSON received:', messageString);
         }
