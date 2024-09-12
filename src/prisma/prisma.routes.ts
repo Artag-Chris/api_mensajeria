@@ -31,7 +31,7 @@ export class PrismaRoutes {
     router.get(`/searchForAudioMessages/:id`,prismaController.onRequesForAudioMessages);
     router.get(`/searchForVideoMessages/:id`,prismaController.onRequesForVideoMessages);
     router.get(`/searchForDocumentMessages/:id`,prismaController.onRequesForDocumentMessages);
-    
+    router.get(`/searchForBotMessages/:id`,prismaController.onConsultForBotMessages);
 return router;
  }
 }

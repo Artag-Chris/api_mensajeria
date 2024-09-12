@@ -74,6 +74,11 @@ export class PrismaController {
             const messages = await this.prismaService.onResearchDocumentMessages(id);
             res.status(200).send(messages);
     }
+    onConsultForBotMessages = async (req: Request, res: Response) => {
+        const {id} = req.params;
+            const messages = await this.prismaService.onResearchForBotMessages(id);
+            res.status(200).send(messages);
+    }
      
     // zona de usuarios
     onRequestUsers = async (req: Request, res: Response) => {

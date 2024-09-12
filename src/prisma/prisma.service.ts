@@ -142,7 +142,7 @@ class PrismaService extends PrismaClient {
             message,
             to,
             status: "unread",
-            direction: "outgoing",
+            direction: "incoming",
             type,
             mediaId: "",
             attendant: 0,
@@ -164,7 +164,7 @@ class PrismaService extends PrismaClient {
             message,
             to,
             status: "unread",
-            direction: "outgoing",
+            direction: "incoming",
             type,
             mediaId: "",
             attendant: 0,
@@ -193,7 +193,7 @@ class PrismaService extends PrismaClient {
             message,
             to,
             status: "unread",
-            direction: "outgoing",
+            direction: "incoming",
             type,
             mediaId: "",
             attendant: 0,
@@ -214,7 +214,7 @@ class PrismaService extends PrismaClient {
             message,
             to,
             status: "unread",
-            direction: "outgoing",
+            direction: "incoming",
             type,
             mediaId: "",
             attendant: 0,
@@ -243,7 +243,7 @@ class PrismaService extends PrismaClient {
             message,
             to,
             status: "unread",
-            direction: "outgoing",
+            direction: "incoming",
             type,
             mediaId: "",
             attendant: 0,
@@ -264,7 +264,7 @@ class PrismaService extends PrismaClient {
             message,
             to,
             status: "unread",
-            direction: "outgoing",
+            direction: "incoming",
             type,
             mediaId: "",
             attendant: 0,
@@ -292,7 +292,7 @@ class PrismaService extends PrismaClient {
             message,
             to,
             status: "unread",
-            direction: "outgoing",
+            direction: "incoming",
             type,
             mediaId: "",
             attendant: 0,
@@ -313,7 +313,7 @@ class PrismaService extends PrismaClient {
             message,
             to,
             status: "unread",
-            direction: "outgoing",
+            direction: "incoming",
             type,
             mediaId: "",
             attendant: 0,
@@ -460,11 +460,36 @@ class PrismaService extends PrismaClient {
     const customerData = await this.customer.findUnique({
       where: { phone: id },
       include: {
-        WhatsappMessage: true,
-        WhatsappImage: true,
-        WhatsappAudio: true,
-        WhatsappVideo: true,
-        WhatsappDoc: true,
+        WhatsappMessage: {
+          where:{
+           // status:"unread" para futura refenencia
+            direction: "incoming",
+          }
+        },
+        WhatsappImage: {
+          where:{
+           // status:"unread" para futura refenencia
+            direction: "incoming",
+          }
+        },
+        WhatsappAudio: {
+          where:{
+           // status:"unread" para futura refenencia
+            direction: "incoming",
+          }
+        },
+        WhatsappVideo: {
+          where:{
+           // status:"unread" para futura refenencia
+            direction: "incoming",
+          }
+        },
+        WhatsappDoc: {
+          where:{
+           // status:"unread" para futura refenencia
+            direction: "incoming",
+          }
+        },
       },
     });
 
@@ -561,6 +586,46 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+
+  async onResearchForBotMessages(id:any) {
+    console.log(id);
+    const phone="573025970185"
+    const messagesRelated = await prismaService.customer.findUnique({
+      where: {
+        phone: phone,
+      },
+      include: {
+        WhatsappMessage: {
+          where: {
+            to: id,
+          },
+        },
+        WhatsappImage: {
+          where: {
+            to: id,
+          },
+        },
+        WhatsappAudio: {
+          where: {
+            to: id,
+          },
+        },
+        WhatsappVideo: {
+          where: {
+            to: id,
+          },
+        },
+        WhatsappDoc: {
+          where: {
+            to: id,
+          },
+        },
+      },
+    });
+
+    return messagesRelated;
+  }
+  
 
 
   async init() {
