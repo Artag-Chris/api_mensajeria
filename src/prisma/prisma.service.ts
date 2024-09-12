@@ -588,7 +588,7 @@ class PrismaService extends PrismaClient {
   }
 
   async onResearchForBotMessages(id:any) {
-    console.log(id);
+    
     const phone="573025970185"
     const messagesRelated = await prismaService.customer.findUnique({
       where: {
