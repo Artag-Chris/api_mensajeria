@@ -19,7 +19,7 @@ export class whatsappRoutes{
     //se mandara por parametro el numero al que enviaremos la plantilla
     router.post(`/welcome`,whatsaapController.sendWelcome);
     router.post(`/templateforcollections`,whatsaapController.sendWelcome);
-
+    router.post(`/sendTextResponse`,whatsaapController.sendText);
 
 
 return router;

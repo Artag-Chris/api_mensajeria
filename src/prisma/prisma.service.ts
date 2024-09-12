@@ -280,59 +280,14 @@ class PrismaService extends PrismaClient {
         where: {
           attending: 0,
         },
-        // include: {
-        //   WhatsappMessage: {
-        //    // take: 1,
-        //     orderBy: {
-        //       timestamp: 'desc',
-        //     },
-        //   },
-        //   WhatsappAudio: {
-        //    // take: 1,
-        //     orderBy: {
-        //       timestamp: 'desc',
-        //     }
-        //   },
-        //   WhatsappImage: {
-        //    // take: 1,
-        //     orderBy: {
-        //       timestamp: 'desc',
-        //     }
-        //   },
-        //   WhatsappVideo: {
-        //    // take: 1,
-        //     orderBy: {
-        //       timestamp: 'desc',
-        //     }
-        //   },
-        //   WhatsappDoc: {
-        //    // take: 1,
-        //     orderBy: {
-        //       timestamp: 'desc',
-        //     }
-        //   },
-        // },
-      });
-      return customers;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  async onSearchForUser( id:any) {
-  //usuario especifico
-    try {
-      const user = await prismaService.customer.findUnique({
-        where: {
-          phone: id,
-        },
-        include: {
-          WhatsappMessage: {
-            //take: 1,
-            orderBy: {
-              timestamp: 'desc',
-            },
-          },
-          WhatsappAudio: {
+         include: {
+           WhatsappMessage: {
+            // take: 1,
+             orderBy: {
+               timestamp: 'desc',
+             },
+           },
+           WhatsappAudio: {
             // take: 1,
              orderBy: {
                timestamp: 'desc',
@@ -356,7 +311,52 @@ class PrismaService extends PrismaClient {
                timestamp: 'desc',
              }
            },
+         },
+      });
+      return customers;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async onSearchForUser( id:any) {
+  //usuario especifico
+    try {
+      const user = await prismaService.customer.findUnique({
+        where: {
+          phone: id,
         },
+        // include: {
+        //   WhatsappMessage: {
+        //     //take: 1,
+        //     orderBy: {
+        //       timestamp: 'desc',
+        //     },
+        //   },
+        //   WhatsappAudio: {
+        //     // take: 1,
+        //      orderBy: {
+        //        timestamp: 'desc',
+        //      }
+        //    },
+        //    WhatsappImage: {
+        //     // take: 1,
+        //      orderBy: {
+        //        timestamp: 'desc',
+        //      }
+        //    },
+        //    WhatsappVideo: {
+        //     // take: 1,
+        //      orderBy: {
+        //        timestamp: 'desc',
+        //      }
+        //    },
+        //    WhatsappDoc: {
+        //     // take: 1,
+        //      orderBy: {
+        //        timestamp: 'desc',
+        //      }
+        //    },
+        // },
       });
       return user;
     } catch (error) {

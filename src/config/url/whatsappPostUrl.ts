@@ -1,7 +1,8 @@
 
 import { envs } from "../envs";
 
-export const urlSendMessage =`https://graph.facebook.com/${envs.Version}/${envs.Phone_Number_ID}/messages `
+//export const urlSendMessage =`https://graph.facebook.com/${envs.Version}/${envs.Phone_Number_ID}/messages`
+export const urlSendMessage =`https://graph.facebook.com/${envs.Version}/${envs.WABA_ID}/messages`
 
 export const headers={
     'Content-Type': 'application/json',

@@ -44,23 +44,27 @@ export class WssService {
   // estudiar si es buena idea conectarse por websocket a la base de datos
 
   public start() {
+   
     this.wss.on('connection', (ws: WebSocket) => {
       //aqui van las notificaciones de websocket
       // Aquí agregamos el manejador de eventos para el evento 'message'
       ws.on('message', (message: any) => {
         const messageString = message.toString('utf8');
+        //console.log('mensaje recibido:', messageString);
         try {
           const data = JSON.parse(messageString);
           //console.log('Received JSON message:', JSON.stringify(data, null, 2));
 
           // Aquí puedes manejar el objeto JSON recibido
-          console.log("data wss", );
+          console.log(`mensaje recibido:${messageString} `, );
+          this.sendMessage('broadcast', data);
+
         } catch (error) {
           console.error('Invalid JSON received:', messageString);
         }
       });
 
-      console.log('Client connected');
+      console.log('cliente conectado');
       ws.on('close', () => console.log('Client disconnected'));
     });
   }

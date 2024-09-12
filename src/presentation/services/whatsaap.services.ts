@@ -4,7 +4,7 @@ import{ WssService } from "../../notifications/wss.service";
 import { PhoneNumbersDTO, WhatsappTemplateDto } from "../../domain/dto";
 import {envs } from "../../config/envs";
 import { bodyBienvenidoTemplate, headers, urlSendMessage } from "../../config/url/whatsappPostUrl";
-import { textTemplate } from "../../domain/interfaces";
+
 
 //no olvidar que aqui tambien iran las notificaciones del websocket
 
@@ -73,9 +73,10 @@ onSendWelcome = async (id: any): Promise<any> => {
       code: "es_MX",
     },
   };
-  const WelcomeTemplate: textTemplate = {
+  const WelcomeTemplate: any = {
     messaging_product: "whatsapp",
     to: id,
+    //to:"573205711428",
     type: 'template',
     template: template,
   };
@@ -83,11 +84,49 @@ onSendWelcome = async (id: any): Promise<any> => {
   try {
     const response = await axios
       .post(urlSendMessage, WelcomeTemplate, { headers });
-      console.log(response.data);
+      console.log(`mensaje enviado a ${id}`);
     return response.data;
-  } catch (error) {
-    console.error(`error al enviar el mensaje ${error}`);
+  } catch (error:any) {
+    if (error.response) {
+      // The request was made and the server responded with a status code that falls out of the range of 2xx
+      console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
+      console.error(`Mensaje de error: ${error.response.data}`);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error(`Error al enviar el mensaje: ${error.message}`);
+    }
   }
+  return "ok";
 }
+onSendText = async (id: any, message: string) => {
+  const textTemplate: any = {
+    messaging_product: "whatsapp",
+    to: id,
+    text: { body: `${message}` },
+  };
+  try {
+    const response = await axios
+      .post(urlSendMessage, textTemplate, { headers });
+      console.log(message)
+    return response.data;
+  } catch (error:any) {
+    if (error.response) {
+      // The request was made and the server responded with a status code that falls out of the range of 2xx
+      console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
+      console.error(`Respuesta de error: ${error.response.data}`);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error(`Error al enviar el mensaje: ${error.message}`);
+    }
+  }
+  return "ok";
 
+
+}
 }

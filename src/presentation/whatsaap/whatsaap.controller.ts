@@ -21,12 +21,13 @@ export class WhatsaapController {
 
 
   public sendWelcome = async (req: Request, res: Response) => {
-    //const messages = req.body; 
+    const {message} = req.body; 
     const id = req.body.id;
-
+    //console.log(id)
     //const id = JSON.stringify(messages);
-    this.whatsaapService.onSendWelcome(id).then((data) => res.json(data));
-
+    console.log(message)
+    const mensaje= this.whatsaapService.onSendWelcome(id);
+    res.json(mensaje);
   };
    //funcion para obtener los numeros de whatsapp desde donde se enviara los mensajes
   public getPhones = async (req: Request, res: Response) => {
@@ -56,92 +57,18 @@ export class WhatsaapController {
     console.log(error);
   }
 
-
-
   }
-  // async getCustomers(userId: number): Promise<Customer[]> {
-  //   try {
-  //     const customers = await this.prisma.customer.findMany({
-  //       orderBy: {
-  //         lastActive: 'desc',
-  //       },
-  //       where: {
-  //         attending: userId,
-  //       },
-  //       include: {
-  //         WhatsappMessage: {
-  //           take: 1,
-  //           orderBy: {
-  //             timestamp: 'desc',
-  //           },
-  //         },
-  //       },
-  //     });
-  //     this.logger.log(
-  //       `Retrieved ${customers.length} customers for user ${userId}`,
-  //     );
-  //     return customers;
-  //   } catch (error) {
-  //     this.logger.error(`no se encontro el usuario ${userId}`, error.stack);
-  //     throw new Error('no se encontraron usuarios ');
-  //   }
-  // }
 
-
-  //   if (messages.length === 0) {
-  //       throw new EmptyBatchException();
-  //     }
-  //     let failed = 0;
-
-  // for (const message of messages) {
-  //   if (message.template === '') {
-  //     failed++;
-  //     continue;
-  //   }
-
-  //   if (message.source === '' || message.source === 'null') {
-  //     failed++;
-  //     continue;
-  //   }
-
-  //   if (message.destination === '') {
-  //     failed++;
-  //     //usar ws en vez de socket io
-  //     //await notify.missingDestination(message.sender);
-  //     continue;
-  //   }
-
-  //   try {
-  //   //funcion de whatsapp que sendTemplate con el mensaje
-  //    // await whatsappService.sendTemplate(message);
-  //   } catch (error) {
-  //     failed++;
-  //     throw new Error("error al enviar el mensaje");
-  //     //console.log(error.message);
-  //     continue;
-  //   }
-
-  //   await new Promise((f) => setTimeout(f, 100));
-  // }
-  // if (failed === 0) {
-  //   //usar ws en vez de socket io
-  //   // await notify.sendNotification(messages[0].sender, {
-  //   //   title: 'Todos los mensajes Han sido enviados!',
-  //   //   body: `se enviaron ${messages.length} mensajes`,
-  //   //   status: 'success',
-  //   // });
-  //   res.status(200).json('Todos los mensajes Han sido enviados!');
-  // } else {
-  //   //usar ws en vez de socket io
-  //   // await notify.sendNotification(messages[0].sender, {
-  //   //   title: 'No se pudieron enviar algunos mensajes',
-  //   //   body: `No se pudieron enviar ${failed} de ${messages.length} mensajes`,
-  //   //   status: 'warning',
-  //   // });
-  //   res.status(206).json(`Failed: ${failed}/${messages.length}`);
-  // }
-
-  // console.log(`Sent ${messages.length - failed}, Failed ${failed}/${messages.length}`);
+  public sendText = async (req: Request, res: Response) => {
+    const {message, id} = req.body; 
+   
+    //console.log(id)
+    //const id = JSON.stringify(messages);
+    console.log(message)
+    const mensaje= this.whatsaapService.onSendText(id,message);
+    res.json(mensaje);
+  };
+  
 };
 
   
