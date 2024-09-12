@@ -1,5 +1,6 @@
 import { Server } from 'http';
 import { WebSocket, WebSocketServer } from 'ws';
+import  PrismaService  from '../prisma/prisma.service';
 
 interface Options {
   server: Server;
@@ -46,18 +47,21 @@ export class WssService {
   public start() {
    
     this.wss.on('connection', (ws: WebSocket) => {
+      const prismaService = new PrismaService();
       //aqui van las notificaciones de websocket
       // Aquí agregamos el manejador de eventos para el evento 'message'
       ws.on('message', (message: any) => {
+       
         const messageString = message.toString('utf8');
-        //console.log('mensaje recibido:', messageString);
+        console.log('mensaje recibido:', messageString);
         try {
-          const data = JSON.parse(messageString);
+          const data = JSON.parse(message);
           //console.log('Received JSON message:', JSON.stringify(data, null, 2));
 
           // Aquí puedes manejar el objeto JSON recibido
-          console.log(`mensaje recibido:${messageString} `, );
+          console.log(`mensaje recibido:${data}`, );
           this.sendMessage('broadcast', data);
+          prismaService.onMessageReceived(data);
 
         } catch (error) {
           console.error('Invalid JSON received:', messageString);

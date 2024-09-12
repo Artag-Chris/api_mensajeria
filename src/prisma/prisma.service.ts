@@ -18,8 +18,8 @@ class PrismaService extends PrismaClient {
   async onMessageReceived(payload: any) {
 
     const {name,phone,type,id,body,display_phone_number} =payload;
-   
-    
+  
+    //console.log(`onMessageReceived: ${name} ${phone} ${type} ${id} ${body} ${display_phone_number}`);
      await prismaService.customer.upsert({
        where: { phone}, // Campo único para buscar el registro
        update: {
@@ -67,6 +67,61 @@ class PrismaService extends PrismaClient {
      });
      
     return 'Texto recibido';
+  }
+
+  async onFrontMessageReceived(payload: any) {
+
+    const {name,phone,identification,attending, lastActive,wppStatus,
+      detail,WhatsappMessage} =payload;
+      const {id,message,to,status,direction,type,mediaId,attendant}=WhatsappMessage[0];
+
+
+    await prismaService.customer.upsert({
+      where: { phone}, // Campo único para buscar el registro
+      update: {
+        name,
+        phone,
+        attending,
+        lastActive,
+        wppStatus:'attended',
+        detail: "",
+        identification,
+        WhatsappMessage: {
+          create: {
+            id,
+            message,
+            to,
+            status,
+            direction,
+            type,
+            mediaId: "",
+            attendant,
+          },
+        },
+      },
+      create: {
+        name,
+        phone,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: 'attended',
+        detail: "",
+       identification: phone ,
+        WhatsappMessage: {
+          create: {
+            id,
+            message,
+            to,
+            status,
+            direction,
+            type,
+            mediaId: "",
+            attendant,
+          },
+        },
+      }, 
+    });  
+ return "recibido del front";
   }
   async onImageReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;
