@@ -32,6 +32,7 @@ export class PrismaRoutes {
     router.get(`/searchForVideoMessages/:id`,prismaController.onRequesForVideoMessages);
     router.get(`/searchForDocumentMessages/:id`,prismaController.onRequesForDocumentMessages);
     router.get(`/searchForBotMessages/:id`,prismaController.onConsultForBotMessages);
+    
 return router;
  }
 }

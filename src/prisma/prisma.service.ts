@@ -68,13 +68,13 @@ class PrismaService extends PrismaClient {
      
     return 'Texto recibido';
   }
-
   async onFrontMessageReceived(payload: any) {
 
     const {name,phone,identification,attending, lastActive,wppStatus,
       detail,WhatsappMessage} =payload;
       const {id,message,to,status,direction,type,mediaId,attendant}=WhatsappMessage[0];
 
+      //console.log(payload)
 
     await prismaService.customer.upsert({
       where: { phone}, // Campo único para buscar el registro
@@ -224,7 +224,6 @@ class PrismaService extends PrismaClient {
     });
     return 'Audio recibido';
   }
-
   async onVideoReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;
     await prismaService.customer.upsert({
@@ -326,7 +325,9 @@ class PrismaService extends PrismaClient {
 
   //zona usuario
   async onRequestUsers( payload:any) {
-    //todos los usuarios
+    //todos los usuarios menos el bot
+    const bot= "573025970185"
+
     try {
       const customers = await prismaService.customer.findMany({
         orderBy: {
@@ -334,6 +335,9 @@ class PrismaService extends PrismaClient {
         },
         where: {
           attending: 0,
+          NOT: {
+            phone: bot, // Exclude the specific phone number
+          },
         },
          include: {
            WhatsappMessage: {
@@ -568,7 +572,6 @@ class PrismaService extends PrismaClient {
       },
     });
   }
-
   async onResearchDocumentMessages(id:any) {
 
     if (!id) {
@@ -586,7 +589,6 @@ class PrismaService extends PrismaClient {
       },
     });
   }
-
   async onResearchForBotMessages(id:any) {
     
     const phone="573025970185"
