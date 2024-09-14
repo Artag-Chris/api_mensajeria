@@ -74,7 +74,7 @@ class PrismaService extends PrismaClient {
       detail,WhatsappMessage} =payload;
       const {id,message,to,status,direction,type,mediaId,attendant}=WhatsappMessage[0];
 
-      //console.log(payload)
+      console.log(payload)
 
     await prismaService.customer.upsert({
       where: { phone}, // Campo único para buscar el registro
