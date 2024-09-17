@@ -68,6 +68,14 @@ export class WhatsaapController {
     const mensaje= this.whatsaapService.onSendText(id,message);
     res.json(mensaje);
   };
+
+  public sendImage = async (req: Request, res: Response) => {
+    const {message, id} = req.body; 
+   
+   
+    const mensaje= this.whatsaapService.onSendImage(id,message);
+    res.json(mensaje);
+  };
   
 };
 

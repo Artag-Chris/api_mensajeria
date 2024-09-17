@@ -110,7 +110,7 @@ onSendText = async (id: any, message: string) => {
   try {
     const response = await axios
       .post(urlSendMessage, textTemplate, { headers });
-      console.log(message)
+     // console.log(message)
     return response.data;
   } catch (error:any) {
     if (error.response) {
@@ -129,4 +129,24 @@ onSendText = async (id: any, message: string) => {
 
 
 }
+
+onSendImage = async (id: any, message: string) => {
+
+  const imageTemplate: any = {
+    "messaging_product": "whatsapp",
+    "recipient_type": "individual",
+    "to": "<WHATSAPP_USER_PHONE_NUMBER>",
+    "type": "image",
+    "image": {
+      "id" : "<MEDIA_ID>", /* Only if using uploaded media */
+      "link": "<MEDIA_URL>", /* Only if linking to your media */
+      "caption": "<IMAGE_CAPTION_TEXT>"
+    }
+  }
+  
+console.log(id)
+
+
+}
+
 }

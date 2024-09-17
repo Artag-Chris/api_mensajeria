@@ -19,7 +19,12 @@ export class whatsappRoutes{
     //se mandara por parametro el numero al que enviaremos la plantilla
     router.post(`/welcome`,whatsaapController.sendWelcome);
     router.post(`/templateforcollections`,whatsaapController.sendWelcome);
+    //desde el front a meta para responder al usuario
     router.post(`/sendTextResponse`,whatsaapController.sendText);
+    router.post(`/sendImageResponse`,whatsaapController.sendImage);
+  //  router.post(`/sendAudioResponse`,whatsaapController.sendAudio);
+  //  router.post(`/sendVideoResponse`,whatsaapController.sendVideo);
+  //  router.post(`/sendDocumentResponse`,whatsaapController.sendDocument);
 
 
 return router;

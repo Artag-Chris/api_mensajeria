@@ -75,7 +75,7 @@ class PrismaService extends PrismaClient {
       detail,WhatsappMessage} =payload;
       const {id,message,to,status,direction,type,mediaId,attendant}=WhatsappMessage[0];
 
-      console.log("texto recibido del front")
+      console.log(payload);
 
     await prismaService.customer.upsert({
       where: { phone}, // Campo único para buscar el registro
@@ -87,7 +87,7 @@ class PrismaService extends PrismaClient {
         wppStatus:'attended',
         detail: "",
         identification,
-        WhatsappImage: {
+        WhatsappMessage: {
           create: {
             id,
             message,
@@ -122,6 +122,7 @@ class PrismaService extends PrismaClient {
         },
       }, 
     });  
+    
  return "recibido del front";
   }
   async onFrontMessageImageReceived(payload: any) {
