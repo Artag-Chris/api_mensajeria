@@ -68,13 +68,14 @@ class PrismaService extends PrismaClient {
      
     return 'Texto recibido';
   }
+  //front-end messages
   async onFrontMessageReceived(payload: any) {
 
     const {name,phone,identification,attending, lastActive,wppStatus,
       detail,WhatsappMessage} =payload;
       const {id,message,to,status,direction,type,mediaId,attendant}=WhatsappMessage[0];
 
-      console.log(payload)
+      console.log("texto recibido del front")
 
     await prismaService.customer.upsert({
       where: { phone}, // Campo único para buscar el registro
@@ -123,6 +124,60 @@ class PrismaService extends PrismaClient {
     });  
  return "recibido del front";
   }
+  async onFrontMessageImageReceived(payload: any) {
+    const {name,phone, timestamp,to,message,id 
+      ,WhatsappImage} =payload;
+      await prismaService.customer.upsert({
+        where: { phone}, // Campo único para buscar el registro
+        update: {
+          name,
+          phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus:'attended',
+          detail: "",
+          identification: phone,
+          WhatsappMessage: {
+            create: {
+              id,
+              message,
+              to,
+              status: "delivered",
+              direction: "outgoing",
+              type: "image",
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        },
+        create: {
+          name,
+          phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: 'attended',
+          detail: "",
+         identification: phone ,
+          WhatsappMessage: {
+            create: {
+              id,
+              message,
+              to,
+              status: "delivered",
+              direction: "outgoing",
+              type: "image",
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        }, 
+      });  
+   return "recibido del front";
+
+
+  }
+
+  //users messages
   async onImageReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;
 

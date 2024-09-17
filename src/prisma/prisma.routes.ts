@@ -9,13 +9,15 @@ export class PrismaRoutes {
 
     const prismaController =new PrismaController();
 
-    //funciones de recepcion de mensajes 
+    //funciones de recepcion de mensajes usuarios
     router.post(`/DB`,prismaController.onReceivedMessage);
     router.post(`/ImageDB`,prismaController.onReceivedImage);
     router.post(`/audioDB`,prismaController.onReceivedAudio);
     router.post(`/videoDB`,prismaController.onReceivedVideo);
     router.post(`/docDB`,prismaController.onReceivedDocument);
+    //funciones de recepcion de mensajes del front
     router.post("/frontmessage",prismaController.onReceivedFrontMessage);
+    router.post("/frontmessageImage",prismaController.onReceivedFrontMessageImage);
 
     //relacionado para usuarios
     router.post(`/user`,prismaController.onCreateUser);
