@@ -87,7 +87,7 @@ class PrismaService extends PrismaClient {
         wppStatus:'attended',
         detail: "",
         identification,
-        WhatsappMessage: {
+        WhatsappImage: {
           create: {
             id,
             message,
@@ -137,7 +137,7 @@ class PrismaService extends PrismaClient {
           wppStatus:'attended',
           detail: "",
           identification: phone,
-          WhatsappMessage: {
+          WhatsappImage: {
             create: {
               id,
               message,
@@ -158,7 +158,7 @@ class PrismaService extends PrismaClient {
           wppStatus: 'attended',
           detail: "",
          identification: phone ,
-          WhatsappMessage: {
+          WhatsappImage: {
             create: {
               id,
               message,
