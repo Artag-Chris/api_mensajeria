@@ -22,9 +22,9 @@ export class whatsappRoutes{
     //desde el front a meta para responder al usuario
     router.post(`/sendTextResponse`,whatsaapController.sendText);
     router.post(`/sendImageResponse`,whatsaapController.sendImage);
-  //  router.post(`/sendAudioResponse`,whatsaapController.sendAudio);
-  //  router.post(`/sendVideoResponse`,whatsaapController.sendVideo);
-  //  router.post(`/sendDocumentResponse`,whatsaapController.sendDocument);
+    router.post(`/sendAudioResponse`,whatsaapController.sendAudio);
+    router.post(`/sendVideoResponse`,whatsaapController.sendVideo);
+    router.post(`/sendDocumentResponse`,whatsaapController.sendDocument);
 
 
 return router;

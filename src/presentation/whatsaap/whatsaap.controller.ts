@@ -76,6 +76,25 @@ export class WhatsaapController {
     const mensaje= this.whatsaapService.onSendImage(payload);
     res.json(mensaje);
   };
+
+  public sendAudio = async (req: Request, res: Response) => {
+    const payload = req.body; 
+  
+    const mensaje= this.whatsaapService.onSendAudio(payload);
+    res.json(mensaje);
+  };
+  public sendVideo = async (req: Request, res: Response) => {
+    const payload = req.body; 
+  
+    const mensaje= this.whatsaapService.onSendVideo(payload);
+    res.json(mensaje);
+  };
+  public sendDocument = async (req: Request, res: Response) => {
+    const payload = req.body; 
+  
+    const mensaje= this.whatsaapService.onSendDoc(payload);
+    res.json(mensaje);
+  };
   
 };
 
