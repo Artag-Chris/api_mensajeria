@@ -130,21 +130,29 @@ onSendText = async (id: any, message: string) => {
 
 }
 
-onSendImage = async (id: any, message: string) => {
+onSendImage = async (payload:any) => {
+  const {to,mediaId,phone,type}=payload
+  //const {id}=mediaId
+  console.log(payload)
+  
 
   const imageTemplate: any = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
-    "to": "<WHATSAPP_USER_PHONE_NUMBER>",
+    "to": to,
     "type": "image",
-    "image": {
-      "id" : "<MEDIA_ID>", /* Only if using uploaded media */
-      "link": "<MEDIA_URL>", /* Only if linking to your media */
-      "caption": "<IMAGE_CAPTION_TEXT>"
-    }
+    "image":mediaId
   }
   
-console.log(id)
+  try{
+
+    const response = await axios
+    .post(urlSendMessage, imageTemplate, { headers });
+    console.log(response.data)
+  return response.data;
+
+  }catch(error){
+    console.log(error)}
 
 
 }
