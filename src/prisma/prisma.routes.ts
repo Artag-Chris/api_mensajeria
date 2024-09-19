@@ -18,7 +18,8 @@ export class PrismaRoutes {
     //funciones de recepcion de mensajes del front
     router.post("/frontmessage",prismaController.onReceivedFrontMessage);
     router.post("/frontmessageImage",prismaController.onReceivedFrontMessageImage);
-    router.post("/frontmessagedocument",prismaController.onReceivedFrontMessageDoc)
+    router.post("/frontmessagedocument",prismaController.onReceivedFrontMessageDoc);
+    router.post("/frontmessagevideo",prismaController.onReceivedFrontMessageVideo)
 
     //relacionado para usuarios
     router.post(`/user`,prismaController.onCreateUser);

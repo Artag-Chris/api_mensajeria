@@ -227,6 +227,56 @@ class PrismaService extends PrismaClient {
       }, 
     }); 
   }
+  async onFrontMessageVideoReceived(payload:any){
+    const {name,phone, timestamp,to,message,id 
+      ,WhatsappImage} =payload;
+      await prismaService.customer.upsert({
+        where: { phone}, // Campo único para buscar el registro
+        update: {
+          name,
+          phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus:'attended',
+          detail: "",
+          identification: phone,
+          WhatsappVideo: {
+            create: {
+              id,
+              message,
+              to,
+              status: "delivered",
+              direction: "outgoing",
+              type: "video",
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        },
+        create: {
+          name,
+          phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: 'attended',
+          detail: "",
+         identification: phone ,
+          WhatsappVideo: {
+            create: {
+              id,
+              message,
+              to,
+              status: "delivered",
+              direction: "outgoing",
+              type: "video",
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        }, 
+      });  
+   return "recibido del front";
+  }
   //users messages
   async onImageReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;

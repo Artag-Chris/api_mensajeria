@@ -95,10 +95,17 @@ export class WhatsaapController {
     const mensaje= this.whatsaapService.onSendDoc(payload);
     res.json(mensaje);
   };
+  public onReceivedFrontMessageVideo=async (req: Request, res: Response) => {
+    const payload = req.body; 
+  
+    const mensaje= this.whatsaapService.onSendVideo(payload);
+    res.json(mensaje);
   
 };
 
-  
+ 
 
+
+}
   
 
