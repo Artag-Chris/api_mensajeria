@@ -177,7 +177,56 @@ class PrismaService extends PrismaClient {
 
 
   }
+  async onFrontMessageDocReceived(payload:any){
+    const {name,phone, timestamp,to,message,id 
+      ,WhatsappImage} =payload;
 
+    await prismaService.customer.upsert({
+      where: { phone}, // Campo único para buscar el registro
+      update: {
+        name,
+        phone,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus:'attended',
+        detail: "",
+        identification: phone,
+        WhatsappDoc: {
+          create: {
+            id,
+            message,
+            to,
+            status: "delivered",
+            direction: "outgoing",
+            type: "document",
+            mediaId: "",
+            attendant: 0,
+          },
+        },
+      },
+      create: {
+        name,
+        phone,
+        attending: 0,
+        lastActive: new Date(),
+        wppStatus: 'attended',
+        detail: "",
+       identification: phone ,
+        WhatsappDoc: {
+          create: {
+            id,
+            message,
+            to,
+            status: "delivered",
+            direction: "outgoing",
+            type: "document",
+            mediaId: "",
+            attendant: 0,
+          },
+        },
+      }, 
+    }); 
+  }
   //users messages
   async onImageReceived(payload:any) {
     const {name, phone,to,message,type,id}= payload;

@@ -175,6 +175,37 @@ onSendImage = async (payload:any) => {
 
  onSendDoc = async (payload:any) => {
 
-  console.log(payload)
- }
+  const {to,mediaId,phone,type}=payload
+
+  const docTemplate: any = {
+    "messaging_product": "whatsapp",
+    "recipient_type": "individual",
+    "to": to,
+    "type": "document",
+    "document": mediaId
+  }
+  
+  try{
+    const response = await axios
+    .post(urlSendMessage, JSON.stringify(docTemplate), { headers });
+    console.log(response.data)
+  return response.data;
+
+  }catch(error:any){
+    if (error.response) {
+      // The request was made and the server responded with a status code that falls out of the range of 2xx
+      console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
+      console.error(`Respuesta de error: ${error.response}`);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error(`Error al enviar el mensaje: ${error.message}`);
+    }
+  }
+}
+
+
+
 }

@@ -44,6 +44,11 @@ export class PrismaController {
         const message = await this.prismaService.onFrontMessageImageReceived(payload);
         res.status(200).send(message);
     }
+    onReceivedFrontMessageDoc=async (req: Request, res: Response) => {
+        const payload = req.body;
+        const message = await this.prismaService.onFrontMessageDocReceived(payload);
+        res.status(200).send(message);
+    }
   
     //busqueda de mensajes
     onRequesForAlltypesOfMessages = async (req: Request, res: Response) => {
