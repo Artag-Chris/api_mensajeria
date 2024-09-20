@@ -35,6 +35,10 @@ export class WhatsaapController {
   
    
   };
+  public unavariable = async (req: Request, res: Response) => {
+   const payload = req.body;
+    this.whatsaapService.onRequesFor1(payload).then((data) => res.json(data));
+  }
 
 // ira a la base de datos me traera los ultimos clientes que esten esperando mensaje por el userId
   public getCustomers = async (req: Request, res: Response) => {

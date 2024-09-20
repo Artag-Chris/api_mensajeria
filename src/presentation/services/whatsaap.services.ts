@@ -52,7 +52,7 @@ onRequesForTemplates = async (): Promise<any> => {
         Authorization: `Bearer ${envs.User_Access_Token}`,
       },
     });
-    console.log(response.data.data);
+    
     return response.data.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -69,7 +69,7 @@ onRequesForTemplates = async (): Promise<any> => {
   }
   
 }
-
+//envio de plantillas
 onSendWelcome = async (id: any): Promise<any> => {
  
   const template = {
@@ -106,6 +106,16 @@ onSendWelcome = async (id: any): Promise<any> => {
   }
   return "ok";
 }
+onRequesFor1= async (payload:any) => {
+  //se desfragmentara la informacion aqui se pedira el nombre de la plantilla
+  //el numero a donde se enviara la plantilla
+  //si tiene un nombre o un campo variable
+
+
+console.log(payload)
+}
+
+//envio de mensajes
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {
     messaging_product: "whatsapp",
