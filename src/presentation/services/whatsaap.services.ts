@@ -3,9 +3,13 @@ import axios, { AxiosError } from "axios"
 import{ WssService } from "../../notifications/wss.service";
 import { PhoneNumbersDTO, WhatsappTemplateDto } from "../../domain/dto";
 import {envs } from "../../config/envs";
-import { bodyBienvenidoTemplate, headers, urlSendMessage } from "../../config/url/whatsappPostUrl";
+import { bodyBienvenidoTemplate, headers, urlSendMessage, urlSendtemplate } from "../../config/url/whatsappPostUrl";
 import { PhonesResponse } from "../../domain/interfaces/getPhonesResponse";
 import { cleanPhoneNumber } from "../../domain/functions/formatedNumber";
+import { OneVariable } from "../../domain/interfaces/oneVariable";
+import { TwoVariable } from "../../domain/interfaces/twoVariable";
+import { ThreeVariables } from "../../domain/interfaces/threeVariables";
+import { FourVariable } from "../../domain/interfaces/fourVariables";
 
 
 //no olvidar que aqui tambien iran las notificaciones del websocket
@@ -111,30 +115,162 @@ onRequesWithoutVariables= async (payload:any) => {
   console.log(payload)
 }
 onRequesFor1= async (payload:any) => {
-  //se desfragmentara la informacion aqui se pedira el nombre de la plantilla
-  //el numero a donde se enviara la plantilla
-  //si tiene un nombre o un campo variable
+  const {phone, texto}= payload
+  
+  try{
+    const template:OneVariable={
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "unavariable",
+        language: {
+          code: "es_MX",
+        },
+        components: [{
+          type: "body",
+          parameters: [{
+            type: "text",
+            text: `${texto}`
+          }]
+        }]
+      }
+      }
+  
+      const response = await axios
+      .post(urlSendtemplate, template, { headers });
+  
+      return response.data;
+  }catch(error){
+  console.log(error)
+  }
+  
 
-
-console.log(payload)
 }
 onRequesFor2= async (payload:any) => {
-  //se desfragmentara la informacion aqui se pedira el Nombre de la plantilla
-  //el numero a donde se enviara la plantilla
-  //si tiene un Nombre o un campo variable
-
-console.log(payload)
+  const {phone, texto, texto2}= payload
+   
+   try{
+    const template:TwoVariable={
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "dosvariables",
+        language: {
+          code: "es_MX",
+        },
+        components: [{
+          type: "body",
+          parameters: [
+            {
+            type: "text",
+            text: `${texto}`
+          },
+          {
+            type: "text",
+            text: `${texto2}`
+          }
+        ]
+        }]
+      }
+      }
+  
+      const response = await axios
+      .post(urlSendtemplate, template, { headers });
+  
+      return response.data;
+   }catch(error){
+     console.log(error)
+   }
+  
 }
 onRequesFor3= async (payload:any) => {
-  //se desfragmentara la informacion aqui se pedira el Nombre de la plantilla
-  //el numero a donde se enviara la plantilla
-  //si tiene un Nombre o un campo variable
-console.log(payload)
+  const {phone, texto, texto2, texto3}= payload
+  try{
+    const template:ThreeVariables={
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "tresvariables",
+        language: {
+          code: "es_MX",
+        },
+        components: [{
+          type: "body",
+          parameters: [
+            {
+            type: "text",
+            text: `${texto}`
+          },
+          {
+            type: "text",
+            text: `${texto2}`
+          },
+          {
+            type: "text",
+            text: `${texto3}`
+          } 
+        ]
+        }]
+      }
+      }
+  
+      const response = await axios
+      .post(urlSendtemplate, template, { headers });
+  
+      return response.data;
+   }catch(error){
+     console.log(error)
+   }
 }
 onRequesFor4= async (payload:any) => {
-  console.log(payload)
+  const {phone, texto, texto2, texto3,texto4}= payload
+  try{
+    const template:FourVariable={
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "cuatrovariables",
+        language: {
+          code: "es_MX",
+        },
+        components: [{
+          type: "body",
+          parameters: [
+            {
+            type: "text",
+            text: `${texto}`
+          },
+          {
+            type: "text",
+            text: `${texto2}`
+          },
+          {
+            type: "text",
+            text: `${texto3}`
+          },
+          {
+            type: "text",
+            text: `${texto4}`
+          } 
+        ]
+        }]
+      }
+      }
+  
+      const response = await axios
+      .post(urlSendtemplate, template, { headers });
+  
+      return response.data;
+   }catch(error){
+     console.log(error)
+   }
 }
 onRequesWithoutVariablesImage= async (payload:any) => {
+  const {phone, mediaId}= payload
   console.log(payload)
 }
 onRequesFor1Image= async (payload:any) => {

@@ -9,7 +9,10 @@ export interface FourVariable {
       name: string,
       language: {
         code: "es_MX",
-      },"parameters": [
+      },"components": [
+      {
+      type: "body",
+      "parameters": [
         {
           type: "text",
           text: string
@@ -27,4 +30,6 @@ export interface FourVariable {
           text: string
         }
       ]
+    }
+  ]
   };
