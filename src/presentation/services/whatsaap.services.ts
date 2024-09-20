@@ -41,18 +41,19 @@ onRequestForPhones = async () => {
   }
 };
 
-onRequesForTemplates = async (): Promise<WhatsappTemplateDto[]> => {
-  try {
-    const response = await axios.get(
-      `https://graph.facebook.com/${envs.Version}/${envs.Phone_Number_ID}/message_templates?fields=name,status&limit=10`,
-      {
-        headers: {
-          Authorization: `Bearer ${envs.User_Access_Token}`,
-        },
-      }
-    );
+onRequesForTemplates = async (): Promise<any> => {
 
-    return response.data;
+
+  
+  
+  try {
+    const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.WABA_ID}/message_templates`, {
+      headers: {
+        Authorization: `Bearer ${envs.User_Access_Token}`,
+      },
+    });
+    console.log(response.data.data);
+    return response.data.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError;
