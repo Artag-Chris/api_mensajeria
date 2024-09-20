@@ -106,6 +106,10 @@ onSendWelcome = async (id: any): Promise<any> => {
   }
   return "ok";
 }
+
+onRequesWithoutVariables= async (payload:any) => {
+  console.log(payload)
+}
 onRequesFor1= async (payload:any) => {
   //se desfragmentara la informacion aqui se pedira el nombre de la plantilla
   //el numero a donde se enviara la plantilla
@@ -114,8 +118,37 @@ onRequesFor1= async (payload:any) => {
 
 console.log(payload)
 }
+onRequesFor2= async (payload:any) => {
+  //se desfragmentara la informacion aqui se pedira el Nombre de la plantilla
+  //el numero a donde se enviara la plantilla
+  //si tiene un Nombre o un campo variable
 
-//envio de mensajes
+console.log(payload)
+}
+onRequesFor3= async (payload:any) => {
+  //se desfragmentara la informacion aqui se pedira el Nombre de la plantilla
+  //el numero a donde se enviara la plantilla
+  //si tiene un Nombre o un campo variable
+console.log(payload)
+}
+onRequesFor4= async (payload:any) => {
+  console.log(payload)
+}
+onRequesWithoutVariablesImage= async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor1Image= async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor2Image= async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor3Image= async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor4Image= async (payload:any) => {
+  console.log(payload)
+}
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {
     messaging_product: "whatsapp",

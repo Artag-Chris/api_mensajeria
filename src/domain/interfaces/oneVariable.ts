@@ -9,10 +9,16 @@ export interface OneVariable {
     name: string,
     language: {
       code: "es_MX",
-    },"components": TemplateComponent[]
+    },"components": [
+      {
+      type: "body",
+      "parameters": [
+        {
+          type: "text",
+          text: string
+        }
+      ]
+    }
+  ]
 };
 
-interface TemplateComponent {
-    type: "text",
-    text: string,
-}

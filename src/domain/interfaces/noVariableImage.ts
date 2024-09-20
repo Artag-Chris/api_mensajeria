@@ -1,4 +1,4 @@
-export interface TwoVariable {
+export interface NoVariableImage {
     messaging_product: "whatsapp";
     to: string;
     type: "template";
@@ -10,20 +10,17 @@ export interface TwoVariable {
       language: {
         code: "es_MX",
       },"components": [
-      {
-      type: "body",
-      "parameters": [
         {
-          type: "text",
-          text: string
-        },
-        {
-          type: "text",
-          text: string
-        }
-      ]
-    }
-  ]
+        type: "header",
+        "parameters": [
+          {
+            type: "image",
+            "image":{
+                "link": string    
+            }
+          }
+        ]
+      }
+    ]
   };
-  
   

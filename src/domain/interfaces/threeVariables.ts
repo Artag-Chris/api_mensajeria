@@ -1,4 +1,4 @@
-export interface TwoVariable {
+export interface ThreeVariables {
     messaging_product: "whatsapp";
     to: string;
     type: "template";
@@ -20,10 +20,13 @@ export interface TwoVariable {
         {
           type: "text",
           text: string
+        },
+        {
+          type: "text",
+          text: string
         }
       ]
     }
   ]
   };
-  
   

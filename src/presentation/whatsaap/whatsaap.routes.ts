@@ -18,10 +18,16 @@ export class whatsappRoutes{
     //se crearan rutas para plantillas especificas de whatsapp 
     //se mandara por parametro el numero al que enviaremos la plantilla
     router.post(`/welcome`,whatsaapController.sendWelcome);
-    router.post(`/unavariable`,whatsaapController.sendWelcome);
-    router.post(`/dosvariable`,whatsaapController.sendWelcome);
-    router.post(`/tresvariable`,whatsaapController.sendWelcome);
-    router.post(`/cuatrovariable`,whatsaapController.sendWelcome);
+    router.post(`/sinvariable`,whatsaapController.sinvariable);
+    router.post(`/unavariable`,whatsaapController.unavariable);
+    router.post(`/dosvariable`,whatsaapController.dosvariables);
+    router.post(`/tresvariable`,whatsaapController.tresvariables);
+    router.post(`/cuatrovariable`,whatsaapController.cuatrovariables);
+    router.post(`/sinvariableimage`,whatsaapController.sinvariableimage);
+    router.post(`/unavariableimage`,whatsaapController.unavariableimage);
+    router.post(`/dosvariableimage`,whatsaapController.dosvariablesimage);
+    router.post(`/tresvariableimage`,whatsaapController.tresvariablesimage);
+    router.post(`/cuatrovariableimage`,whatsaapController.cuatrovariablesimage);
     
     //desde el front a meta para responder al usuario
     router.post(`/sendTextResponse`,whatsaapController.sendText);

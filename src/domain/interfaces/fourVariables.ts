@@ -1,4 +1,4 @@
-export interface TwoVariable {
+export interface FourVariable {
     messaging_product: "whatsapp";
     to: string;
     type: "template";
@@ -9,10 +9,15 @@ export interface TwoVariable {
       name: string,
       language: {
         code: "es_MX",
-      },"components": [
-      {
-      type: "body",
-      "parameters": [
+      },"parameters": [
+        {
+          type: "text",
+          text: string
+        },
+        {
+          type: "text",
+          text: string
+        },
         {
           type: "text",
           text: string
@@ -22,8 +27,4 @@ export interface TwoVariable {
           text: string
         }
       ]
-    }
-  ]
   };
-  
-  

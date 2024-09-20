@@ -35,9 +35,46 @@ export class WhatsaapController {
   
    
   };
+  public sinvariable = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesWithoutVariables(payload).then((data) => res.json(data));
+  }
   public unavariable = async (req: Request, res: Response) => {
    const payload = req.body;
     this.whatsaapService.onRequesFor1(payload).then((data) => res.json(data));
+  }
+  public dosvariables = async (req: Request, res: Response) => {
+   const payload = req.body;
+    this.whatsaapService.onRequesFor2(payload).then((data) => res.json(data));
+  }
+  public tresvariables = async (req: Request, res: Response) => {
+   const payload = req.body;
+    this.whatsaapService.onRequesFor3(payload).then((data) => res.json(data));
+  }
+  public cuatrovariables = async (req: Request, res: Response) => {
+   const payload = req.body;
+    this.whatsaapService.onRequesFor4(payload).then((data) => res.json(data));
+  }
+
+  public sinvariableimage = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesWithoutVariablesImage(payload).then((data) => res.json(data));
+  }
+  public unavariableimage = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor1Image(payload).then((data) => res.json(data));
+  }
+  public dosvariablesimage = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor2Image(payload).then((data) => res.json(data));
+  }
+  public tresvariablesimage = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor3Image(payload).then((data) => res.json(data));
+  }
+  public cuatrovariablesimage = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor4Image(payload).then((data) => res.json(data));
   }
 
 // ira a la base de datos me traera los ultimos clientes que esten esperando mensaje por el userId
