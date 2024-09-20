@@ -10,6 +10,8 @@ import { OneVariable } from "../../domain/interfaces/oneVariable";
 import { TwoVariable } from "../../domain/interfaces/twoVariable";
 import { ThreeVariables } from "../../domain/interfaces/threeVariables";
 import { FourVariable } from "../../domain/interfaces/fourVariables";
+import { NoVariableImage } from "../../domain/interfaces/noVariableImage";
+import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
 
 
 //no olvidar que aqui tambien iran las notificaciones del websocket
@@ -271,10 +273,86 @@ onRequesFor4= async (payload:any) => {
 }
 onRequesWithoutVariablesImage= async (payload:any) => {
   const {phone, mediaId}= payload
-  console.log(payload)
+  
+  try{
+    const imageTemplate: NoVariableImage = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "sinvariableimagen",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "image",
+              "image":{
+                "link": mediaId   
+              }
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, imageTemplate, { headers });
+  
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
+  
+   
 }
 onRequesFor1Image= async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto}= payload
+  try{
+    const imageTemplate: OneVariableImage = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "unavariableimagen",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "image",
+              "image":{
+                "link": mediaId   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, imageTemplate, { headers });
+  
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
+  
 }
 onRequesFor2Image= async (payload:any) => {
   console.log(payload)
