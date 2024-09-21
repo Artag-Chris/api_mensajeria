@@ -459,7 +459,7 @@ onRequesFor4Image= async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "cuatrovariableimage",
+        name: "cuatrovariableimagen",
         language: {
           code: "es_MX",
         },"components": [
