@@ -27,12 +27,7 @@ export interface TwoVariableImage {
           {
             type: "text",
             text: string
-          }
-        ]
-      },
-      {
-        type: "body",
-        "parameters": [
+          },
           {
             type: "text",
             text: string

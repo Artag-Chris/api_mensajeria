@@ -6,12 +6,9 @@ import {envs } from "../../config/envs";
 import { bodyBienvenidoTemplate, headers, urlSendMessage, urlSendtemplate } from "../../config/url/whatsappPostUrl";
 import { PhonesResponse } from "../../domain/interfaces/getPhonesResponse";
 import { cleanPhoneNumber } from "../../domain/functions/formatedNumber";
-import { OneVariable } from "../../domain/interfaces/oneVariable";
-import { TwoVariable } from "../../domain/interfaces/twoVariable";
-import { ThreeVariables } from "../../domain/interfaces/threeVariables";
-import { FourVariable } from "../../domain/interfaces/fourVariables";
-import { NoVariableImage } from "../../domain/interfaces/noVariableImage";
+import { FourVariable, NoVariableImage, OneVariable, ThreeVariables, TwoVariable, TwoVariableImage } from "../../domain/interfaces";
 import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
+
 
 
 //no olvidar que aqui tambien iran las notificaciones del websocket
@@ -355,7 +352,52 @@ onRequesFor1Image= async (payload:any) => {
   
 }
 onRequesFor2Image= async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2}= payload
+  try{
+    const imageTemplate: TwoVariableImage = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "dosvariableimagen",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "image",
+              "image":{
+                "link": mediaId   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, imageTemplate, { headers });
+  
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesFor3Image= async (payload:any) => {
   console.log(payload)
