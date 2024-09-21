@@ -6,7 +6,7 @@ import {envs } from "../../config/envs";
 import { bodyBienvenidoTemplate, headers, urlSendMessage, urlSendtemplate } from "../../config/url/whatsappPostUrl";
 import { PhonesResponse } from "../../domain/interfaces/getPhonesResponse";
 import { cleanPhoneNumber } from "../../domain/functions/formatedNumber";
-import { FourVariable, NoVariableImage, OneVariable, ThreeVariables, TwoVariable, TwoVariableImage } from "../../domain/interfaces";
+import { FourVariable, FourVariableImage, NoVariableImage, OneVariable, ThreeVariableImage, ThreeVariables, TwoVariable, TwoVariableImage } from "../../domain/interfaces";
 import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
 
 
@@ -400,10 +400,112 @@ onRequesFor2Image= async (payload:any) => {
   }
 }
 onRequesFor3Image= async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2,texto3}= payload
+  try{
+    const imageTemplate: ThreeVariableImage = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "tresvariableimagen",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "image",
+              "image":{
+                "link": mediaId   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            },
+            {
+              type: "text",
+              text: texto3
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, imageTemplate, { headers });
+  
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesFor4Image= async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2,texto3,texto4}= payload
+  try{
+    const imageTemplate: FourVariableImage = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "cuatrovariableimage",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "image",
+              "image":{
+                "link": mediaId   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            },
+            {
+              type: "text",
+              text: texto3
+            },
+            {
+              type: "text",
+              text: texto4
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, imageTemplate, { headers });
+  
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {
