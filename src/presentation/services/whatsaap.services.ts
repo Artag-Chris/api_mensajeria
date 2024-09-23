@@ -412,7 +412,7 @@ onRequesFor3Image= async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "tresvariableimagen",
+        name: "tresvariablesimagen",
         language: {
           code: "es_MX",
         },"components": [
@@ -464,7 +464,7 @@ onRequesFor4Image= async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "cuatrovariableimagen",
+        name: "cuatrovariablesimagen",
         language: {
           code: "es_MX",
         },"components": [
