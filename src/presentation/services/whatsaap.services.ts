@@ -298,7 +298,7 @@ onRequesWithoutVariablesImage= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
-  
+  console.log("enviado a meta")
     return response.data;
   }catch(error){
     console.log(error)
@@ -308,6 +308,8 @@ onRequesWithoutVariablesImage= async (payload:any) => {
 }
 onRequesFor1Image= async (payload:any) => {
   const {phone, mediaId, texto}= payload
+  
+  
   try{
     const imageTemplate: OneVariableImage = {
       messaging_product: "whatsapp",
@@ -344,7 +346,7 @@ onRequesFor1Image= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
-  
+  console.log("enviado a meta")
     return response.data;
   }catch(error){
     console.log(error)
@@ -353,13 +355,15 @@ onRequesFor1Image= async (payload:any) => {
 }
 onRequesFor2Image= async (payload:any) => {
   const {phone, mediaId, texto, texto2}= payload
+ 
+  
   try{
     const imageTemplate: TwoVariableImage = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "dosvariableimagen",
+        name: "dosvariablesimagen",
         language: {
           code: "es_MX",
         },"components": [
@@ -393,11 +397,12 @@ onRequesFor2Image= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
-  
+    console.log("enviado a meta")
     return response.data;
   }catch(error){
     console.log(error)
   }
+    
 }
 onRequesFor3Image= async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3}= payload
@@ -445,7 +450,7 @@ onRequesFor3Image= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
-  
+  console.log("enviado a meta")
     return response.data;
   }catch(error){
     console.log(error)
@@ -501,7 +506,7 @@ onRequesFor4Image= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
-  
+  console.log("enviado a meta")
     return response.data;
   }catch(error){
     console.log(error)
