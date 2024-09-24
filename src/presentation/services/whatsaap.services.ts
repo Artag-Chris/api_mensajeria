@@ -518,7 +518,7 @@ onSendText = async (id: any, message: string) => {
     to: id,
     text: { body: `${message}` },
   };
-  //console.log(textTemplate)
+
   
   try {
     const response = await axios
@@ -543,7 +543,6 @@ onSendText = async (id: any, message: string) => {
 
 
 }
-
 onSendImage = async (payload:any) => {
 
   
@@ -577,13 +576,12 @@ onSendImage = async (payload:any) => {
     }
 }
 
- }
+}
 onSendAudio = async (payload:any) => {
   console.log(payload)
   //aun no se ha implementado
- }
-
- onSendVideo = async (payload:any) => {
+}
+onSendVideo = async (payload:any) => {
 
   const {to,mediaId,phone,type}=payload
 
@@ -614,9 +612,9 @@ onSendAudio = async (payload:any) => {
       console.error(`Error al enviar el mensaje: ${error.message}`);
     }
   }
- }
+}
 
- onSendDoc = async (payload:any) => {
+onSendDoc = async (payload:any) => {
 
   const {to,mediaId,phone,type}=payload
 
