@@ -262,7 +262,7 @@ onRequesFor4= async (payload:any) => {
   
       const response = await axios
       .post(urlSendtemplate, template, { headers });
-  
+      console.log("enviado a meta")
       return response.data;
    }catch(error){
      console.log(error)
@@ -518,10 +518,12 @@ onSendText = async (id: any, message: string) => {
     to: id,
     text: { body: `${message}` },
   };
+  //console.log(textTemplate)
+  
   try {
     const response = await axios
       .post(urlSendMessage, textTemplate, { headers });
-     // console.log(message)
+
     return response.data;
   } catch (error:any) {
     if (error.response) {
@@ -536,6 +538,7 @@ onSendText = async (id: any, message: string) => {
       console.error(`Error al enviar el mensaje: ${error.message}`);
     }
   }
+    
   return "ok";
 
 

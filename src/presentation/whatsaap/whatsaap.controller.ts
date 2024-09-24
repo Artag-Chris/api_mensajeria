@@ -105,7 +105,7 @@ export class WhatsaapController {
    
     //console.log(id)
     //const id = JSON.stringify(messages);
-    console.log(message)
+   // console.log(message)
     const mensaje= this.whatsaapService.onSendText(id,message);
     res.json(mensaje);
   };
