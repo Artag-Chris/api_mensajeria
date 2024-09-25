@@ -2,9 +2,6 @@ import { Router } from 'express';
 import { whatsappRoutes } from './whatsaap/whatsaap.routes';
 import { PrismaRoutes } from '../prisma/prisma.routes';
 
-
-
-
 export class AppRoutes {
   static get routes(): Router {
     const router = Router();
