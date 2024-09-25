@@ -7,15 +7,3 @@ export const headers={
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${envs.User_Access_Token}`
   }
-
-export const bodyBienvenidoTemplate={
-    messaging_product: 'whatsapp',
-    to: envs.Recipient_Phone_Number,
-    type: 'template',
-    template: {
-      name: 'bienvenido',
-      language: {
-        code: 'es_MX',
-      },
-    },
-  }

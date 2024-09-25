@@ -8,9 +8,7 @@ export class whatsappRoutes{
     const router= Router();
     const whatsaapController =new WhatsaapController();
 
-    //esta ruta sera para enviar el batch y deberia ser post
-    //router.get(`/`,whatsaapController.senBatch);
-    
+    //rutas de whatsapp relacionadas con el servicio
     router.get(`/getphones`,whatsaapController.getPhones);
     router.get(`/getCustomers`,whatsaapController.getCustomers);
     router.get(`/getTemplates`,whatsaapController.getTemplates);
@@ -28,8 +26,7 @@ export class whatsappRoutes{
     router.post(`/dosvariableimage`,whatsaapController.dosvariablesimage);
     router.post(`/tresvariableimage`,whatsaapController.tresvariablesimage);
     router.post(`/cuatrovariableimage`,whatsaapController.cuatrovariablesimage);
-    router.post(`/testmasivoimagen`,whatsaapController.testmasivoimagen);
-    router.post(`/testmasivo`,whatsaapController.testmasivo);
+
     //desde el front a meta para responder al usuario
     router.post(`/sendTextResponse`,whatsaapController.sendText);
     router.post(`/sendImageResponse`,whatsaapController.sendImage);

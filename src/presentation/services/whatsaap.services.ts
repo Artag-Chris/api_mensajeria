@@ -1,18 +1,13 @@
-import { UuuiAdapter } from "../../config/uuid.adapter";
+//no implementado pero lo dejo por si crean usuarios 
+//import { UuuiAdapter } from "../../config/uuid.adapter";
 import axios, { AxiosError } from "axios"
 import{ WssService } from "../../notifications/wss.service";
-import { PhoneNumbersDTO, WhatsappTemplateDto } from "../../domain/dto";
 import {envs } from "../../config/envs";
-import { bodyBienvenidoTemplate, headers, urlSendMessage, urlSendtemplate } from "../../config/url/whatsappPostUrl";
+import { headers, urlSendMessage, urlSendtemplate } from "../../config/url/whatsappPostUrl";
 import { PhonesResponse } from "../../domain/interfaces/getPhonesResponse";
 import { cleanPhoneNumber } from "../../domain/functions/formatedNumber";
 import { FourVariable, FourVariableImage, NoVariableImage, OneVariable, ThreeVariableImage, ThreeVariables, TwoVariable, TwoVariableImage } from "../../domain/interfaces";
 import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
-
-
-
-//no olvidar que aqui tambien iran las notificaciones del websocket
-
 
 export class WhatsaapService {
 constructor(
@@ -135,10 +130,9 @@ onRequesFor1= async (payload:any) => {
         }]
       }
       }
-  
+
       const response = await axios
       .post(urlSendtemplate, template, { headers });
-  
       return response.data;
   }catch(error){
   console.log(error)
@@ -177,7 +171,6 @@ onRequesFor2= async (payload:any) => {
   
       const response = await axios
       .post(urlSendtemplate, template, { headers });
-  
       return response.data;
    }catch(error){
      console.log(error)
@@ -458,8 +451,6 @@ onRequesFor3Image= async (payload:any) => {
 }
 onRequesFor4Image= async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,texto4}= payload
-  
-  
   try{
     const imageTemplate: FourVariableImage = {
       messaging_product: "whatsapp",
@@ -521,8 +512,6 @@ onSendText = async (id: any, message: string) => {
     to: id,
     text: { body: `${message}` },
   };
-
-  
   try {
     const response = await axios
       .post(urlSendMessage, textTemplate, { headers });
@@ -530,27 +519,18 @@ onSendText = async (id: any, message: string) => {
     return response.data;
   } catch (error:any) {
     if (error.response) {
-      // The request was made and the server responded with a status code that falls out of the range of 2xx
       console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response.data}`);
     } else if (error.request) {
-      // The request was made but no response was received
       console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
     } else {
-      // Something happened in setting up the request that triggered an Error
       console.error(`Error al enviar el mensaje: ${error.message}`);
     }
   }
-    
   return "ok";
-
-
 }
 onSendImage = async (payload:any) => {
-
-  
-  const {to,mediaId,phone,type}=payload
-
+  const {to,mediaId}=payload
   const imageTemplate: any = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
@@ -558,7 +538,6 @@ onSendImage = async (payload:any) => {
     "type": "image",
     "image": mediaId
   }
-  
   try{
     const response = await axios
     .post(urlSendMessage, JSON.stringify(imageTemplate), { headers });
@@ -567,14 +546,11 @@ onSendImage = async (payload:any) => {
 
   }catch(error:any){
     if (error.response) {
-      // The request was made and the server responded with a status code that falls out of the range of 2xx
       console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response}`);
     } else if (error.request) {
-      // The request was made but no response was received
       console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
     } else {
-      // Something happened in setting up the request that triggered an Error
       console.error(`Error al enviar el mensaje: ${error.message}`);
     }
 }
@@ -585,9 +561,7 @@ onSendAudio = async (payload:any) => {
   //aun no se ha implementado
 }
 onSendVideo = async (payload:any) => {
-
-  const {to,mediaId,phone,type}=payload
-
+  const {to,mediaId}=payload
   const videoTemplate: any = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
@@ -604,23 +578,17 @@ onSendVideo = async (payload:any) => {
 
   }catch(error:any){
     if (error.response) {
-      // The request was made and the server responded with a status code that falls out of the range of 2xx
       console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response}`);
     } else if (error.request) {
-      // The request was made but no response was received
       console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
     } else {
-      // Something happened in setting up the request that triggered an Error
       console.error(`Error al enviar el mensaje: ${error.message}`);
     }
   }
 }
-
 onSendDoc = async (payload:any) => {
-
-  const {to,mediaId,phone,type}=payload
-
+  const {to,mediaId}=payload
   const docTemplate: any = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
@@ -628,37 +596,21 @@ onSendDoc = async (payload:any) => {
     "type": "document",
     "document": mediaId
   }
-  
   try{
     const response = await axios
     .post(urlSendMessage, JSON.stringify(docTemplate), { headers });
     console.log(response.data)
   return response.data;
-
   }catch(error:any){
     if (error.response) {
-      // The request was made and the server responded with a status code that falls out of the range of 2xx
       console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response}`);
     } else if (error.request) {
-      // The request was made but no response was received
       console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
     } else {
-      // Something happened in setting up the request that triggered an Error
       console.error(`Error al enviar el mensaje: ${error.message}`);
     }
   }
 }
 
-onSendTestimagen = async (payload:any) => {
-  console.log(payload)
-  console.log("imagen")
-  //aun no se ha implementado
-}
-onSendtest = async (payload:any) => {
-  console.log(payload)
-  console.log("body")
-  //aun no se ha implementado
-
-}
 }

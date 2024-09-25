@@ -12,20 +12,15 @@ export class WhatsaapController {
   public getTemplates = async (req: Request, res: Response) => {
     this.whatsaapService.onRequesForTemplates().then((data) => res.json(data));
   };
-
   public sendWelcome = async (req: Request, res: Response) => {
-    const {message} = req.body; 
     const id = req.body.id;
-    console.log(message)
     const mensaje= this.whatsaapService.onSendWelcome(id);
     res.json(mensaje);
   };
-
   public getPhones = async (req: Request, res: Response) => {
    this.whatsaapService.onRequestForPhones().then((data) => res.json(data));
-  
-   
   };
+  //rutas de plantillas de whatsapp
   public sinvariable = async (req: Request, res: Response) => {
     const payload = req.body;
     this.whatsaapService.onRequesWithoutVariables(payload).then((data) => res.json(data));
@@ -46,7 +41,6 @@ export class WhatsaapController {
    const payload = req.body;
     this.whatsaapService.onRequesFor4(payload).then((data) => res.json(data));
   }
-
   public sinvariableimage = async (req: Request, res: Response) => {
     const payload = req.body;
     this.whatsaapService.onRequesWithoutVariablesImage(payload).then((data) => res.json(data));
@@ -68,7 +62,6 @@ export class WhatsaapController {
     this.whatsaapService.onRequesFor4Image(payload).then((data) => res.json(data));
   }
 
-//funciones del whatsapp pasado aun no implementadas
 //no implementado
   public getCustomers = async (req: Request, res: Response) => {
     const userId = req.params.userId;
@@ -100,54 +93,30 @@ export class WhatsaapController {
 
   public sendImage = async (req: Request, res: Response) => {
    const payload = req.body; 
-   
-   
-    const mensaje= this.whatsaapService.onSendImage(payload);
-    res.json(mensaje);
+   const mensaje= this.whatsaapService.onSendImage(payload);
+   res.json(mensaje);
   };
 
   public sendAudio = async (req: Request, res: Response) => {
     const payload = req.body; 
-  
     const mensaje= this.whatsaapService.onSendAudio(payload);
     res.json(mensaje);
   };
   public sendVideo = async (req: Request, res: Response) => {
-    const payload = req.body; 
-  
+    const payload = req.body;  
     const mensaje= this.whatsaapService.onSendVideo(payload);
     res.json(mensaje);
   };
   public sendDocument = async (req: Request, res: Response) => {
     const payload = req.body; 
-  
     const mensaje= this.whatsaapService.onSendDoc(payload);
     res.json(mensaje);
   };
   public onReceivedFrontMessageVideo=async (req: Request, res: Response) => {
     const payload = req.body; 
-  
     const mensaje= this.whatsaapService.onSendVideo(payload);
     res.json(mensaje);
   
 };
 
- public testmasivoimagen = async (req: Request, res: Response) => {
-   const payload = req.body; 
-   console.log(payload)
-   
-   const mensaje= this.whatsaapService.onSendTestimagen(payload);
-   res.json("ok"); 
- };
- public testmasivo = async (req: Request, res: Response) => {
-  const payload = req.body; 
-  
-  
-  const mensaje= this.whatsaapService.onSendtest(payload);
-  res.json("ok"); 
-};
-
-
-}
-  
-
+}  

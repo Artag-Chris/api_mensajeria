@@ -783,8 +783,6 @@ class PrismaService extends PrismaClient {
     return messagesRelated;
   }
   
-
-
   async init() {
     try {
       await this.$connect();
