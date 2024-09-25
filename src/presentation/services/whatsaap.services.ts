@@ -458,6 +458,8 @@ onRequesFor3Image= async (payload:any) => {
 }
 onRequesFor4Image= async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,texto4}= payload
+  
+  
   try{
     const imageTemplate: FourVariableImage = {
       messaging_product: "whatsapp",
@@ -511,6 +513,7 @@ onRequesFor4Image= async (payload:any) => {
   }catch(error){
     console.log(error)
   }
+   
 }
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {
@@ -647,6 +650,15 @@ onSendDoc = async (payload:any) => {
   }
 }
 
+onSendTestimagen = async (payload:any) => {
+  console.log(payload)
+  console.log("imagen")
+  //aun no se ha implementado
+}
+onSendtest = async (payload:any) => {
+  console.log(payload)
+  console.log("body")
+  //aun no se ha implementado
 
-
+}
 }

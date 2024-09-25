@@ -21,6 +21,6 @@ function main() {
 server.setRoutes(AppRoutes.routes);
 
 httpServer.listen(envs.PORT, () => {
-  console.log(`Server running on port ${ envs.PORT }`);
+  console.log(`Server corriendo en el puerto ${ envs.PORT }`);
 });
 }

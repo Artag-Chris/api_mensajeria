@@ -28,7 +28,8 @@ export class whatsappRoutes{
     router.post(`/dosvariableimage`,whatsaapController.dosvariablesimage);
     router.post(`/tresvariableimage`,whatsaapController.tresvariablesimage);
     router.post(`/cuatrovariableimage`,whatsaapController.cuatrovariablesimage);
-    
+    router.post(`/testmasivoimagen`,whatsaapController.testmasivoimagen);
+    router.post(`/testmasivo`,whatsaapController.testmasivo);
     //desde el front a meta para responder al usuario
     router.post(`/sendTextResponse`,whatsaapController.sendText);
     router.post(`/sendImageResponse`,whatsaapController.sendImage);

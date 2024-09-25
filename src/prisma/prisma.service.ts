@@ -19,7 +19,6 @@ class PrismaService extends PrismaClient {
 
     const {name,phone,type,id,body,display_phone_number} =payload;
   
-    //console.log(`onMessageReceived: ${name} ${phone} ${type} ${id} ${body} ${display_phone_number}`);
      await prismaService.customer.upsert({
        where: { phone}, // Campo único para buscar el registro
        update: {
@@ -71,9 +70,9 @@ class PrismaService extends PrismaClient {
   //front-end messages
   async onFrontMessageReceived(payload: any) {
 
-    const {name,phone,identification,attending, lastActive,wppStatus,
+    const {name,phone,identification,attending, lastActive,
       detail,WhatsappMessage} =payload;
-      const {id,message,to,status,direction,type,mediaId,attendant}=WhatsappMessage[0];
+      const {id,message,to,status,direction,type,attendant}=WhatsappMessage[0];
 
 
 
@@ -126,8 +125,7 @@ class PrismaService extends PrismaClient {
  return "recibido del front";
   }
   async onFrontMessageImageReceived(payload: any) {
-    const {name,phone, timestamp,to,message,id 
-      ,WhatsappImage} =payload;
+    const {name,phone,to,message,id } =payload;
       await prismaService.customer.upsert({
         where: { phone}, // Campo único para buscar el registro
         update: {
@@ -178,8 +176,7 @@ class PrismaService extends PrismaClient {
 
   }
   async onFrontMessageDocReceived(payload:any){
-    const {name,phone, timestamp,to,message,id 
-      ,WhatsappImage} =payload;
+    const {name,phone,to,message,id } =payload;
 
     await prismaService.customer.upsert({
       where: { phone}, // Campo único para buscar el registro
@@ -228,8 +225,7 @@ class PrismaService extends PrismaClient {
     }); 
   }
   async onFrontMessageVideoReceived(payload:any){
-    const {name,phone, timestamp,to,message,id 
-      ,WhatsappImage} =payload;
+    const {name,phone,to,message,id } =payload;
       await prismaService.customer.upsert({
         where: { phone}, // Campo único para buscar el registro
         update: {
@@ -481,7 +477,7 @@ class PrismaService extends PrismaClient {
   //zona usuario
   async onRequestUsers( payload:any) {
     //todos los usuarios menos el bot
-    const bot= "573025970185"
+    const bot= envs.BOT_NUMBER;
 
     try {
       const customers = await prismaService.customer.findMany({
@@ -491,7 +487,7 @@ class PrismaService extends PrismaClient {
         where: {
           attending: 0,
           NOT: {
-            phone: bot, // Exclude the specific phone number
+            phone: bot, // Excluye el teléfono del bot
           },
         },
          include: {
@@ -533,12 +529,15 @@ class PrismaService extends PrismaClient {
     }
   }
   async onSearchForUser( id:any) {
+
   //usuario especifico
+
     try {
       const user = await prismaService.customer.findUnique({
         where: {
           phone: id,
         },
+        //se excluye todos los mensajes del usuario se podrian habilitar
         // include: {
         //   WhatsappMessage: {
         //     //take: 1,
@@ -669,6 +668,7 @@ class PrismaService extends PrismaClient {
       include: {
         WhatsappMessage: {
          // take: 1, cuantos debe traer
+         // se deberian traer los mensajes solo unread
           orderBy: {
             timestamp: 'desc',
           },

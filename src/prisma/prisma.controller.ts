@@ -33,7 +33,7 @@ export class PrismaController {
         const doc = await this.prismaService.onDocumentReceived(payload);
         res.status(200).send(doc);
     }
-    //front messages
+    //front-end messages
     onReceivedFrontMessage= async (req: Request, res: Response) => {
         const payload = req.body;
         const message = await this.prismaService.onFrontMessageReceived(payload);
@@ -53,6 +53,14 @@ export class PrismaController {
         const payload = req.body;
         const message = await this.prismaService.onFrontMessageVideoReceived(payload);
         res.status(200).send(message);
+    }
+    //no implementado 
+    onReceivedFrontMessageAudio=async (req: Request, res: Response) => {
+        /*
+        const payload = req.body;
+        const message = await this.prismaService.onFrontMessageAudioReceived(payload);
+        res.status(200).send(message);
+        */
     }
     
     //busqueda de mensajes

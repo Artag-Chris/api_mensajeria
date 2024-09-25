@@ -15,7 +15,8 @@ export class PrismaRoutes {
     router.post(`/audioDB`,prismaController.onReceivedAudio);
     router.post(`/videoDB`,prismaController.onReceivedVideo);
     router.post(`/docDB`,prismaController.onReceivedDocument);
-    //funciones de recepcion de mensajes del front
+    
+    //funciones de recepcion de mensajes del front-end
     router.post("/frontmessage",prismaController.onReceivedFrontMessage);
     router.post("/frontmessageImage",prismaController.onReceivedFrontMessageImage);
     router.post("/frontmessagedocument",prismaController.onReceivedFrontMessageDoc);

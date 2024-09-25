@@ -21,6 +21,7 @@ export const envs = {
   User_Access_Token: get('User_Access_Token').required().asString(),
   WABA_ID: get('WABA_ID').required().asString(),
   Version: get('Version').required().asString(),
+  BOT_NUMBER: get('BOT_NUMBER').required().asString(),
 }
 
 
