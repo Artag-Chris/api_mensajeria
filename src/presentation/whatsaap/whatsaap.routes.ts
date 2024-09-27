@@ -6,7 +6,7 @@ export class whatsappRoutes{
 
     static get routes(){ 
     const router= Router();
-    const whatsaapController =new WhatsaapController();
+    const whatsaapController =new WhatsaapController();  
 
     //rutas de whatsapp relacionadas con el servicio
     router.get(`/getphones`,whatsaapController.getPhones);
