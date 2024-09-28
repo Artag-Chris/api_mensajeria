@@ -66,6 +66,11 @@ export class WhatsaapController {
     const payload = req.body;
     this.whatsaapService.onRequesFor4Image(payload).then((data) => res.json(data));
   }
+  public sinvariabledocument = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesWithoutVariablesDocument(payload).then((data) => res.json(data));
+  }
+
 
 //no implementado
   public getCustomers = async (req: Request, res: Response) => {

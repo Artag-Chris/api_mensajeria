@@ -566,6 +566,9 @@ onRequesFor4Image= async (payload:any) => {
   }
    
 }
+onRequesWithoutVariablesDocument = async (payload:any) => {
+  console.log(payload)
+}
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {
     messaging_product: "whatsapp",
