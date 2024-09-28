@@ -15,6 +15,7 @@ export class whatsappRoutes{
     
     //se crearan rutas para plantillas especificas de whatsapp 
     //se mandara por parametro el numero al que enviaremos la plantilla
+    router.post(`/verification`,whatsaapController.sendVerification);
     router.post(`/welcome`,whatsaapController.sendWelcome);
     router.post(`/sinvariable`,whatsaapController.sinvariable);
     router.post(`/unavariable`,whatsaapController.unavariable);

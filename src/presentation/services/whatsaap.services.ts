@@ -8,6 +8,8 @@ import { PhonesResponse } from "../../domain/interfaces/getPhonesResponse";
 import { cleanPhoneNumber } from "../../domain/functions/formatedNumber";
 import { FourVariable, FourVariableImage, NoVariableImage, OneVariable, ThreeVariableImage, ThreeVariables, TwoVariable, TwoVariableImage } from "../../domain/interfaces";
 import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
+import { createNumber } from "../../domain/functions/createNumber";
+import { Verification } from "../../domain/interfaces/verificationTemplate";
 
 export class WhatsaapService {
 constructor(
@@ -40,10 +42,6 @@ onRequestForPhones = async () => {
 };
 
 onRequesForTemplates = async (): Promise<any> => {
-
-
-  
-  
   try {
     const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.WABA_ID}/message_templates`, {
       headers: {
@@ -103,6 +101,68 @@ onSendWelcome = async (id: any): Promise<any> => {
     }
   }
   return "ok";
+}
+onSendVerification = async (phone: any): Promise<any> => {
+ 
+  const verificationNumber= createNumber();
+  console.log( verificationNumber,phone );
+  
+  const template:any={
+   "messaging_product": "whatsapp",
+      "recipient_type": "individual",
+      "to": `57${phone}`,
+      "type": "template",
+      "template": {
+        "name": "verificacion",
+        "language": {
+          "code": "es_MX"
+      },
+      "components": [
+        {
+          "type": "body",
+          "parameters": [
+            {
+              "type": "text",
+              "text": "J$FpnYnP"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "sub_type": "url",
+          "index": "0",
+          "parameters": [
+            {
+              "type": "text",
+              "text": "J$FpnYnP"
+            }
+          ]
+        }
+      ]
+    }
+  }
+
+  try {
+    const response = await axios
+      .post(urlSendMessage, template, { headers });
+      console.log(`mensaje enviado a ${phone}`);
+    return response.data;
+  } catch (error:any) {
+    if (error.response) {
+      // The request was made and the server responded with a status code that falls out of the range of 2xx
+      console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
+      console.error(`Detalle de error: ${error.response.data}`);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error(`Error al enviar el mensaje: ${error.message}`);
+    }
+  }
+    
+  return verificationNumber;
+  
 }
 
 onRequesWithoutVariables= async (payload:any) => {
@@ -614,3 +674,4 @@ onSendDoc = async (payload:any) => {
 }
 
 }
+

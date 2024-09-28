@@ -51,15 +51,15 @@ class PrismaService extends PrismaClient {
          detail: "",
         identification: phone ,
          WhatsappMessage: {
-           create: {
-             id,
+           create: { 
+             id, 
              message: body,
              to: display_phone_number,
              status: "unread",
              direction: "incoming",
              type,
              mediaId: "",
-             attendant: 0,
+             attendant: 0, 
            },
          },
        },

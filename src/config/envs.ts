@@ -11,7 +11,7 @@ export const envs = {
   DB_PASSWORD: get('DB_PASSWORD').required().asString(),
   DATABASE: get('DATABASE').required().asString(),
   DATABASE_URL: get('DATABASE_URL').required().asString(),
-  SHADOW_DATABASE_URL: get('SHADOW_DATABASE_URL').required().asString(),
+  //SHADOW_DATABASE_URL: get('SHADOW_DATABASE_URL').required().asString(),
 
   //relacionado a whatsapp
   Phone_Number_ID: get('Phone_Number_ID').required().asString(),
