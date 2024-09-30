@@ -103,6 +103,7 @@ onSendWelcome = async (id: any): Promise<any> => {
   }
   return "ok";
 }
+
 onSendVerification = async (phone: any): Promise<any> => {
  
   const verificationNumber= createNumber().toString();
@@ -571,6 +572,18 @@ onRequesFor4Image= async (payload:any) => {
    
 }
 onRequesWithoutVariablesDocument = async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor1Document = async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor2Document = async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor3Document = async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor4Document = async (payload:any) => {
   console.log(payload)
 }
 onSendText = async (id: any, message: string) => {

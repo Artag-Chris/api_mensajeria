@@ -28,10 +28,10 @@ export class whatsappRoutes{
     router.post(`/tresvariableimage`,whatsaapController.tresvariablesimage);
     router.post(`/cuatrovariableimage`,whatsaapController.cuatrovariablesimage);
     router.post(`/sinvariabledocument`,whatsaapController.sinvariabledocument);
-    //router.post(`/unavariabledocument`,whatsaapController.unavariabledocument);
-    //router.post(`/dosvariabledocument`,whatsaapController.dosvariablesdocument);
-    //router.post(`/tresvariabledocument`,whatsaapController.tresvariablesdocument);
-    //router.post(`/cuatrovariabledocument`,whatsaapController.cuatrovariablesdocument);
+    router.post(`/unavariabledocument`,whatsaapController.unavariabledocument);
+    router.post(`/dosvariabledocument`,whatsaapController.dosvariablesdocument);
+    router.post(`/tresvariabledocument`,whatsaapController.tresvariablesdocument);
+    router.post(`/cuatrovariabledocument`,whatsaapController.cuatrovariablesdocument);
     //router.post(`/sinvariablevideo`,whatsaapController.sinvariablevideo);
     //router.post(`/unavariablevideo`,whatsaapController.unavariablevideo);
     //router.post(`/dosvariablevideo`,whatsaapController.dosvariablesvideo);

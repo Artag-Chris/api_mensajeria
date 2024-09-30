@@ -70,6 +70,22 @@ export class WhatsaapController {
     const payload = req.body;
     this.whatsaapService.onRequesWithoutVariablesDocument(payload).then((data) => res.json(data));
   }
+  public unavariabledocument = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor1Document(payload).then((data) => res.json(data));
+  }
+  public dosvariablesdocument= async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor2Document(payload).then((data) => res.json(data));
+  }
+  public tresvariablesdocument = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor3Document(payload).then((data) => res.json(data));
+  }
+  public cuatrovariablesdocument = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor4Document(payload).then((data) => res.json(data));
+  }
 
 
 //no implementado
