@@ -64,20 +64,21 @@ model WhatsappMessage {
 }
 
 model Customer {
-  id              Int               @id @default(autoincrement())
-  name            String? // Customer name
-  phone           String?           @unique // Customer phone Number
-  email           String?           @unique // Customer email
-  identification  String?           @unique // Customer identification
-  attending       Int // id of the attending user 0 = bot
-  lastActive      DateTime
-  wppStatus       WhatsappStatus
-  WhatsappMessage WhatsappMessage[]
-  WhatsappImage   WhatsappImage[]
-  WhatsappAudio   WhatsappAudio[]
-  WhatsappVideo   WhatsappVideo[]
-  WhatsappDoc     WhatsappDoc[]
-  detail          String            @default("")
+  id               Int               @id @default(autoincrement())
+  name             String? // Customer name
+  phone            String?           @unique // Customer phone Number
+  email            String?           @unique // Customer email
+  identification   String?           @unique // Customer identification
+  attending        Int // id of the attending user 0 = bot
+  lastActive       DateTime
+  wppStatus        WhatsappStatus
+  WhatsappMessage  WhatsappMessage[]
+  WhatsappImage    WhatsappImage[]
+  WhatsappAudio    WhatsappAudio[]
+  WhatsappVideo    WhatsappVideo[]
+  WhatsappDoc      WhatsappDoc[]
+  verificationCodes VerificationCode[]
+  detail           String            @default("")
 }
 
 
@@ -144,4 +145,12 @@ model WhatsappDoc {
   timestamp  DateTime         @default(now())
   customerId Int
   attendant  Int
+}
+ 
+model VerificationCode {
+  id         String           @id
+  code       String           @db.VarChar(6) // Código de verificación de 6 dígitos
+  customer   Customer         @relation(fields: [customerId], references: [id])
+  customerId Int             @unique
+  timestamp  DateTime         @default(now())
 }

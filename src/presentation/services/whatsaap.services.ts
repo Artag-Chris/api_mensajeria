@@ -105,7 +105,7 @@ onSendWelcome = async (id: any): Promise<any> => {
 onSendVerification = async (phone: any): Promise<any> => {
  
   const verificationNumber= createNumber();
-  console.log( verificationNumber,phone );
+ 
   
   const template:any={
    "messaging_product": "whatsapp",
@@ -123,7 +123,7 @@ onSendVerification = async (phone: any): Promise<any> => {
           "parameters": [
             {
               "type": "text",
-              "text": "J$FpnYnP"
+              "text": verificationNumber
             }
           ]
         },
@@ -134,14 +134,14 @@ onSendVerification = async (phone: any): Promise<any> => {
           "parameters": [
             {
               "type": "text",
-              "text": "J$FpnYnP"
+              "text": verificationNumber
             }
           ]
         }
       ]
     }
   }
-
+  //se debera mandar a guardar a la base de datos el codigo de la verificacion 
   try {
     const response = await axios
       .post(urlSendMessage, template, { headers });
