@@ -11,6 +11,7 @@ import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
 import { createNumber } from "../../domain/functions/createNumber";
 import { Verification } from "../../domain/interfaces/verificationTemplate";
 import PrismaService from "../../prisma/prisma.service";
+import { Console } from "console";
 
 export class WhatsaapService {
 constructor(
@@ -575,7 +576,10 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
   console.log(payload)
 }
 onRequesFor1Document = async (payload:any) => {
-  console.log(payload)
+  const {phone, texto,data}= payload
+  const values = JSON.stringify(data);
+console.log(phone,texto,data)
+  
 }
 onRequesFor2Document = async (payload:any) => {
   console.log(payload)
