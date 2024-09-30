@@ -783,6 +783,14 @@ class PrismaService extends PrismaClient {
     return messagesRelated;
   }
   
+
+  async saveVerificationCode(phone: string, veriCode: string) {
+    //queda pendiente guardar el código de verificación en la tabla
+    console.log(phone, veriCode);
+    console.log('saveVerificationCode');
+    
+  }
+ 
   async init() {
     try {
       await this.$connect();

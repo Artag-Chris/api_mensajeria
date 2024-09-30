@@ -10,6 +10,7 @@ import { FourVariable, FourVariableImage, NoVariableImage, OneVariable, ThreeVar
 import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
 import { createNumber } from "../../domain/functions/createNumber";
 import { Verification } from "../../domain/interfaces/verificationTemplate";
+import PrismaService from "../../prisma/prisma.service";
 
 export class WhatsaapService {
 constructor(
@@ -104,7 +105,7 @@ onSendWelcome = async (id: any): Promise<any> => {
 }
 onSendVerification = async (phone: any): Promise<any> => {
  
-  const verificationNumber= createNumber();
+  const verificationNumber= createNumber().toString();
  
   
   const template:any={
@@ -123,7 +124,7 @@ onSendVerification = async (phone: any): Promise<any> => {
           "parameters": [
             {
               "type": "text",
-              "text": verificationNumber
+              "text": verificationNumber //se podria colocar otra cosa si no se quiere ver el numero
             }
           ]
         },
@@ -146,6 +147,9 @@ onSendVerification = async (phone: any): Promise<any> => {
     const response = await axios
       .post(urlSendMessage, template, { headers });
       console.log(`mensaje enviado a ${phone}`);
+      const verificationCodeService = new PrismaService();
+      const verificationCodeData = await verificationCodeService
+      .saveVerificationCode(phone, verificationNumber);
     return response.data;
   } catch (error:any) {
     if (error.response) {
@@ -675,6 +679,8 @@ onSendDoc = async (payload:any) => {
     }
   }
 }
+
+
 
 }
 

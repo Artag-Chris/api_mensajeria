@@ -77,7 +77,7 @@ model Customer {
   WhatsappAudio    WhatsappAudio[]
   WhatsappVideo    WhatsappVideo[]
   WhatsappDoc      WhatsappDoc[]
-  verificationCodes VerificationCode[]
+  verificationCode VerificationCode?
   detail           String            @default("")
 }
 
@@ -148,9 +148,8 @@ model WhatsappDoc {
 }
  
 model VerificationCode {
-  id         String           @id
-  code       String           @db.VarChar(6) // Código de verificación de 6 dígitos
-  customer   Customer         @relation(fields: [customerId], references: [id])
-  customerId Int             @unique
-  timestamp  DateTime         @default(now())
+  id       Int     @id @default(autoincrement())
+  code     String   @db.VarChar(6) // Código de verificación de 6 dígitos
+  customerId Int    @unique
+  customer   Customer   @relation(fields: [customerId], references: [id])
 }
