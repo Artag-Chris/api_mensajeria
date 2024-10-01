@@ -17,6 +17,7 @@ export interface FourVariableDocument{
             type: "document",
             "document":{
                 "link": string    
+                "filename": string 
             }
           }
         ]

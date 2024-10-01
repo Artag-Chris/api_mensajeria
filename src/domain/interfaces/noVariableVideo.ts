@@ -14,7 +14,7 @@ export interface NoVariableVideo {
         type: "header",
         "parameters": [
           {
-            type: "Video",
+            type: "video",
             "video":{
                 "link": string    
             }

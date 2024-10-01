@@ -13,6 +13,15 @@ import { Verification } from "../../domain/interfaces/verificationTemplate";
 import PrismaService from "../../prisma/prisma.service";
 import { Console } from "console";
 import { OneVariableDocument } from "../../domain/interfaces/oneVariableDocument";
+import { FourVariableVideo } from "../../domain/interfaces/fourVariableVideo";
+import { ThreeVariableVideo } from "../../domain/interfaces/threeVariableVideo";
+import { TwoVariableVideo } from "../../domain/interfaces/twoVariableVideo";
+import { OneVariableVideo } from "../../domain/interfaces/oneVariableVideo";
+import { NoVariableVideo } from "../../domain/interfaces/noVariableVideo";
+import { FourVariableDocument } from "../../domain/interfaces/fourVariableDocument";
+import { ThreeVariableDocument } from "../../domain/interfaces/threeVariableDocument";
+import { TwoVariableDocument } from "../../domain/interfaces/twoVariableDocument";
+import { NoVariableDocument } from "../../domain/interfaces/noVariableDocument";
 
 export class WhatsaapService {
 constructor(
@@ -574,7 +583,41 @@ onRequesFor4Image= async (payload:any) => {
    
 }
 onRequesWithoutVariablesDocument = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId}= payload
+  
+  try{
+    const imageTemplate: NoVariableDocument = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "sinvariableimagen",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "document",
+              "document":{
+                "link": mediaId,  
+                "filename": "Documento.pdf"
+              }
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, imageTemplate, { headers });
+  console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesFor1Document = async (payload:any) => {
   const {phone, mediaId, texto}= payload
@@ -626,28 +669,406 @@ onRequesFor1Document = async (payload:any) => {
   
 }
 onRequesFor2Document = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2}= payload
+ 
+  try{
+    const documentTemplate: TwoVariableDocument = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "dosvariablesdocumento",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "document",
+              "document":{
+                "link": mediaId   
+                ,"filename": "Documento.pdf"
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, documentTemplate, { headers });
+    console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesFor3Document = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2,texto3}= payload
+  try{
+    const documentTemplate: ThreeVariableDocument = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "tresvariablesdocumento",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "document",
+              "document":{
+                "link": mediaId  
+                ,"filename": "Documento.pdf" 
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            },
+            {
+              type: "text",
+              text: texto3
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, documentTemplate, { headers });
+  console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesFor4Document = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2,texto3,texto4}= payload
+  try{
+    const documentTemplate: FourVariableDocument = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "cuatrovariablesdocumento",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "document",
+              "document":{
+                "link": mediaId   
+                ,"filename": "Documento.pdf"
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            },
+            {
+              type: "text",
+              text: texto3
+            },
+            {
+              type: "text",
+              text: texto4
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, documentTemplate, { headers });
+  console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesWithoutVariablesVideo = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId}= payload
+  
+  try{
+    const videoTemplate: NoVariableVideo = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "sinvariablevideo",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "video",
+              "video":{
+                "link": mediaId   
+              }
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, videoTemplate, { headers });
+  console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
+  
 }
 onRequesFor1Video = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto}= payload
+  
+  
+  try{
+    const videoTemplate: OneVariableVideo = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "unavariablevideo",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "video",
+              "video":{
+                "link": mediaId   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, videoTemplate, { headers });
+  console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesFor2Video = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2}= payload
+ 
+  try{
+    const videoTemplate: TwoVariableVideo = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "dosvariablesimagen",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "video",
+              "video":{
+                "link": mediaId   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, videoTemplate, { headers });
+    console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesFor3Video = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2,texto3}= payload
+  try{
+    const videoTemplate: ThreeVariableVideo = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "tresvariablesvideo",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "video",
+              "video":{
+                "link": mediaId   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            },
+            {
+              type: "text",
+              text: texto3
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, videoTemplate, { headers });
+  console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
 }
 onRequesFor4Video = async (payload:any) => {
-  console.log(payload)
+  const {phone, mediaId, texto, texto2,texto3,texto4}= payload
+  try{
+    const videoTemplate: FourVariableVideo = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "cuatrovariablesvideo",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "video",
+              "video":{
+                "link": mediaId   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            },
+            {
+              type: "text",
+              text: texto2
+            },
+            {
+              type: "text",
+              text: texto3
+            },
+            {
+              type: "text",
+              text: texto4
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, videoTemplate, { headers });
+  console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
+   
+
 }
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {

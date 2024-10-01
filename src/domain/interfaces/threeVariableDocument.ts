@@ -16,7 +16,8 @@ export interface ThreeVariableDocument {
           {
             type: "document",
             "document":{
-                "link": string    
+                "link": string,   
+                "filename": string 
             }
           }
         ]
