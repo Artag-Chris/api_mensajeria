@@ -6,22 +6,11 @@ import {envs } from "../../config/envs";
 import { headers, urlSendMessage, urlSendtemplate } from "../../config/url/whatsappPostUrl";
 import { PhonesResponse } from "../../domain/interfaces/getPhonesResponse";
 import { cleanPhoneNumber } from "../../domain/functions/formatedNumber";
-import { FourVariable, FourVariableImage, NoVariableImage, OneVariable, ThreeVariableImage, ThreeVariables, TwoVariable, TwoVariableImage } from "../../domain/interfaces";
+import { FourVariable, FourVariableDocument, FourVariableImage, FourVariableVideo, NoVariableDocument, NoVariableImage, NoVariableVideo, OneVariable, OneVariableDocument, OneVariableVideo, ThreeVariableDocument, ThreeVariableImage, ThreeVariables, ThreeVariableVideo, TwoVariable, TwoVariableDocument, TwoVariableImage, TwoVariableVideo } from "../../domain/interfaces";
 import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
 import { createNumber } from "../../domain/functions/createNumber";
-import { Verification } from "../../domain/interfaces/verificationTemplate";
 import PrismaService from "../../prisma/prisma.service";
-import { Console } from "console";
-import { OneVariableDocument } from "../../domain/interfaces/oneVariableDocument";
-import { FourVariableVideo } from "../../domain/interfaces/fourVariableVideo";
-import { ThreeVariableVideo } from "../../domain/interfaces/threeVariableVideo";
-import { TwoVariableVideo } from "../../domain/interfaces/twoVariableVideo";
-import { OneVariableVideo } from "../../domain/interfaces/oneVariableVideo";
-import { NoVariableVideo } from "../../domain/interfaces/noVariableVideo";
-import { FourVariableDocument } from "../../domain/interfaces/fourVariableDocument";
-import { ThreeVariableDocument } from "../../domain/interfaces/threeVariableDocument";
-import { TwoVariableDocument } from "../../domain/interfaces/twoVariableDocument";
-import { NoVariableDocument } from "../../domain/interfaces/noVariableDocument";
+
 
 export class WhatsaapService {
 constructor(
