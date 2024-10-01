@@ -821,7 +821,6 @@ class PrismaService extends PrismaClient {
 
   onRequestAuth = async (phone: any) => {
   
-
     try {
      
       const customer = await this.customer.findUnique({
