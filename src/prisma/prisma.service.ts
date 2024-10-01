@@ -819,7 +819,7 @@ class PrismaService extends PrismaClient {
     }
   }
 
-  onRequestAuth = async (phone: any) => {
+  onRequestAuth = async (phone: any) => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
   
     try {
      

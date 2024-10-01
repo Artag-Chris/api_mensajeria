@@ -32,11 +32,11 @@ export class whatsappRoutes{
     router.post(`/dosvariabledocument`,whatsaapController.dosvariablesdocument);
     router.post(`/tresvariabledocument`,whatsaapController.tresvariablesdocument);
     router.post(`/cuatrovariabledocument`,whatsaapController.cuatrovariablesdocument);
-    //router.post(`/sinvariablevideo`,whatsaapController.sinvariablevideo);
-    //router.post(`/unavariablevideo`,whatsaapController.unavariablevideo);
-    //router.post(`/dosvariablevideo`,whatsaapController.dosvariablesvideo);
-    //router.post(`/tresvariablevideo`,whatsaapController.tresvariablesvideo);
-    //router.post(`/cuatrovariablevideo`,whatsaapController.cuatrovariablesvideo);
+    router.post(`/sinvariablevideo`,whatsaapController.sinvariablevideo);
+    router.post(`/unavariablevideo`,whatsaapController.unavariablevideo);
+    router.post(`/dosvariablevideo`,whatsaapController.dosvariablesvideo);
+    router.post(`/tresvariablevideo`,whatsaapController.tresvariablesvideo);
+    router.post(`/cuatrovariablevideo`,whatsaapController.cuatrovariablesvideo);
 
     //desde el front a meta para responder al usuario
     router.post(`/sendTextResponse`,whatsaapController.sendText);

@@ -634,6 +634,21 @@ onRequesFor3Document = async (payload:any) => {
 onRequesFor4Document = async (payload:any) => {
   console.log(payload)
 }
+onRequesWithoutVariablesVideo = async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor1Video = async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor2Video = async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor3Video = async (payload:any) => {
+  console.log(payload)
+}
+onRequesFor4Video = async (payload:any) => {
+  console.log(payload)
+}
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {
     messaging_product: "whatsapp",

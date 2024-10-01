@@ -86,6 +86,26 @@ export class WhatsaapController {
     const payload = req.body;
     this.whatsaapService.onRequesFor4Document(payload).then((data) => res.json(data));
   }
+  public sinvariablevideo = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesWithoutVariablesVideo(payload).then((data) => res.json(data));
+  }
+  public unavariablevideo = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor1Video(payload).then((data) => res.json(data));
+  }
+  public dosvariablesvideo = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor2Video(payload).then((data) => res.json(data));
+  }
+  public tresvariablesvideo = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor3Video(payload).then((data) => res.json(data));
+  }
+  public cuatrovariablesvideo = async (req: Request, res: Response) => {
+    const payload = req.body;
+    this.whatsaapService.onRequesFor4Video(payload).then((data) => res.json(data));
+  }
 
 
 //no implementado
