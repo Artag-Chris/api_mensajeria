@@ -12,6 +12,7 @@ import { createNumber } from "../../domain/functions/createNumber";
 import { Verification } from "../../domain/interfaces/verificationTemplate";
 import PrismaService from "../../prisma/prisma.service";
 import { Console } from "console";
+import { OneVariableDocument } from "../../domain/interfaces/oneVariableDocument";
 
 export class WhatsaapService {
 constructor(
@@ -576,9 +577,52 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
   console.log(payload)
 }
 onRequesFor1Document = async (payload:any) => {
-  const {phone, texto,data}= payload
-  const values = JSON.stringify(data);
-console.log(phone,texto,data)
+  const {phone, mediaId, texto}= payload
+  //console.log(phone, mediaId, texto)
+  
+  try{
+    const documentTemplate: OneVariableDocument = {
+      messaging_product: "whatsapp",
+      to: phone,
+      type: "template",
+      template: {
+        name: "unavariabledocumento",
+        language: {
+          code: "es_MX",
+        },"components": [
+          {
+          type: "header",
+          "parameters": [
+            {
+              type: "document",
+              "document":{
+                "link": mediaId,
+                "filename": "Documento.pdf"   
+              }
+            }
+          ]
+        },
+        {
+          type: "body",
+          "parameters": [
+            {
+              type: "text",
+              text: texto
+            }
+          ]
+        }
+      ]
+      }
+    }
+    
+    const response = await axios
+    .post(urlSendtemplate, documentTemplate, { headers });
+  console.log("enviado a meta")
+    return response.data;
+  }catch(error){
+    console.log(error)
+  }
+
   
 }
 onRequesFor2Document = async (payload:any) => {

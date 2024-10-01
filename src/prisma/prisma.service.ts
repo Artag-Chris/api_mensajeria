@@ -785,10 +785,38 @@ class PrismaService extends PrismaClient {
   
 
   async saveVerificationCode(phone: string, veriCode: string) {
-    //queda pendiente guardar el código de verificación en la tabla
-    console.log(phone, veriCode);
-    console.log('saveVerificationCode');
-    
+    try {
+      const customer = await this.customer.findUnique({
+        where: {
+          phone: `57${phone}`, 
+        },
+      });
+  
+      if (!customer) {
+        throw new Error(`No se encontró un cliente con el número de teléfono ${phone}`);
+      }
+  
+      await this.verificationCode.upsert({
+        where: {
+          customerId: customer.id,
+        },
+        create: {
+          code: veriCode,
+          customer: {
+            connect: {
+              id: customer.id,
+            },
+          },
+        },
+        update: {
+          code: veriCode,
+        },
+      });
+  
+      console.log(`Código de verificación guardado correctamente`);
+    } catch (error:any) {
+      console.error(`Error al guardar el código de verificación: ${error.message}`);
+    }
   }
  
   async init() {

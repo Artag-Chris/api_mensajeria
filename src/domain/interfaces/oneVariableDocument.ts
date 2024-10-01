@@ -16,7 +16,8 @@ export interface OneVariableDocument {
           {
             type: "document",
             "document":{
-                "link": string    
+                "link": string,
+                "filename": string     
             }
           }
         ]
