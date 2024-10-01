@@ -1003,6 +1003,9 @@ onRequesFor3Video = async (payload:any) => {
 }
 onRequesFor4Video = async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,texto4}= payload
+
+  //console.log(payload)
+  
   try{
     const videoTemplate: FourVariableVideo = {
       messaging_product: "whatsapp",
