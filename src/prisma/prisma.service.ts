@@ -818,6 +818,37 @@ class PrismaService extends PrismaClient {
       console.error(`Error al guardar el código de verificación: ${error.message}`);
     }
   }
+
+  onRequestAuth = async (phone: any) => {
+  
+
+    try {
+     
+      const customer = await this.customer.findUnique({
+        where: {
+          phone: `57${phone}`,
+        },
+      });
+  
+      if (!customer) {
+        throw new Error(`No se encontró un cliente con el número de teléfono ${phone}`);
+      }
+  
+      const verificationCode = await this.verificationCode.findUnique({
+        where: {
+          customerId: customer.id,
+        },
+      });
+  
+      if (!verificationCode) {
+        throw new Error(`No se encontró un código de verificación para el cliente con el número de teléfono ${phone}`);
+      }
+  
+      return verificationCode.code;
+    } catch (error:any) {
+      console.error(`Error al recuperar el código de verificación: ${error.message}`);
+    }
+  }
  
   async init() {
     try {

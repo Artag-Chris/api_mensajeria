@@ -128,6 +128,11 @@ export class PrismaController {
         const updatedUser = await this.prismaService.onUpdateUser(payload);
         res.status(200).send(updatedUser);
     };
+    onRequestAuth = async (req: Request, res: Response) => {
+        const {phone } = req.params;
+        const auth = await this.prismaService.onRequestAuth(phone);
+        res.status(200).send(auth);
+    };
 
 }
 

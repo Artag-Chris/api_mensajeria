@@ -27,6 +27,7 @@ export class PrismaRoutes {
     
     router.get(`/users`,prismaController.onRequestUsers);
     router.get(`/user/:id`,prismaController.onRequestForUser);
+    router.get(`/verification:phone`,prismaController.onRequestAuth);
     router.put(`/user/:id`,prismaController.onUpdateUser);
 
     //funciones de busqueda de mensajes
