@@ -74,7 +74,7 @@ class PrismaService extends PrismaClient {
       detail,WhatsappMessage} =payload;
       const {id,message,to,status,direction,type,attendant}=WhatsappMessage[0];
 
-
+   
 
     await prismaService.customer.upsert({
       where: { phone}, // Campo único para buscar el registro
@@ -91,7 +91,7 @@ class PrismaService extends PrismaClient {
             id,
             message,
             to,
-            status,
+            status:'unread',
             direction,
             type,
             mediaId: "",
@@ -112,7 +112,7 @@ class PrismaService extends PrismaClient {
             id,
             message,
             to,
-            status,
+            status:'unread',
             direction,
             type,
             mediaId: "",
@@ -141,7 +141,7 @@ class PrismaService extends PrismaClient {
               id,
               message,
               to,
-              status: "delivered",
+              status: "unread",
               direction: "outgoing",
               type: "image",
               mediaId: "",
@@ -162,7 +162,7 @@ class PrismaService extends PrismaClient {
               id,
               message,
               to,
-              status: "delivered",
+              status: "unread",
               direction: "outgoing",
               type: "image",
               mediaId: "",
@@ -193,7 +193,7 @@ class PrismaService extends PrismaClient {
             id,
             message,
             to,
-            status: "delivered",
+            status: "unread",
             direction: "outgoing",
             type: "document",
             mediaId: "",
@@ -214,7 +214,7 @@ class PrismaService extends PrismaClient {
             id,
             message,
             to,
-            status: "delivered",
+            status: "unread",
             direction: "outgoing",
             type: "document",
             mediaId: "",
@@ -241,7 +241,7 @@ class PrismaService extends PrismaClient {
               id,
               message,
               to,
-              status: "delivered",
+              status: "unread",
               direction: "outgoing",
               type: "video",
               mediaId: "",
@@ -262,7 +262,7 @@ class PrismaService extends PrismaClient {
               id,
               message,
               to,
-              status: "delivered",
+              status: "unread",
               direction: "outgoing",
               type: "video",
               mediaId: "",
@@ -595,13 +595,47 @@ class PrismaService extends PrismaClient {
         WhatsappAudio: true,
         WhatsappVideo: true,
         WhatsappDoc: true,
-
       },
-
     });
   
     if (user) {
       await this.whatsappMessage.updateMany({
+        where: {
+          customerId: user.id,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      await this.whatsappImage.updateMany({
+        where: {
+          customerId: user.id,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      await this.whatsappAudio.updateMany({
+        where: {
+          customerId: user.id,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      await this.whatsappVideo.updateMany({
+        where: {
+          customerId: user.id,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      await this.whatsappDoc.updateMany({
         where: {
           customerId: user.id,
         },
@@ -651,32 +685,32 @@ class PrismaService extends PrismaClient {
       include: {
         WhatsappMessage: {
           where:{
-           // status:"unread" para futura refenencia
-            direction: "incoming",
+            status:"unread" 
+            //direction: "incoming",
           }
         },
         WhatsappImage: {
           where:{
-           // status:"unread" para futura refenencia
-            direction: "incoming",
+            status:"unread" 
+           // direction: "incoming",
           }
         },
         WhatsappAudio: {
           where:{
-           // status:"unread" para futura refenencia
-            direction: "incoming",
+           status:"unread" 
+            
           }
         },
         WhatsappVideo: {
           where:{
-           // status:"unread" para futura refenencia
-            direction: "incoming",
+           status:"unread" 
+           
           }
         },
         WhatsappDoc: {
           where:{
-           // status:"unread" para futura refenencia
-            direction: "incoming",
+           status:"unread"
+            
           }
         },
       },
