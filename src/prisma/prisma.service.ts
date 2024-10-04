@@ -583,8 +583,33 @@ class PrismaService extends PrismaClient {
     const newUser= await prismaService.customer.create({data:payload});
     return newUser*/
   }
-  onDispatchUser( phone:any) {
-    console.log(phone);
+  async onDispatchUser(phone: string) {
+    console.log(`despachando ${phone}`);
+    const user = await this.customer.findUnique({
+      where: {
+        phone: phone,
+      },
+      include: {
+        WhatsappMessage: true,
+        WhatsappImage: true,
+        WhatsappAudio: true,
+        WhatsappVideo: true,
+        WhatsappDoc: true,
+
+      },
+
+    });
+  
+    if (user) {
+      await this.whatsappMessage.updateMany({
+        where: {
+          customerId: user.id,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+    }
   }
   async onUpdateUser( payload:any) {
     const { id } = payload;
