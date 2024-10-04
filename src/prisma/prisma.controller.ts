@@ -122,6 +122,11 @@ export class PrismaController {
          const newUser = await this.prismaService.onCreateUser(payload);
          res.status(200).send("respondera con un json que el usuario ha sido creado");
     };
+    onDispatchUser = async (req: Request, res: Response) => {
+        const {phone} = req.body;
+        const dispatchedUser = await this.prismaService.onDispatchUser(phone);
+        res.status(200).send(dispatchedUser);
+    };
 
     onUpdateUser = async (req: Request, res: Response) => {
         const payload = req.body;

@@ -583,6 +583,9 @@ class PrismaService extends PrismaClient {
     const newUser= await prismaService.customer.create({data:payload});
     return newUser*/
   }
+  onDispatchUser( phone:any) {
+    console.log(phone);
+  }
   async onUpdateUser( payload:any) {
     const { id } = payload;
    

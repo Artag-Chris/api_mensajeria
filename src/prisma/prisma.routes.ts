@@ -24,11 +24,12 @@ export class PrismaRoutes {
 
     //relacionado para usuarios
     router.post(`/user`,prismaController.onCreateUser);
-    
+    router.post(`/userDispatch`,prismaController.onDispatchUser);
     router.get(`/users`,prismaController.onRequestUsers);
     router.get(`/user/:id`,prismaController.onRequestForUser);
     router.get(`/verification:phone`,prismaController.onRequestAuth);
     router.put(`/user/:id`,prismaController.onUpdateUser);
+
 
     //funciones de busqueda de mensajes
     router.get(`/deepSearchForAllMessages/:id`,prismaController.onRequesForAlltypesOfMessages);
