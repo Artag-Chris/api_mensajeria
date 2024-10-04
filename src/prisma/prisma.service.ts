@@ -492,11 +492,11 @@ class PrismaService extends PrismaClient {
         },
          include: {
            WhatsappMessage: {
-            // take: 1,
+             take: 1,
              orderBy: {
                timestamp: 'desc',
              },
-           },
+        /*   },
            WhatsappAudio: {
             // take: 1,
              orderBy: {
@@ -520,8 +520,11 @@ class PrismaService extends PrismaClient {
              orderBy: {
                timestamp: 'desc',
              }
+               */
            },
+           
          },
+         
       });
       return customers;
     } catch (error) {
