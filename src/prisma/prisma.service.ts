@@ -584,6 +584,7 @@ class PrismaService extends PrismaClient {
     return newUser*/
   }
   async onDispatchUser(phone: string, botNumber: string) {
+    //console.log(phone, botNumber);
     const user = await this.customer.findUnique({
       where: {
         phone: phone,
@@ -602,7 +603,6 @@ class PrismaService extends PrismaClient {
         where: {
           customerId: user.id,
           to: botNumber,
-          
         },
         data: {
           status: 'read',
@@ -613,7 +613,6 @@ class PrismaService extends PrismaClient {
         where: {
           customerId: user.id,
           to: botNumber,
-          
         },
         data: {
           status: 'read',
@@ -624,7 +623,6 @@ class PrismaService extends PrismaClient {
         where: {
           customerId: user.id,
           to: botNumber,
-          
         },
         data: {
           status: 'read',
@@ -635,7 +633,6 @@ class PrismaService extends PrismaClient {
         where: {
           customerId: user.id,
           to: botNumber,
-          
         },
         data: {
           status: 'read',
@@ -646,7 +643,57 @@ class PrismaService extends PrismaClient {
         where: {
           customerId: user.id,
           to: botNumber,
-          
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      // Marcar mensajes del bot a read
+      await this.whatsappMessage.updateMany({
+        where: {
+          attendant:0,
+          to: phone,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      await this.whatsappImage.updateMany({
+        where: {
+          attendant:0,
+          to: phone,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      await this.whatsappAudio.updateMany({
+        where: {
+          attendant:0,
+          to: phone,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      await this.whatsappVideo.updateMany({
+        where: {
+          attendant:0,
+          to: phone,
+        },
+        data: {
+          status: 'read',
+        },
+      });
+  
+      await this.whatsappDoc.updateMany({
+        where: {
+          attendant:0,
+          to: phone,
         },
         data: {
           status: 'read',
@@ -820,7 +867,7 @@ class PrismaService extends PrismaClient {
   }
   async onResearchForBotMessages(id:any) {
     
-    const phone="573025970185"
+    const phone=envs.BOT_NUMBER;
     const messagesRelated = await prismaService.customer.findUnique({
       where: {
         phone: phone,
@@ -829,30 +876,36 @@ class PrismaService extends PrismaClient {
         WhatsappMessage: {
           where: {
             to: id,
+            status: 'unread',
           },
         },
         WhatsappImage: {
           where: {
             to: id,
+            status: 'unread',
           },
         },
         WhatsappAudio: {
           where: {
             to: id,
+            status: 'unread',
           },
         },
         WhatsappVideo: {
           where: {
             to: id,
+            status: 'unread',
           },
         },
         WhatsappDoc: {
           where: {
             to: id,
+            status: 'unread',
           },
         },
       },
     });
+
 
     return messagesRelated;
   }
