@@ -123,8 +123,8 @@ export class PrismaController {
          res.status(200).send("respondera con un json que el usuario ha sido creado");
     };
     onDispatchUser = async (req: Request, res: Response) => {
-        const {phone} = req.body;
-        const dispatchedUser = await this.prismaService.onDispatchUser(phone);
+        const {phone,botNumber} = req.body;
+        const dispatchedUser = await this.prismaService.onDispatchUser(phone,botNumber);
         res.status(200).send(dispatchedUser);
     };
 

@@ -583,8 +583,7 @@ class PrismaService extends PrismaClient {
     const newUser= await prismaService.customer.create({data:payload});
     return newUser*/
   }
-  async onDispatchUser(phone: string) {
-    console.log(`despachando ${phone}`);
+  async onDispatchUser(phone: string, botNumber: string) {
     const user = await this.customer.findUnique({
       where: {
         phone: phone,
@@ -602,6 +601,8 @@ class PrismaService extends PrismaClient {
       await this.whatsappMessage.updateMany({
         where: {
           customerId: user.id,
+          to: botNumber,
+          
         },
         data: {
           status: 'read',
@@ -611,6 +612,8 @@ class PrismaService extends PrismaClient {
       await this.whatsappImage.updateMany({
         where: {
           customerId: user.id,
+          to: botNumber,
+          
         },
         data: {
           status: 'read',
@@ -620,6 +623,8 @@ class PrismaService extends PrismaClient {
       await this.whatsappAudio.updateMany({
         where: {
           customerId: user.id,
+          to: botNumber,
+          
         },
         data: {
           status: 'read',
@@ -629,6 +634,8 @@ class PrismaService extends PrismaClient {
       await this.whatsappVideo.updateMany({
         where: {
           customerId: user.id,
+          to: botNumber,
+          
         },
         data: {
           status: 'read',
@@ -638,6 +645,8 @@ class PrismaService extends PrismaClient {
       await this.whatsappDoc.updateMany({
         where: {
           customerId: user.id,
+          to: botNumber,
+          
         },
         data: {
           status: 'read',

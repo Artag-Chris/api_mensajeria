@@ -1069,6 +1069,7 @@ onSendText = async (id: any, message: string) => {
     text: { body: `${message}` },
   };
   try {
+    //console.log(message, id);
     const response = await axios
       .post(urlSendMessage, textTemplate, { headers });
 
