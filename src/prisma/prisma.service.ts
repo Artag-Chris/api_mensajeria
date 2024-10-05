@@ -73,81 +73,139 @@ class PrismaService extends PrismaClient {
   }
   //front-end messages
   async onFrontMessageReceived(payload: any) {
-
-    const {name,phone,identification,attending, lastActive,
-      detail,WhatsappMessage} =payload;
-      const {id,message,to,status,direction,type,attendant}=WhatsappMessage[0];
-
-   
-
-    await prismaService.customer.upsert({
-      where: { phone}, // Campo único para buscar el registro
-      update: {
-        name,
-        phone,
-        attending,
-        lastActive,
-        wppStatus:'attended',
-        detail: "",
-        identification,
-        WhatsappMessage: {
-          create: {
-            id,
-            message,
-            to,
-            status:'unread',
-            direction,
-            type,
-            mediaId: "",
-            attendant,
+    try {
+      const {name,phone,identification,attending, lastActive,
+        detail,WhatsappMessage} =payload;
+        const {id,message,to,status,direction,type,attendant}=WhatsappMessage[0];
+  
+      await prismaService.customer.upsert({
+        where: { phone}, // Campo único para buscar el registro
+        update: {
+          name,
+          phone,
+          attending,
+          lastActive,
+          wppStatus:'attended',
+          detail: "",
+          identification,
+          WhatsappMessage: {
+            create: {
+              id,
+              message,
+              to,
+              status:'unread',
+              direction,
+              type,
+              mediaId: "",
+              attendant,
+            },
           },
         },
-      },
-      create: {
-        name,
-        phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: 'attended',
-        detail: "",
-       identification: phone ,
-        WhatsappMessage: {
-          create: {
-            id,
-            message,
-            to,
-            status:'unread',
-            direction,
-            type,
-            mediaId: "",
-            attendant,
+        create: {
+          name,
+          phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: 'attended',
+          detail: "",
+         identification: phone ,
+          WhatsappMessage: {
+            create: {
+              id,
+              message,
+              to,
+              status:'unread',
+              direction,
+              type,
+              mediaId: "",
+              attendant,
+            },
           },
-        },
-      }, 
-    });  
-    
- return "recibido del front";
+        }, 
+      });  
+      
+      return "recibido del front";
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar el mensaje del front';
+    }
   }
   async onFrontMessageImageReceived(payload: any) {
-    const {name,phone,to,message,id } =payload;
+    try {
+      const {name,phone,to,message,id } =payload;
+        await prismaService.customer.upsert({
+          where: { phone}, // Campo único para buscar el registro
+          update: {
+            name,
+            phone,
+            attending: 0,
+            lastActive: new Date(),
+            wppStatus:'attended',
+            detail: "",
+            identification: phone,
+            WhatsappImage: {
+              create: {
+                id,
+                message,
+                to,
+                status: "unread",
+                direction: "outgoing",
+                type: "image",
+                mediaId: "",
+                attendant: 0,
+              },
+            },
+          },
+          create: {
+            name,
+            phone,
+            attending: 0,
+            lastActive: new Date(),
+            wppStatus: 'attended',
+            detail: "",
+           identification: phone ,
+            WhatsappImage: {
+              create: {
+                id,
+                message,
+                to,
+                status: "unread",
+                direction: "outgoing",
+                type: "image",
+                mediaId: "",
+                attendant: 0,
+              },
+            },
+          }, 
+        });  
+     return "recibido del front";
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar el mensaje del front';
+    }
+  }
+  async onFrontMessageDocReceived(payload: any) {
+    try {
+      const { name, phone, to, message, id } = payload;
+  
       await prismaService.customer.upsert({
-        where: { phone}, // Campo único para buscar el registro
+        where: { phone }, // Campo único para buscar el registro
         update: {
           name,
           phone,
           attending: 0,
           lastActive: new Date(),
-          wppStatus:'attended',
+          wppStatus: 'attended',
           detail: "",
           identification: phone,
-          WhatsappImage: {
+          WhatsappDoc: {
             create: {
               id,
               message,
               to,
               status: "unread",
               direction: "outgoing",
-              type: "image",
+              type: "document",
               mediaId: "",
               attendant: 0,
             },
@@ -160,84 +218,40 @@ class PrismaService extends PrismaClient {
           lastActive: new Date(),
           wppStatus: 'attended',
           detail: "",
-         identification: phone ,
-          WhatsappImage: {
+          identification: phone,
+          WhatsappDoc: {
             create: {
               id,
               message,
               to,
               status: "unread",
               direction: "outgoing",
-              type: "image",
+              type: "document",
               mediaId: "",
               attendant: 0,
             },
           },
-        }, 
-      });  
-   return "recibido del front";
-
-
-  }
-  async onFrontMessageDocReceived(payload:any){
-    const {name,phone,to,message,id } =payload;
-
-    await prismaService.customer.upsert({
-      where: { phone}, // Campo único para buscar el registro
-      update: {
-        name,
-        phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus:'attended',
-        detail: "",
-        identification: phone,
-        WhatsappDoc: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "outgoing",
-            type: "document",
-            mediaId: "",
-            attendant: 0,
-          },
         },
-      },
-      create: {
-        name,
-        phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: 'attended',
-        detail: "",
-       identification: phone ,
-        WhatsappDoc: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "outgoing",
-            type: "document",
-            mediaId: "",
-            attendant: 0,
-          },
-        },
-      }, 
-    }); 
+      });
+  
+      return "recibido del front";
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar el mensaje del front';
+    }
   }
-  async onFrontMessageVideoReceived(payload:any){
-    const {name,phone,to,message,id } =payload;
+  async onFrontMessageVideoReceived(payload: any) {
+    try {
+      const { name, phone, to, message, id } = payload;
+  
       await prismaService.customer.upsert({
-        where: { phone}, // Campo único para buscar el registro
+        where: { phone }, // Campo único para buscar el registro
         update: {
           name,
           phone,
           attending: 0,
           lastActive: new Date(),
-          wppStatus:'attended',
+          wppStatus: 'attended',
           detail: "",
           identification: phone,
           WhatsappVideo: {
@@ -260,7 +274,7 @@ class PrismaService extends PrismaClient {
           lastActive: new Date(),
           wppStatus: 'attended',
           detail: "",
-         identification: phone ,
+          identification: phone,
           WhatsappVideo: {
             create: {
               id,
@@ -273,9 +287,14 @@ class PrismaService extends PrismaClient {
               attendant: 0,
             },
           },
-        }, 
-      });  
-   return "recibido del front";
+        },
+      });
+  
+      return "recibido del front";
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar el mensaje del front';
+    }
   }
   //users messages
   async onImageReceived(payload:any) {
