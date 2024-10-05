@@ -15,57 +15,61 @@ class PrismaService extends PrismaClient {
   }
   
    ///se cambiara los metodos 
-  async onMessageReceived(payload: any) {
-
-    const {name,phone,type,id,body,display_phone_number} =payload;
-  
-     await prismaService.customer.upsert({
-       where: { phone}, // Campo único para buscar el registro
-       update: {
-         name,
-         phone,
-         attending: 0,
-         lastActive: new Date(),
-         wppStatus: "initial",
-         detail: "",
-         identification: phone,
-         WhatsappMessage: {
-           create: {
-             id: id,
-             message: body,
-             to:display_phone_number,
-             status: "unread",
-             direction: "incoming",
-             type,
-             mediaId: "",
-             attendant: 0,
-           },
-         },
-       },
-       create: {
-         name,
-         phone,
-         attending: 0,
-         lastActive: new Date(),
-         wppStatus: "initial",
-         detail: "",
-        identification: phone ,
-         WhatsappMessage: {
-           create: { 
-             id, 
-             message: body,
-             to: display_phone_number,
-             status: "unread",
-             direction: "incoming",
-             type,
-             mediaId: "",
-             attendant: 0, 
-           },
-         },
-       },
-     });
-     
-    return 'Texto recibido';
+   async onMessageReceived(payload: any) {
+    try {
+      const {name,phone,type,id,body,display_phone_number} =payload;
+    
+      await prismaService.customer.upsert({
+        where: { phone}, // Campo único para buscar el registro
+        update: {
+          name,
+          phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          identification: phone,
+          WhatsappMessage: {
+            create: {
+              id: id,
+              message: body,
+              to:display_phone_number,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        },
+        create: {
+          name,
+          phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          identification: phone ,
+          WhatsappMessage: {
+            create: { 
+              id, 
+              message: body,
+              to: display_phone_number,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0, 
+            },
+          },
+        },
+      });
+      
+      return 'Texto recibido';
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar el mensaje';
+    }
   }
   //front-end messages
   async onFrontMessageReceived(payload: any) {
