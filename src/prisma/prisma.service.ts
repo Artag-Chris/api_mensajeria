@@ -297,204 +297,229 @@ class PrismaService extends PrismaClient {
     }
   }
   //users messages
-  async onImageReceived(payload:any) {
-    const {name, phone,to,message,type,id}= payload;
-
-    await prismaService.customer.upsert({
-      where: { phone }, // Campo único para buscar el registro
-      update: {
-        name,
-        phone,
-        identification: phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: "initial",
-        detail: "",
-        WhatsappImage: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "incoming",
-            type,
-            mediaId: "",
-            attendant: 0,
-
-          },
-        },        
-      },
-      create: {
-        name,
-        phone,
-        identification:phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: "initial",
-        detail: "",
-        WhatsappImage: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "incoming",
-            type,
-            mediaId: "",
-            attendant: 0,
+  async onImageReceived(payload: any) {
+    try {
+      const { name, phone, to, message, type, id } = payload;
+  
+      await prismaService.customer.upsert({
+        where: { phone }, // Campo único para buscar el registro
+        update: {
+          name,
+          phone,
+          identification: phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          WhatsappImage: {
+            create: {
+              id,
+              message,
+              to,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
           },
         },
-      },
-    });
-    return 'Imagen recibida';
+        create: {
+          name,
+          phone,
+          identification: phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          WhatsappImage: {
+            create: {
+              id,
+              message,
+              to,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        },
+      });
+  
+      return 'Imagen recibida';
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar la imagen';
+    }
   }
-  async onAudioReceived(payload:any) {
-    const {name, phone,to,message,type,id}= payload;
-
-    await prismaService.customer.upsert({
-      where: { phone }, // Campo único para buscar el registro
-      update: {
-        name,
-        phone,
-        identification:phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: "initial",
-        detail: "",
-        WhatsappAudio: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "incoming",
-            type,
-            mediaId: "",
-            attendant: 0,
-          },
-        },        
-      },
-      create: {
-        name,
-        phone,
-        identification:phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: "initial",
-        detail: "",
-        WhatsappAudio: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "incoming",
-            type,
-            mediaId: "",
-            attendant: 0,
+  async onAudioReceived(payload: any) {
+    try {
+      const { name, phone, to, message, type, id } = payload;
+  
+      await prismaService.customer.upsert({
+        where: { phone }, // Campo único para buscar el registro
+        update: {
+          name,
+          phone,
+          identification: phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          WhatsappAudio: {
+            create: {
+              id,
+              message,
+              to,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
           },
         },
-      },
-    });
-    return 'Audio recibido';
+        create: {
+          name,
+          phone,
+          identification: phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          WhatsappAudio: {
+            create: {
+              id,
+              message,
+              to,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        },
+      });
+  
+      return 'Audio recibido';
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar el audio';
+    }
   }
-  async onVideoReceived(payload:any) {
-    const {name, phone,to,message,type,id}= payload;
-    await prismaService.customer.upsert({
-      where: { phone }, // Campo único para buscar el registro
-      update: {
-        name,
-        phone,
-        identification:phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: "initial",
-        detail: "",
-        WhatsappVideo: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "incoming",
-            type,
-            mediaId: "",
-            attendant: 0,
-          },
-        },        
-      },
-      create: {
-        name,
-        phone,
-        identification:phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: "initial",
-        detail: "",
-        WhatsappVideo: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "incoming",
-            type,
-            mediaId: "",
-            attendant: 0,
+  async onVideoReceived(payload: any) {
+    try {
+      const { name, phone, to, message, type, id } = payload;
+  
+      await prismaService.customer.upsert({
+        where: { phone }, // Campo único para buscar el registro
+        update: {
+          name,
+          phone,
+          identification: phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          WhatsappVideo: {
+            create: {
+              id,
+              message,
+              to,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
           },
         },
-      },
-    });
-    return 'Video recibido';
+        create: {
+          name,
+          phone,
+          identification: phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          WhatsappVideo: {
+            create: {
+              id,
+              message,
+              to,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        },
+      });
+  
+      return 'Video recibido';
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar el video';
+    }
   }
-  async onDocumentReceived(payload:any) {
-    const {name, phone,to,message,type,id}= payload;
-    await prismaService.customer.upsert({
-      where: { phone }, // Campo único para buscar el registro
-      update: {
-        name,
-        phone,
-        identification:phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: "initial",
-        detail: "",
-        WhatsappDoc: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "incoming",
-            type,
-            mediaId: "",
-            attendant: 0,
-          },
-        },        
-      },
-      create: {
-        name,
-        phone,
-        identification:phone,
-        attending: 0,
-        lastActive: new Date(),
-        wppStatus: "initial",
-        detail: "",
-        WhatsappDoc: {
-          create: {
-            id,
-            message,
-            to,
-            status: "unread",
-            direction: "incoming",
-            type,
-            mediaId: "",
-            attendant: 0,
+  async onDocumentReceived(payload: any) {
+    try {
+      const { name, phone, to, message, type, id } = payload;
+  
+      await prismaService.customer.upsert({
+        where: { phone }, // Campo único para buscar el registro
+        update: {
+          name,
+          phone,
+          identification: phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          WhatsappDoc: {
+            create: {
+              id,
+              message,
+              to,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
           },
         },
-      },
-    });
-    return 'Documento recibido';
+        create: {
+          name,
+          phone,
+          identification: phone,
+          attending: 0,
+          lastActive: new Date(),
+          wppStatus: "initial",
+          detail: "",
+          WhatsappDoc: {
+            create: {
+              id,
+              message,
+              to,
+              status: "unread",
+              direction: "incoming",
+              type,
+              mediaId: "",
+              attendant: 0,
+            },
+          },
+        },
+      });
+  
+      return 'Documento recibido';
+    } catch (error) {
+      console.error(error);
+      return 'Error al procesar el documento';
+    }
   }
 
   //zona usuario
