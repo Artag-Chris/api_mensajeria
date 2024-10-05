@@ -1146,6 +1146,10 @@ onSendVideo = async (payload:any) => {
 }
 onSendDoc = async (payload:any) => {
   const {to,mediaId}=payload
+  const {id}=mediaId
+  //console.log(`to: ${to}`)
+ // console.log(`mediaId: ${id}`)
+  //console.log(mediaId)
   const docTemplate: any = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
@@ -1154,18 +1158,19 @@ onSendDoc = async (payload:any) => {
     "document": mediaId
   }
   try{
+    console.log(JSON.stringify(docTemplate))
     const response = await axios
     .post(urlSendMessage, JSON.stringify(docTemplate), { headers });
     console.log(response.data)
   return response.data;
   }catch(error:any){
     if (error.response) {
-      console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
+      console.error(`Error al enviar el documento. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response}`);
     } else if (error.request) {
-      console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
+      console.error(`Error al enviar el documento. No se recibió respuesta.`);
     } else {
-      console.error(`Error al enviar el mensaje: ${error.message}`);
+      console.error(`Error al enviar el documento: ${error.message.data}`);
     }
   }
 }

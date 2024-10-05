@@ -45,7 +45,6 @@ export class whatsappRoutes{
     router.post(`/sendVideoResponse`,whatsaapController.sendVideo);
     router.post(`/sendDocumentResponse`,whatsaapController.sendDocument);
 
-
 return router;
  }
 }

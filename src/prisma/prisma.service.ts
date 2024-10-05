@@ -968,6 +968,7 @@ class PrismaService extends PrismaClient {
       });
   
       if (!customer) {
+        //crear um nuevo usuario con el numero de telefono
         throw new Error(`No se encontró un cliente con el número de teléfono ${phone}`);
       }
   
