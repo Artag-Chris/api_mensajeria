@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { envs } from '../config/envs';
+import { createNumber } from '../domain/functions/createNumber';
 
 class PrismaService extends PrismaClient {
   constructor() {
@@ -995,36 +996,46 @@ class PrismaService extends PrismaClient {
     }
   }
 
-  onRequestAuth = async (phone: any) => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-  
-    try {
-     
-      const customer = await this.customer.findUnique({
-        where: {
+onRequestAuth = async (phone: any) => {
+  try {
+    let customer = await this.customer.findUnique({
+      where: {
+        phone: `57${phone}`,
+      },
+      include: {
+        verificationCode: true,
+      },
+    });
+    if (!customer) {
+      // Crear un nuevo cliente si no existe
+      const veriCode = createNumber().toString(); // generar un código de verificación aleatorio
+      customer = await this.customer.create({
+        data: {
           phone: `57${phone}`,
+          name: '',
+          identification: `57${phone}`,
+          attending: 0,
+          wppStatus: 'initial',
+          lastActive: new Date(),
+          verificationCode: {
+            create: {
+              code: veriCode,
+            },
+          },
+        },
+        include: {
+          verificationCode: true,
         },
       });
-  
-      if (!customer) {
-        throw new Error(`No se encontró un cliente con el número de teléfono ${phone}`);
-      }
-  
-      const verificationCode = await this.verificationCode.findUnique({
-        where: {
-          customerId: customer.id,
-        },
-      });
-  
-      if (!verificationCode) {
-        throw new Error(`No se encontró un código de verificación para el cliente con el número de teléfono ${phone}`);
-      }
-  
-      return verificationCode.code;
-    } catch (error:any) {
-      console.error(`Error al recuperar el código de verificación: ${error.message}`);
     }
+    if (!customer.verificationCode) {
+      throw new Error(`No se encontró un código de verificación para el cliente con el número de teléfono ${phone}`);
+    }
+    return customer.verificationCode.code;
+  } catch (error: any) {
+    console.error(`Error al recuperar el código de verificación: ${error.message}`);
   }
- 
+}
   async init() {
     try {
       await this.$connect();
