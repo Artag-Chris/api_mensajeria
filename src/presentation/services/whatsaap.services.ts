@@ -214,15 +214,15 @@ onRequesFor1= async (payload:any) => {
 
 }
 onRequesFor2= async (payload:any) => {
-  const {phone, texto, texto2}= payload
-   
+  const {phone, texto, texto2,template}= payload
+  const plantilla=template
    try{
     const template:TwoVariable={
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "dosvariables",
+        name: plantilla,
         language: {
           code: "es_MX",
         },
@@ -251,14 +251,15 @@ onRequesFor2= async (payload:any) => {
   
 }
 onRequesFor3= async (payload:any) => {
-  const {phone, texto, texto2, texto3}= payload
+  const {phone, texto, texto2, texto3,template}= payload
+  const plantilla=template
   try{
     const template:ThreeVariables={
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "tresvariables",
+        name: plantilla,
         language: {
           code: "es_MX",
         },
@@ -291,14 +292,15 @@ onRequesFor3= async (payload:any) => {
    }
 }
 onRequesFor4= async (payload:any) => {
-  const {phone, texto, texto2, texto3,texto4}= payload
+  const {phone, texto, texto2, texto3,texto4,template}= payload
+  const plantilla=template
   try{
     const template:FourVariable={
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "cuatrovariables",
+        name: plantilla,
         language: {
           code: "es_MX",
         },
@@ -335,7 +337,8 @@ onRequesFor4= async (payload:any) => {
    }
 }
 onRequesWithoutVariablesImage= async (payload:any) => {
-  const {phone, mediaId}= payload
+  const {phone, mediaId, template}= payload
+  const plantilla=template
   
   try{
     const imageTemplate: NoVariableImage = {
@@ -343,7 +346,7 @@ onRequesWithoutVariablesImage= async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "sinvariableimagen",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -373,16 +376,16 @@ onRequesWithoutVariablesImage= async (payload:any) => {
    
 }
 onRequesFor1Image= async (payload:any) => {
-  const {phone, mediaId, texto}= payload
-  
-  
+  const {phone, mediaId, texto,template}= payload
+  const plantilla=template
+
   try{
     const imageTemplate: OneVariableImage = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "unavariableimagen",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -420,8 +423,8 @@ onRequesFor1Image= async (payload:any) => {
   
 }
 onRequesFor2Image= async (payload:any) => {
-  const {phone, mediaId, texto, texto2}= payload
- 
+  const {phone, mediaId, texto, texto2,template}= payload
+  const plantilla=template
   
   try{
     const imageTemplate: TwoVariableImage = {
@@ -429,7 +432,7 @@ onRequesFor2Image= async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "dosvariablesimagen",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -471,14 +474,15 @@ onRequesFor2Image= async (payload:any) => {
     
 }
 onRequesFor3Image= async (payload:any) => {
-  const {phone, mediaId, texto, texto2,texto3}= payload
+  const {phone, mediaId, texto, texto2,texto3,template}= payload
+  const plantilla=template
   try{
     const imageTemplate: ThreeVariableImage = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "tresvariablesimagen",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -523,14 +527,15 @@ onRequesFor3Image= async (payload:any) => {
   }
 }
 onRequesFor4Image= async (payload:any) => {
-  const {phone, mediaId, texto, texto2,texto3,texto4}= payload
+  const {phone, mediaId, texto, texto2,texto3,texto4,template}= payload
+  const plantilla=template
   try{
     const imageTemplate: FourVariableImage = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "cuatrovariablesimagen",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -580,7 +585,8 @@ onRequesFor4Image= async (payload:any) => {
    
 }
 onRequesWithoutVariablesDocument = async (payload:any) => {
-  const {phone, mediaId}= payload
+  const {phone, mediaId, template}= payload
+  const plantilla=template
   
   try{
     const imageTemplate: NoVariableDocument = {
@@ -588,7 +594,7 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "sinvariableimagen",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -617,8 +623,8 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
   }
 }
 onRequesFor1Document = async (payload:any) => {
-  const {phone, mediaId, texto}= payload
-  //console.log(phone, mediaId, texto)
+  const {phone, mediaId, texto, template}= payload
+  const plantilla=template
   
   try{
     const documentTemplate: OneVariableDocument = {
@@ -626,7 +632,7 @@ onRequesFor1Document = async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "unavariabledocumento",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -666,7 +672,8 @@ onRequesFor1Document = async (payload:any) => {
   
 }
 onRequesFor2Document = async (payload:any) => {
-  const {phone, mediaId, texto, texto2}= payload
+  const {phone, mediaId, texto, texto2,template}= payload
+  const plantilla=template
  
   try{
     const documentTemplate: TwoVariableDocument = {
@@ -674,7 +681,7 @@ onRequesFor2Document = async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "dosvariablesdocumento",
+        name: template,
         language: {
           code: "es_MX",
         },"components": [
@@ -716,14 +723,15 @@ onRequesFor2Document = async (payload:any) => {
   }
 }
 onRequesFor3Document = async (payload:any) => {
-  const {phone, mediaId, texto, texto2,texto3}= payload
+  const {phone, mediaId, texto, texto2,texto3,template}= payload
+  const plantilla=template
   try{
     const documentTemplate: ThreeVariableDocument = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "tresvariablesdocumento",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -769,14 +777,15 @@ onRequesFor3Document = async (payload:any) => {
   }
 }
 onRequesFor4Document = async (payload:any) => {
-  const {phone, mediaId, texto, texto2,texto3,texto4}= payload
+  const {phone, mediaId, texto, texto2,texto3,texto4,template}= payload
+  const plantilla=template
   try{
     const documentTemplate: FourVariableDocument = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "cuatrovariablesdocumento",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -826,15 +835,15 @@ onRequesFor4Document = async (payload:any) => {
   }
 }
 onRequesWithoutVariablesVideo = async (payload:any) => {
-  const {phone, mediaId}= payload
-  
+  const {phone, mediaId, template}= payload
+  const plantilla=template
   try{
     const videoTemplate: NoVariableVideo = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "sinvariablevideo",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -863,8 +872,8 @@ onRequesWithoutVariablesVideo = async (payload:any) => {
   
 }
 onRequesFor1Video = async (payload:any) => {
-  const {phone, mediaId, texto}= payload
-  
+  const {phone, mediaId, texto, template}= payload
+  const plantilla=template
   
   try{
     const videoTemplate: OneVariableVideo = {
@@ -872,7 +881,7 @@ onRequesFor1Video = async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "unavariablevideo",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -909,15 +918,15 @@ onRequesFor1Video = async (payload:any) => {
   }
 }
 onRequesFor2Video = async (payload:any) => {
-  const {phone, mediaId, texto, texto2}= payload
- 
+  const {phone, mediaId, texto, texto2,template}= payload
+  const plantilla=template
   try{
     const videoTemplate: TwoVariableVideo = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "dosvariablesimagen",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -958,14 +967,15 @@ onRequesFor2Video = async (payload:any) => {
   }
 }
 onRequesFor3Video = async (payload:any) => {
-  const {phone, mediaId, texto, texto2,texto3}= payload
+  const {phone, mediaId, texto, texto2,texto3,template}= payload
+  const plantilla=template
   try{
     const videoTemplate: ThreeVariableVideo = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
       template: {
-        name: "tresvariablesvideo",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -1010,9 +1020,8 @@ onRequesFor3Video = async (payload:any) => {
   }
 }
 onRequesFor4Video = async (payload:any) => {
-  const {phone, mediaId, texto, texto2,texto3,texto4}= payload
-
-  //console.log(payload)
+  const {phone, mediaId, texto, texto2,texto3,texto4,template}= payload
+  const plantilla=template
   
   try{
     const videoTemplate: FourVariableVideo = {
@@ -1020,7 +1029,7 @@ onRequesFor4Video = async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "cuatrovariablesvideo",
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
@@ -1067,8 +1076,6 @@ onRequesFor4Video = async (payload:any) => {
   }catch(error){
     console.log(error)
   }
-   
-
 }
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {
