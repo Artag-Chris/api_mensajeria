@@ -18,6 +18,7 @@ constructor(
 ) {}
 
 onRequestForPhones = async () => {
+  
   try {
     const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.Phone_Number_ID}`, {
       headers: {
@@ -27,6 +28,7 @@ onRequestForPhones = async () => {
 
     const phoneData:PhonesResponse = response.data;
     const { display_phone_number } = phoneData;
+      console.log(cleanPhoneNumber(display_phone_number));
 
     const phoneToSend = new Array({
       "id": 1,
@@ -40,29 +42,34 @@ onRequestForPhones = async () => {
     }
     throw new Error(`An error happened!\n${error}`);
   }
+    
 };
 
 onRequesForTemplates = async (): Promise<any> => {
+
+  
   try {
-    const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.WABA_ID}/message_templates`, {
+    const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.Business_ID}/message_templates`, {
       headers: {
         Authorization: `Bearer ${envs.User_Access_Token}`,
       },
     });
-    
+    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError;
       if (axiosError.response) {
-        console.error('Axios error response:', axiosError.response);
+       // console.error('Axios error response:', axiosError.response);
       } else {
-        console.error('Axios error without response:', axiosError.message);
+        //console.error('Axios error without response:', axiosError.message);
       }
+     
     } else {
-      console.error('Non-Axios error:', error);
+      /*console.error('Non-Axios error:', error);*/
+      
     }
-    throw new Error(`An error happened!\n${error}`);
+    /*throw new Error(`An error happened!\n${error}`);*/
   }
   
 }
@@ -115,9 +122,9 @@ onSendVerification = async (phone: any): Promise<any> => {
       "to": `57${phone}`,
       "type": "template",
       "template": {
-        "name": "verificacion",
+        "name": "codigo_de_verificacion",
         "language": {
-          "code": "es_MX"
+          "code": "Spanish"
       },
       "components": [
         {
@@ -174,7 +181,8 @@ onRequesWithoutVariables= async (payload:any) => {
   console.log(payload)
 }
 onRequesFor1= async (payload:any) => {
-  const {phone, texto}= payload
+  const {phone, texto,template}= payload
+  const plantilla=template
   
   try{
     const template:OneVariable={
@@ -182,7 +190,7 @@ onRequesFor1= async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: "unavariable",
+        name: plantilla,
         language: {
           code: "es_MX",
         },
