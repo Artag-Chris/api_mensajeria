@@ -16,10 +16,9 @@ class PrismaService extends PrismaClient {
   }
   
    ///se cambiara los metodos 
-   async onMessageReceived(payload: any) {
+   async onMessageReceived(payload:any) {
+    const { name, phone, type, id, body, display_phone_number } = payload;
     try {
-      const {name,phone,type,id,body,display_phone_number} =payload;
-    
       await prismaService.customer.upsert({
         where: { phone}, // Campo único para buscar el registro
         update: {
@@ -961,6 +960,8 @@ class PrismaService extends PrismaClient {
   
 
   async saveVerificationCode(phone: string, veriCode: string) {
+    console.log("enviado mensaje de verificacion");
+    /*
     try {
       const customer = await this.customer.findUnique({
         where: {
@@ -993,7 +994,7 @@ class PrismaService extends PrismaClient {
       console.log(`Código de verificación guardado correctamente`);
     } catch (error:any) {
       console.error(`Error al guardar el código de verificación: ${error.message}`);
-    }
+    }*/
   }
 
 onRequestAuth = async (phone: any) => {
