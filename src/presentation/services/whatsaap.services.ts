@@ -110,11 +110,10 @@ onSendWelcome = async (id: any): Promise<any> => {
   return "ok";
 }
 
-onSendVerification = async (phone: any): Promise<any> => {
+onSendVerification = async (phone: any,codigo: number): Promise<any> => {
+ //
+  //const verificationNumber= createNumber().toString();
  
-  const verificationNumber= createNumber().toString();
- 
-  
   const template:any={
    "messaging_product": "whatsapp",
       "recipient_type": "individual",
@@ -131,7 +130,7 @@ onSendVerification = async (phone: any): Promise<any> => {
           "parameters": [
             {
               "type": "text",
-              "text": verificationNumber //se podria colocar otra cosa si no se quiere ver el numero
+              "text": codigo //verificationNumber //se podria colocar otra cosa si no se quiere ver el numero
             }
           ]
         },
@@ -142,7 +141,7 @@ onSendVerification = async (phone: any): Promise<any> => {
           "parameters": [
             {
               "type": "text",
-              "text": verificationNumber
+              "text": codigo//verificationNumber
             }
           ]
         }
@@ -155,8 +154,8 @@ onSendVerification = async (phone: any): Promise<any> => {
       .post(urlSendMessage, template, { headers });
       console.log(`mensaje enviado a ${phone}`);
       const verificationCodeService = new PrismaService();
-      const verificationCodeData = await verificationCodeService
-      .saveVerificationCode(phone, verificationNumber);
+     // const verificationCodeData = await verificationCodeService
+     // .saveVerificationCode(phone, codigo);
     return response.data;
   } catch (error:any) {
     if (error.response) {
@@ -172,12 +171,48 @@ onSendVerification = async (phone: any): Promise<any> => {
     }
   }
     
-  return verificationNumber;
+  return "ok";
   
 }
-
+onSendTemplateVerification  = async (phone: any,numero: any): Promise<any> => {
+ console.log(phone)
+ console.log(numero)
+  const payload={
+    "destination": phone,
+    "template": "codigo_de_recuperacion_de_contrasea",
+    "params": [
+      numero
+    ],
+    "source": "158743457332682",
+    "sender" : 0
+  }
+  return JSON.stringify(payload)
+}
 onRequesWithoutVariables= async (payload:any) => {
-  console.log(payload)
+  const {phone,template}= payload
+  const plantilla=template
+  
+  
+  try{
+    const payload={
+      "messaging_product": "whatsapp",
+      "to": `57${phone}`,
+      "type": "template",
+      "template": {
+        "name": plantilla,
+        "language": {
+          "code": "es_MX",
+        }
+      }
+    }
+    const response = await axios
+    .post(urlSendtemplate, payload, { headers });
+  //console.log("enviado a meta")
+    return response.data;
+  }catch(error:any){
+    console.log(error.data)
+  }
+    
 }
 onRequesFor1= async (payload:any) => {
   const {phone, texto,template}= payload
