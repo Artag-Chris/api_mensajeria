@@ -8,7 +8,7 @@ import { PhonesResponse } from "../../domain/interfaces/getPhonesResponse";
 import { cleanPhoneNumber } from "../../domain/functions/formatedNumber";
 import { FourVariable, FourVariableDocument, FourVariableImage, FourVariableVideo, NoVariableDocument, NoVariableImage, NoVariableVideo, OneVariable, OneVariableDocument, OneVariableVideo, ThreeVariableDocument, ThreeVariableImage, ThreeVariables, ThreeVariableVideo, TwoVariable, TwoVariableDocument, TwoVariableImage, TwoVariableVideo } from "../../domain/interfaces";
 import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
-import { createNumber } from "../../domain/functions/createNumber";
+//import { createNumber } from "../../domain/functions/createNumber";
 import PrismaService from "../../prisma/prisma.service";
 
 
