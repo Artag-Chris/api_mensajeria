@@ -193,9 +193,7 @@ onSendTemplateVerification  = async (phone: any,numero: any): Promise<any> => {
 onRequesWithoutVariables= async (payload:any) => {
   const {phone,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text
-  const plantilla=template
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
-  //console.log(nuevoTexto)
 
   const Message:any={
     id ,
@@ -215,9 +213,7 @@ onRequesWithoutVariables= async (payload:any) => {
     lastActive:new Date(),
     WhatsappMessage:[Message]
   }
-  
-  
-  
+  const plantilla=template
   try{
     const payload={
       "messaging_product": "whatsapp",
@@ -246,8 +242,6 @@ onRequesFor1= async (payload:any) => {
     return texto;
   });
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
-  //console.log(nuevoTexto)
-  const plantilla=template
   const Message:any={
     id ,
     message: nuevoTexto,
@@ -257,7 +251,6 @@ onRequesFor1= async (payload:any) => {
     type: "text",
     mediaId: "",
     attendant: 0,
-    
   }
   const rawTemplate= {
     name:"Bot",
@@ -266,7 +259,7 @@ onRequesFor1= async (payload:any) => {
     lastActive:new Date(),
     WhatsappMessage:[Message]
   }
-  
+  const plantilla=template
   try{
     const template:OneVariable={
       messaging_product: "whatsapp",
@@ -506,6 +499,27 @@ onRequesFor4= async (payload:any) => {
 }
 onRequesWithoutVariablesImage= async (payload:any) => {
   const {phone, mediaId, template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+
+  const Message:any={
+    id ,
+    message: plantillabody,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   
   try{
@@ -535,6 +549,7 @@ onRequesWithoutVariablesImage= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
+    this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -861,6 +876,27 @@ onRequesFor4Image= async (payload:any) => {
 }
 onRequesWithoutVariablesDocument = async (payload:any) => {
   const {phone, mediaId, template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+
+  const Message:any={
+    id ,
+    message: plantillabody,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   
   try{
@@ -891,6 +927,7 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -1219,6 +1256,27 @@ onRequesFor4Document = async (payload:any) => {
 }
 onRequesWithoutVariablesVideo = async (payload:any) => {
   const {phone, mediaId, template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+
+  const Message:any={
+    id ,
+    message: plantillabody,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   try{
     const videoTemplate: NoVariableVideo = {
@@ -1247,6 +1305,7 @@ onRequesWithoutVariablesVideo = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -1256,6 +1315,28 @@ onRequesWithoutVariablesVideo = async (payload:any) => {
 }
 onRequesFor1Video = async (payload:any) => {
   const {phone, mediaId, texto, template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text
+  const nuevoTexto = plantillabody.replace(/\{\{([^}]+)\}\}/g, () => {
+    return texto;
+  });
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   
   try{
@@ -1294,6 +1375,7 @@ onRequesFor1Video = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
