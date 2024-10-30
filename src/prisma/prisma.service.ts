@@ -73,7 +73,7 @@ class PrismaService extends PrismaClient {
   }
   //front-end messages
   async onFrontMessageReceived(payload: any) {
-    console.log(payload);
+    //console.log(payload);
     try {
       const {name,phone,identification,attending, lastActive,
         detail,WhatsappMessage} =payload;
