@@ -545,6 +545,30 @@ onRequesWithoutVariablesImage= async (payload:any) => {
 }
 onRequesFor1Image= async (payload:any) => {
   const {phone, mediaId, texto,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
 
   try{
@@ -583,6 +607,7 @@ onRequesFor1Image= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -591,7 +616,33 @@ onRequesFor1Image= async (payload:any) => {
   
 }
 onRequesFor2Image= async (payload:any) => {
-  const {phone, mediaId, texto, texto2,template,selectedTemplate}= payload
+  const {phone, mediaId, texto, texto2,template,selectedTemplate}= payload;
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+    
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   
   try{
@@ -634,6 +685,7 @@ onRequesFor2Image= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
     console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -643,6 +695,32 @@ onRequesFor2Image= async (payload:any) => {
 }
 onRequesFor3Image= async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+    3: texto3,
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   try{
     const imageTemplate: ThreeVariableImage = {
@@ -688,6 +766,7 @@ onRequesFor3Image= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -696,6 +775,33 @@ onRequesFor3Image= async (payload:any) => {
 }
 onRequesFor4Image= async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,texto4,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+    3: texto3,
+    4: texto4
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   try{
     const imageTemplate: FourVariableImage = {
@@ -745,6 +851,7 @@ onRequesFor4Image= async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -792,6 +899,31 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
 }
 onRequesFor1Document = async (payload:any) => {
   const {phone, mediaId, texto, template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   
   try{
@@ -831,6 +963,7 @@ onRequesFor1Document = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -841,6 +974,32 @@ onRequesFor1Document = async (payload:any) => {
 }
 onRequesFor2Document = async (payload:any) => {
   const {phone, mediaId, texto, texto2,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+    
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
  
   try{
@@ -884,6 +1043,7 @@ onRequesFor2Document = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
     console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -892,6 +1052,32 @@ onRequesFor2Document = async (payload:any) => {
 }
 onRequesFor3Document = async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+    3: texto3,
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   try{
     const documentTemplate: ThreeVariableDocument = {
@@ -938,6 +1124,7 @@ onRequesFor3Document = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -946,6 +1133,33 @@ onRequesFor3Document = async (payload:any) => {
 }
 onRequesFor4Document = async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,texto4,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+    3: texto3,
+    4: texto4,
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   try{
     const documentTemplate: FourVariableDocument = {
@@ -996,6 +1210,7 @@ onRequesFor4Document = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -1087,6 +1302,31 @@ onRequesFor1Video = async (payload:any) => {
 }
 onRequesFor2Video = async (payload:any) => {
   const {phone, mediaId, texto, texto2,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   try{
     const videoTemplate: TwoVariableVideo = {
@@ -1128,6 +1368,7 @@ onRequesFor2Video = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
     console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -1136,6 +1377,32 @@ onRequesFor2Video = async (payload:any) => {
 }
 onRequesFor3Video = async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+    3: texto3,
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   try{
     const videoTemplate: ThreeVariableVideo = {
@@ -1181,6 +1448,7 @@ onRequesFor3Video = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
@@ -1189,6 +1457,33 @@ onRequesFor3Video = async (payload:any) => {
 }
 onRequesFor4Video = async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,texto4,template,selectedTemplate}= payload
+  const plantillabody=selectedTemplate.components[0].text;
+  const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
+  const valores: { [key: string]: string } = {
+    1: texto,
+    2: texto2,
+    3: texto3,
+    4: texto4
+  };
+  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+  const Message:any={
+    id ,
+    message: nuevoTexto,
+    to: `57${phone}`,
+    status: "delivered",
+    direction: "outgoing",
+    type: "text",
+    mediaId: "",
+    attendant: 0,
+    
+  }
+  const rawTemplate= {
+    name:"Bot",
+    phone:envs.BOT_NUMBER,
+    attendding:0,
+    lastActive:new Date(),
+    WhatsappMessage:[Message]
+  }
   const plantilla=template
   
   try{
@@ -1239,6 +1534,7 @@ onRequesFor4Video = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
+  this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
   }catch(error){
