@@ -16,7 +16,7 @@ export class PrismaRoutes {
     router.post(`/videoDB`,prismaController.onReceivedVideo);
     router.post(`/docDB`,prismaController.onReceivedDocument);
     
-    //funciones de recepcion de mensajes del front-end
+    //funciones de recepcion de mensajes del front-end "Bot"
     router.post("/frontmessage",prismaController.onReceivedFrontMessage);
     router.post("/frontmessageImage",prismaController.onReceivedFrontMessageImage);
     router.post("/frontmessagedocument",prismaController.onReceivedFrontMessageDoc);

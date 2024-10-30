@@ -73,11 +73,13 @@ class PrismaService extends PrismaClient {
   }
   //front-end messages
   async onFrontMessageReceived(payload: any) {
+    console.log(payload);
     try {
       const {name,phone,identification,attending, lastActive,
         detail,WhatsappMessage} =payload;
         const {id,message,to,status,direction,type,attendant}=WhatsappMessage[0];
-  
+   
+   
       await prismaService.customer.upsert({
         where: { phone}, // Campo único para buscar el registro
         update: {
@@ -123,7 +125,7 @@ class PrismaService extends PrismaClient {
           },
         }, 
       });  
-      
+      console.log('guardado');
       return "recibido del front";
     } catch (error) {
       console.error(error);
