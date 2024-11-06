@@ -214,14 +214,14 @@ onRequesWithoutVariables= async (payload:any) => {
     WhatsappMessage:[Message]
   }
   const plantilla=template
-  console.log(plantilla.name)
+  //console.log(plantilla.name)
   try{
     const payload={
       "messaging_product": "whatsapp",
       "to": `57${phone}`,
       "type": "template",
       "template": {
-        "name": plantilla.name,
+        "name": plantilla,
         "language": {
           "code": "es_MX",
         }
@@ -240,10 +240,13 @@ onRequesWithoutVariables= async (payload:any) => {
 }
 onRequesFor1= async (payload:any) => {
   const {phone, texto,template,selectedTemplate}= payload
+  
   const plantillabody=selectedTemplate.components[0].text
   const nuevoTexto = plantillabody.replace(/\{\{([^}]+)\}\}/g, () => {
     return texto;
   });
+  
+  
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
   const Message:any={
     id ,
@@ -263,6 +266,7 @@ onRequesFor1= async (payload:any) => {
     WhatsappMessage:[Message]
   }
   const plantilla=template
+  //console.log(plantilla.name)
   try{
     const template:OneVariable={
       messaging_product: "whatsapp",
@@ -1048,7 +1052,7 @@ onRequesFor2Document = async (payload:any) => {
       to: phone,
       type: "template",
       template: {
-        name: template,
+        name: plantilla,
         language: {
           code: "es_MX",
         },"components": [
