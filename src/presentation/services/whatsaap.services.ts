@@ -214,13 +214,14 @@ onRequesWithoutVariables= async (payload:any) => {
     WhatsappMessage:[Message]
   }
   const plantilla=template
+  console.log(plantilla.name)
   try{
     const payload={
       "messaging_product": "whatsapp",
       "to": `57${phone}`,
       "type": "template",
       "template": {
-        "name": plantilla,
+        "name": plantilla.name,
         "language": {
           "code": "es_MX",
         }
@@ -228,10 +229,12 @@ onRequesWithoutVariables= async (payload:any) => {
     }
     const response = await axios
     .post(urlSendtemplate, payload, { headers });
+    //console.log(`respuesta del servidor ${response.data}`);
     this.prismaService.onFrontMessageReceived(rawTemplate);
+    console.log(`response ${response.data}`);
     return response.data;
   }catch(error:any){
-    console.log(error.data)
+    console.log("error aquii!!!!!!!",error.response.data)
   }
     
 }
