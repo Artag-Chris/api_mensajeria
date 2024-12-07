@@ -1,4 +1,3 @@
-//no implementado pero lo dejo por si crean usuarios 
 //import { UuuiAdapter } from "../../config/uuid.adapter";
 import axios, { AxiosError } from "axios"
 import{ WssService } from "../../notifications/wss.service";
@@ -14,13 +13,24 @@ import { reemplazarValores } from "../../domain/functions/reemplazarValores";
 
  
 export class WhatsaapService {
+  /********************************************************************** 
+   servicio de whatsapp relacionado con todo lo referente a mensajes de whatsapp
+   algunos metodos usan la clase de prisma para guardar la informacion
+   especifica de solo plantillas con el fin de que los agentes sepan 
+   que plantillas les han enviado a los usuarios
+  ***********************************************************************/
 constructor(
+  //TODO: implementaremos un logger aqui para el registro de errores
+  //TODO: se quitaran las lineas de codigo comentadas
+  //TODO: se quitaran los console.log
+  //no se usa el websocket aqui
   private readonly wssService = WssService.instance,
   private readonly prismaService = new PrismaService(),
 ) {}
 
 onRequestForPhones = async () => {
   
+  //no se usa una forma de no escribir esa url
   try {
     const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.Phone_Number_ID}`, {
       headers: {
@@ -30,7 +40,8 @@ onRequestForPhones = async () => {
 
     const phoneData:PhonesResponse = response.data;
     const { display_phone_number } = phoneData;
-      console.log(cleanPhoneNumber(display_phone_number));
+    
+     // console.log(cleanPhoneNumber(display_phone_number));
 
     const phoneToSend = new Array({
       "id": 1,
@@ -39,6 +50,7 @@ onRequestForPhones = async () => {
 
     return JSON.stringify(phoneToSend);
   } catch (error) {
+    //Todo: se colocara logger de error
     if (axios.isAxiosError(error)) {
       console.error('Axios error response:', error.response);
     }
@@ -48,6 +60,7 @@ onRequestForPhones = async () => {
 };
 
 onRequesForTemplates = async (): Promise<any> => {
+  //Todo: se quitaran los url a la vista
   
   try {
     const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.Business_ID}/message_templates`, {
@@ -58,6 +71,8 @@ onRequesForTemplates = async (): Promise<any> => {
     
     return response.data.data;
   } catch (error) {
+
+    //Todo: se colocara logger de error
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError;
       if (axiosError.response) {
@@ -75,6 +90,8 @@ onRequesForTemplates = async (): Promise<any> => {
   
 }
 //envio de plantillas
+
+//se quitara metodo
 onSendWelcome = async (id: any): Promise<any> => {
  
   const template = {
@@ -190,7 +207,9 @@ onSendTemplateVerification  = async (phone: any,numero: any): Promise<any> => {
   }
   return JSON.stringify(payload)
 }
+//plantillas de 0 variables de texto
 onRequesWithoutVariables= async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -234,11 +253,14 @@ onRequesWithoutVariables= async (payload:any) => {
     console.log(`response ${response.data}`);
     return response.data;
   }catch(error:any){
+    //Todo: logger
     console.log("error aquii!!!!!!!",error.response.data)
   }
     
 }
+//1 variable texto
 onRequesFor1= async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, texto,template,selectedTemplate}= payload
   
   const plantillabody=selectedTemplate.components[0].text
@@ -292,12 +314,15 @@ onRequesFor1= async (payload:any) => {
       this.prismaService.onFrontMessageReceived(rawTemplate);
       return response.data;
   }catch(error){
+    //Todo: logger
   console.log(error)
   }
   
 
 }
+//2 variables texto
 onRequesFor2= async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, texto, texto2,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -360,11 +385,15 @@ onRequesFor2= async (payload:any) => {
       this.prismaService.onFrontMessageReceived(rawTemplate);
       return response.data;
    }catch(error){
+    //Todo: logger
     // console.log(error)
    }
   
 }
+//3 variables texto
 onRequesFor3= async (payload:any) => {
+  //Todo: podriamos usar un dto
+  //TODO: borrar codigo innecesario
   const {phone, texto, texto2, texto3,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -431,6 +460,7 @@ onRequesFor3= async (payload:any) => {
      console.log(error)
    }
 }
+//4 variables texto
 onRequesFor4= async (payload:any) => {
   const {phone, texto, texto2, texto3,texto4,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
@@ -501,10 +531,13 @@ onRequesFor4= async (payload:any) => {
      
       return response.data;
    }catch(error){
+    //Todo: logger
      console.log(error)
    }
 }
+//sin variables imagenes
 onRequesWithoutVariablesImage= async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -557,15 +590,18 @@ onRequesWithoutVariablesImage= async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
     this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+  //console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
   
    
 }
+//1 variable imagen
 onRequesFor1Image= async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -630,21 +666,22 @@ onRequesFor1Image= async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+  //console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
-  }
-  
+  }  
 }
+//2 variables imagen
 onRequesFor2Image= async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto, texto2,template,selectedTemplate}= payload;
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
   const valores: { [key: string]: string } = {
     1: texto,
     2: texto2,
-    
   };
   const nuevoTexto: string = reemplazarValores(plantillabody, valores);
   const Message:any={
@@ -708,14 +745,17 @@ onRequesFor2Image= async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-    console.log("enviado a meta")
+   // console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
     
 }
+//3 variables imagen
 onRequesFor3Image= async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto, texto2,texto3,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -789,13 +829,16 @@ onRequesFor3Image= async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+ // console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
 }
+//4 variables imagen
 onRequesFor4Image= async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto, texto2,texto3,texto4,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -874,14 +917,21 @@ onRequesFor4Image= async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, imageTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+ // console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
    
 }
+/*
+tendra pioridad las plantillas de documentos
+*/
+
+//sin variables documento
 onRequesWithoutVariablesDocument = async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -907,7 +957,7 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
   const plantilla=template
   
   try{
-    const imageTemplate: NoVariableDocument = {
+    const documentTemplate: NoVariableDocument = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
@@ -933,17 +983,19 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
     }
     
     const response = await axios
-    .post(urlSendtemplate, imageTemplate, { headers });
+    .post(urlSendtemplate, documentTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+ // console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
 }
+//1 variable documento
 onRequesFor1Document = async (payload:any) => {
- 
-  
+  //Todo: podriamos usar un dto 
+  //Todo: no guarda los mensajes con documentos en header
   const {phone, mediaId, texto, template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -1009,24 +1061,26 @@ onRequesFor1Document = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
-    console.log(response.data)
+   // console.log(response.data)
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+  //console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
 
   
 }
+//2 variables documento
 onRequesFor2Document = async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto, texto2,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
   const valores: { [key: string]: string } = {
     1: texto,
-    2: texto2,
-    
+    2: texto2,  
   };
   const nuevoTexto: string = reemplazarValores(plantillabody, valores);
   const Message:any={
@@ -1091,13 +1145,16 @@ onRequesFor2Document = async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-    console.log("enviado a meta")
+   // console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
 }
+//3 variables documento
 onRequesFor3Document = async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto, texto2,texto3,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -1172,13 +1229,16 @@ onRequesFor3Document = async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+ // console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
 }
+//4 variables documento
 onRequesFor4Document = async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto, texto2,texto3,texto4,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -1258,13 +1318,16 @@ onRequesFor4Document = async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+  //console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
 }
+//sin variables video
 onRequesWithoutVariablesVideo = async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -1316,14 +1379,18 @@ onRequesWithoutVariablesVideo = async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+  //console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
   
 }
+//1 variable video
 onRequesFor1Video = async (payload:any) => {
+  //Todo: podriamos usar un dto
+  //no se guardara los videos del header
   const {phone, mediaId, texto, template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text
   const nuevoTexto = plantillabody.replace(/\{\{([^}]+)\}\}/g, () => {
@@ -1386,13 +1453,16 @@ onRequesFor1Video = async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+ // console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
 }
+//2 variables video
 onRequesFor2Video = async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto, texto2,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -1461,12 +1531,14 @@ onRequesFor2Video = async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-    console.log("enviado a meta")
+  //  console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //Todo: logger
     console.log(error)
   }
 }
+//3 variables video
 onRequesFor3Video = async (payload:any) => {
   const {phone, mediaId, texto, texto2,texto3,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
@@ -1541,13 +1613,15 @@ onRequesFor3Video = async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+ // console.log("enviado a meta")
     return response.data;
   }catch(error){
     console.log(error)
   }
 }
+//4 variables video
 onRequesFor4Video = async (payload:any) => {
+  //Todo: podriamos usar un dto
   const {phone, mediaId, texto, texto2,texto3,texto4,template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
@@ -1627,12 +1701,14 @@ onRequesFor4Video = async (payload:any) => {
     const response = await axios
     .post(urlSendtemplate, videoTemplate, { headers });
   this.prismaService.onFrontMessageReceived(rawTemplate);
-  console.log("enviado a meta")
+ // console.log("enviado a meta")
     return response.data;
   }catch(error){
+    //logger
     console.log(error)
   }
 }
+//aqui enviamos mensajes de texto desde el front
 onSendText = async (id: any, message: string) => {
   const textTemplate: any = {
     messaging_product: "whatsapp",
@@ -1646,6 +1722,7 @@ onSendText = async (id: any, message: string) => {
 
     return response.data;
   } catch (error:any) {
+    //logger
     if (error.response) {
       console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response.data}`);
@@ -1657,6 +1734,7 @@ onSendText = async (id: any, message: string) => {
   }
   return "ok";
 }
+//enviamos mensajes de imagenes
 onSendImage = async (payload:any) => {
   const {to,mediaId}=payload
   const imageTemplate: any = {
@@ -1673,6 +1751,7 @@ onSendImage = async (payload:any) => {
   return response.data;
 
   }catch(error:any){
+    //logger
     if (error.response) {
       console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response}`);
@@ -1684,10 +1763,12 @@ onSendImage = async (payload:any) => {
 }
 
 }
+//no implementado
 onSendAudio = async (payload:any) => {
   console.log(payload)
   //aun no se ha implementado
 }
+//cuando mandamos un video por url
 onSendVideo = async (payload:any) => {
   const {to,mediaId}=payload
   const videoTemplate: any = {
@@ -1701,10 +1782,11 @@ onSendVideo = async (payload:any) => {
   try{
     const response = await axios
     .post(urlSendMessage, JSON.stringify(videoTemplate), { headers });
-    console.log(response.data)
+   // console.log(response.data)
   return response.data;
 
   }catch(error:any){
+    //logger
     if (error.response) {
       console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response}`);
@@ -1715,12 +1797,13 @@ onSendVideo = async (payload:any) => {
     }
   }
 }
+//aqui enviamos el documento al cliente
 onSendDoc = async (payload:any) => {
+  //este metodo falla aveces asi que hay que estar atento
+  //por si encuentro algo en la ejecucion 
+  //sino es de aqui es del front que falla
   const {to,mediaId}=payload
-  const {id}=mediaId
-  //console.log(`to: ${to}`)
- // console.log(`mediaId: ${id}`)
-  //console.log(mediaId)
+ // const {id}=mediaId
   const docTemplate: any = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
@@ -1729,7 +1812,12 @@ onSendDoc = async (payload:any) => {
     "document": mediaId
   }
   try{
-    console.log(JSON.stringify(docTemplate))
+    //TODO: deberiamos de delegar la responsabilidad de combertir
+    //lo que enviamos  a otra variable y despues preguntar que si esta correcta
+    //lo envia a meta si no que envie una respuesta de volver a cargar
+   // console.log(JSON.stringify(docTemplate))
+
+   //const document 
     const response = await axios
     .post(urlSendMessage, JSON.stringify(docTemplate), { headers });
     console.log(response.data)

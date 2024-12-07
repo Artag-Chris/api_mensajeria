@@ -8,6 +8,9 @@ interface Options {
 }
 
 export class Server {
+  /****************************************************** 
+    todo lo relacionado con la configuracion del server
+  *******************************************************/
   public readonly app = express();
   private serverListener?: any;
   private readonly port: number;
@@ -18,23 +21,24 @@ export class Server {
     const { port, public_path = "public" } = options;
     this.port = port;
     this.publicPath = public_path;
-   
     this.configure();
   }
 
   private configure() {
     
-    //* Middlewares aqui se configuran los middlewares del server
+    /******************************************************* 
+    Middlewares aqui se configuran los middlewares del server
+    aqui se configura el cors, el tamaño del body y el urlencoded
+    ********************************************************/
      
     this.app.use(cors());
     this.app.use(express.json({ limit: '50mb' }));
     this.app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
     //* Public Folder
+    // no implementado aqui se pondria algo por si buscan el server
+    // desde la carpeta public
     this.app.use(express.static(this.publicPath));
-
-    //* Routes
-   // this.app.use(this.routes);
 
     //* SPA /^\/(?!api).*/  <== Únicamente si no empieza con la palabra api
     this.app.get(/^\/(?!api).*/, (req, res) => {
