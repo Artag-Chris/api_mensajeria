@@ -3,21 +3,27 @@ import { envs } from '../config/envs';
 import { createNumber } from '../domain/functions/createNumber';
 
 class PrismaService extends PrismaClient {
+  /**********************************************************************
+    clase de Prisma que se encargara de la comunicacion con la base de datos
+    de whatsapp. ya no se guardara tableta de verificacion en la base de datos
+  ***********************************************************************/
   constructor() {
-    const dbHost = envs.DB_HOST;
-    //const dbPort = envs.DB_PORT;
-    const dbUser = envs.DB_USER;
-    const dbPassword = envs.DB_PASSWORD;
-    const database = envs.DATABASE;
-
+    //TODO: se colocara un logger para registro de errores
+  
     super( );
 
     this.init(); 
   }
   
-   ///se cambiara los metodos 
+ 
+  //mensaje recibido del bot de whatsapp
    async onMessageReceived(payload:any) {
     const { name, phone, type, id, body, display_phone_number } = payload;
+//TODO: deberemos cambiar este metodo 
+//1 deberamos buscar en la base de datos si el usuario existe y si no
+//crearemos el usuario 
+//2 si existe simplemente agregaremos el mensaje a la base de datos
+//para evitar el error de id que se esta generando
     try {
       await prismaService.customer.upsert({
         where: { phone}, // Campo único para buscar el registro
@@ -71,9 +77,11 @@ class PrismaService extends PrismaClient {
       return 'Error al procesar el mensaje';
     }
   }
-  //front-end messages
+  //mensajes que enviamos desde el front texto
   async onFrontMessageReceived(payload: any) {
-    //console.log(payload);
+   //TODO: deberemos cambiar este metodo como el pasado de arriba
+   //deberemos crear un dto de la informacion del mensaje para mas control
+   
     try {
       const {name,phone,identification,attending, lastActive,
         detail,WhatsappMessage} =payload;
