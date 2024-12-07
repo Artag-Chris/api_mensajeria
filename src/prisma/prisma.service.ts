@@ -9,6 +9,8 @@ class PrismaService extends PrismaClient {
   ***********************************************************************/
   constructor() {
     //TODO: se colocara un logger para registro de errores
+    //TODO: se quuitaran los console.log 
+    //TODO: se quitaran las lineas de codigo comentadas
   
     super( );
 
@@ -73,6 +75,7 @@ class PrismaService extends PrismaClient {
       
       return 'Texto recibido';
     } catch (error) {
+//TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar el mensaje';
     }
@@ -81,7 +84,7 @@ class PrismaService extends PrismaClient {
   async onFrontMessageReceived(payload: any) {
    //TODO: deberemos cambiar este metodo como el pasado de arriba
    //deberemos crear un dto de la informacion del mensaje para mas control
-   
+
     try {
       const {name,phone,identification,attending, lastActive,
         detail,WhatsappMessage} =payload;
@@ -136,11 +139,15 @@ class PrismaService extends PrismaClient {
       console.log('guardado');
       return "recibido del front";
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar el mensaje del front';
     }
   }
+  //imagen que enviamos desde el front
   async onFrontMessageImageReceived(payload: any) {
+    //TODO: deberemos cambiar este metodo como el pasado de arriba
+    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const {name,phone,to,message,id } =payload;
         await prismaService.customer.upsert({
@@ -190,11 +197,14 @@ class PrismaService extends PrismaClient {
         });  
      return "recibido del front";
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar el mensaje del front';
     }
   }
   async onFrontMessageDocReceived(payload: any) {
+    //TODO: deberemos cambiar este metodo como el pasado de arriba
+    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const { name, phone, to, message, id } = payload;
   
@@ -246,11 +256,15 @@ class PrismaService extends PrismaClient {
   
       return "recibido del front";
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar el mensaje del front';
     }
   }
+  //video que enviamos desde el front
   async onFrontMessageVideoReceived(payload: any) {
+    //TODO: deberemos cambiar este metodo como el pasado de arriba
+    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const { name, phone, to, message, id } = payload;
   
@@ -302,12 +316,15 @@ class PrismaService extends PrismaClient {
   
       return "recibido del front";
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar el mensaje del front';
     }
   }
-  //users messages
+  //imagenes recividas desde el bot
   async onImageReceived(payload: any) {
+    //TODO: deberemos cambiar este metodo como el pasado de arriba
+    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const { name, phone, to, message, type, id } = payload;
   
@@ -359,11 +376,15 @@ class PrismaService extends PrismaClient {
   
       return 'Imagen recibida';
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar la imagen';
     }
   }
+  //audios recividos desde el bot
   async onAudioReceived(payload: any) {
+    //TODO: deberemos cambiar este metodo como el pasado de arriba
+    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const { name, phone, to, message, type, id } = payload;
   
@@ -415,11 +436,15 @@ class PrismaService extends PrismaClient {
   
       return 'Audio recibido';
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar el audio';
     }
   }
+  //videos recividos desde el bot
   async onVideoReceived(payload: any) {
+    //TODO: deberemos cambiar este metodo como el pasado de arriba
+    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const { name, phone, to, message, type, id } = payload;
   
@@ -471,11 +496,15 @@ class PrismaService extends PrismaClient {
   
       return 'Video recibido';
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar el video';
     }
   }
+  //documentos recividos desde el bot
   async onDocumentReceived(payload: any) {
+    //TODO: deberemos cambiar este metodo como el pasado de arriba
+    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const { name, phone, to, message, type, id } = payload;
   
@@ -527,15 +556,17 @@ class PrismaService extends PrismaClient {
   
       return 'Documento recibido';
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.error(error);
       return 'Error al procesar el documento';
     }
   }
 
   //zona usuario
+  //obtenemos los mensajes de texto de solo los usuarios
   async onRequestUsers( payload:any) {
-    //todos los usuarios menos el bot
- 
+    //obtenemos los usuarios menos el bot
+    //si tenemos varios bots deberemos filtrarlos de otra manera
 
     try {
       const customers = await prismaService.customer.findMany({
@@ -586,9 +617,12 @@ class PrismaService extends PrismaClient {
       });
       return customers;
     } catch (error) {
+      //TODO: deberemos crear un logger con este error
       console.log(error);
     }
   }
+  //aqui busca un usuario especifico 
+  //se usa para despues pedir todos sus mensajes especificos 
   async onSearchForUser( id:any) {
 
   //usuario especifico
@@ -637,12 +671,15 @@ class PrismaService extends PrismaClient {
       console.log(error);
     }
   }
+  //metodo no usado 
   async onCreateUser( payload:any) {/*  se creara mejor logica aqui
     const newUser= await prismaService.customer.create({data:payload});
     return newUser*/
   }
   async onDispatchUser(phone: string, botNumber: string) {
-    //console.log(phone, botNumber);
+    //metodo para colocar los mensajes del usuario en leido 
+    //osea que ya no los pediremos de la base de datos
+   
     const user = await this.customer.findUnique({
       where: {
         phone: phone,
@@ -708,6 +745,7 @@ class PrismaService extends PrismaClient {
       });
   
       // Marcar mensajes del bot a read
+      //para que no 
       await this.whatsappMessage.updateMany({
         where: {
           attendant:0,
@@ -759,6 +797,8 @@ class PrismaService extends PrismaClient {
       });
     }
   }
+
+  //metodo no impplementado
   async onUpdateUser( payload:any) {
     const { id } = payload;
    
@@ -788,6 +828,7 @@ class PrismaService extends PrismaClient {
   }
 
   // zona de mensajes 
+  //obtenemos todos los mensajes de un solo usuario todos los tipos
   async onResearchForALLTypesOfMessages( id:any ) {
     if (!id) {
       throw new Error('El id es requerido');
@@ -832,11 +873,14 @@ class PrismaService extends PrismaClient {
 
     return customerData;
    }catch(error){
+    //Todo: manejar el error con el logger
     console.error('Error al obtener los datos del cliente:', error);
     throw new Error('No se pudieron obtener los datos del cliente');
    }
   
   }
+  //no implementado pero buscaria todos los mensajes de un solo usuario
+  //sin importar si fueron read o no
   async onResearchTextMessages(id:any) {
     
     if (!id) {
@@ -855,6 +899,8 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+  //no implementado
+  //busca imagenes
   async onResearchImageMessages(id:any) {
     
     if (!id) {
@@ -872,6 +918,8 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+  //no implementado
+  //busca audios
   async onResearchAudioMessages(id:any) {
 
     if (!id) {
@@ -889,6 +937,7 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+  //no implementado
   async onResearchVideoMessages(id:any) {
 
     if (!id) {
@@ -906,6 +955,7 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+  //no implementado
   async onResearchDocumentMessages(id:any) {
 
     if (!id) {
@@ -923,8 +973,10 @@ class PrismaService extends PrismaClient {
       },
     });
   }
+  //este busca todos los mensajes del bot 
+  //sin importar si fueron read o no
   async onResearchForBotMessages(id:any) {
-    
+    //TODO: no tiene try catch
     const phone=envs.BOT_NUMBER;
     const messagesRelated = await prismaService.customer.findUnique({
       where: {
@@ -968,7 +1020,7 @@ class PrismaService extends PrismaClient {
     return messagesRelated;
   }
   
-
+//Deberemos borrar este metodo ya que no guardemos el codigo de verificacion
   async saveVerificationCode(phone: string, veriCode: string) {
     console.log("enviado mensaje de verificacion");
     /*
@@ -1006,7 +1058,7 @@ class PrismaService extends PrismaClient {
       console.error(`Error al guardar el código de verificación: ${error.message}`);
     }*/
   }
-
+//Metodo que borraremos
 onRequestAuth = async (phone: any) => {
   try {
     let customer = await this.customer.findUnique({
