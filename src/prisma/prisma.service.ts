@@ -527,7 +527,7 @@ class PrismaService extends PrismaClient {
   //zona usuario
   async onRequestUsers( payload:any) {
     //todos los usuarios menos el bot
-    const bot= envs.BOT_NUMBER;
+ 
 
     try {
       const customers = await prismaService.customer.findMany({
@@ -537,7 +537,7 @@ class PrismaService extends PrismaClient {
         where: {
           attending: 0,
           NOT: {
-            phone: bot, // Excluye el teléfono del bot
+            phone: envs.BOT_NUMBER, // Excluye el teléfono del bot
           },
         },
          include: {

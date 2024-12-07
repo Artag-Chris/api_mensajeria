@@ -942,17 +942,19 @@ onRequesWithoutVariablesDocument = async (payload:any) => {
   }
 }
 onRequesFor1Document = async (payload:any) => {
+ 
+  
   const {phone, mediaId, texto, template,selectedTemplate}= payload
   const plantillabody=selectedTemplate.components[0].text;
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
   const valores: { [key: string]: string } = {
     1: texto,
-    
   };
-  const nuevoTexto: string = reemplazarValores(plantillabody, valores);
+ // const nuevoTexto: string = reemplazarValores(plantillabody, valores);
   const Message:any={
     id ,
-    message: nuevoTexto,
+  //  message: nuevoTexto,
+    message: plantillabody,
     to: `57${phone}`,
     status: "delivered",
     direction: "outgoing",
@@ -1007,6 +1009,7 @@ onRequesFor1Document = async (payload:any) => {
     
     const response = await axios
     .post(urlSendtemplate, documentTemplate, { headers });
+    console.log(response.data)
   this.prismaService.onFrontMessageReceived(rawTemplate);
   console.log("enviado a meta")
     return response.data;
