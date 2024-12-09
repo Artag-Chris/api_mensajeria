@@ -4,6 +4,7 @@ export * from './noVariable';
 export * from './noVariableImage'
 export * from './oneVariable'
 export * from './noVariableImage'
+export * from './oneVariableImage'
 export * from './twoVariable'
 export * from './twoVariableImage'
 export * from './threeVariables'

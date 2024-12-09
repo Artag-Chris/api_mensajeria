@@ -12,11 +12,7 @@ export class WhatsaapController {
   public getTemplates = async (req: Request, res: Response) => {
     this.whatsaapService.onRequesForTemplates().then((data) => res.json(data));
   };
-  public sendWelcome = async (req: Request, res: Response) => {
-    const id = req.body.id;
-    const mensaje= this.whatsaapService.onSendWelcome(id);
-    res.json(mensaje);
-  };
+
   public sendVerification = async (req: Request, res: Response) => {
     const phone = req.body.id;
     const {codigo}= req.body;

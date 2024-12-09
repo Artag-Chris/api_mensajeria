@@ -1,15 +1,20 @@
-//import { UuuiAdapter } from "../../config/uuid.adapter";
 import axios, { AxiosError } from "axios"
 import{ WssService } from "../../notifications/wss.service";
 import {envs } from "../../config/envs";
 import { headers, urlSendMessage, urlSendtemplate } from "../../config/url/whatsappPostUrl";
 import { PhonesResponse } from "../../domain/interfaces/getPhonesResponse";
 import { cleanPhoneNumber } from "../../domain/functions/formatedNumber";
-import { FourVariable, FourVariableDocument, FourVariableImage, FourVariableVideo, NoVariableDocument, NoVariableImage, NoVariableVideo, OneVariable, OneVariableDocument, OneVariableVideo, ThreeVariableDocument, ThreeVariableImage, ThreeVariables, ThreeVariableVideo, TwoVariable, TwoVariableDocument, TwoVariableImage, TwoVariableVideo } from "../../domain/interfaces";
-import { OneVariableImage } from "../../domain/interfaces/oneVariableImage";
-//import { createNumber } from "../../domain/functions/createNumber";
 import PrismaService from "../../prisma/prisma.service";
 import { reemplazarValores } from "../../domain/functions/reemplazarValores";
+import { FourVariable, FourVariableDocument,
+  FourVariableImage, FourVariableVideo, NoVariableDocument,
+  NoVariableImage, NoVariableVideo, OneVariable,
+  OneVariableDocument, OneVariableVideo,
+  ThreeVariableDocument, ThreeVariableImage,
+  ThreeVariables, ThreeVariableVideo, TwoVariable,
+  TwoVariableDocument,OneVariableImage,
+  TwoVariableImage, TwoVariableVideo } from "../../domain/interfaces";
+import logger from "../../config/adapters/winstonAdapter";
 
  
 export class WhatsaapService {
@@ -28,8 +33,9 @@ constructor(
   private readonly prismaService = new PrismaService(),
 ) {}
 
+
 onRequestForPhones = async () => {
-  
+ 
   //no se usa una forma de no escribir esa url
   try {
     const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.Phone_Number_ID}`, {
@@ -40,9 +46,6 @@ onRequestForPhones = async () => {
 
     const phoneData:PhonesResponse = response.data;
     const { display_phone_number } = phoneData;
-    
-     // console.log(cleanPhoneNumber(display_phone_number));
-
     const phoneToSend = new Array({
       "id": 1,
       "number": cleanPhoneNumber(display_phone_number)
@@ -50,89 +53,34 @@ onRequestForPhones = async () => {
 
     return JSON.stringify(phoneToSend);
   } catch (error) {
-    //Todo: se colocara logger de error
+
     if (axios.isAxiosError(error)) {
-      console.error('Axios error response:', error.response);
+      logger.error('error en busqueda de telefonos', error.response);
     }
-    throw new Error(`An error happened!\n${error}`);
   }
     
 };
 
 onRequesForTemplates = async (): Promise<any> => {
   //Todo: se quitaran los url a la vista
-  
   try {
     const response = await axios.get(`https://graph.facebook.com/${envs.Version}/${envs.Business_ID}/message_templates`, {
       headers: {
         Authorization: `Bearer ${envs.User_Access_Token}`,
       },
     });
-    
     return response.data.data;
   } catch (error) {
-
-    //Todo: se colocara logger de error
     if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError;
-      if (axiosError.response) {
-       // console.error('Axios error response:', axiosError.response);
-      } else {
-        //console.error('Axios error without response:', axiosError.message);
-      }
-     
-    } else {
-      /*console.error('Non-Axios error:', error);*/
-      
+      logger.error('error en busqueda de telefonos', error.response);
     }
-    /*throw new Error(`An error happened!\n${error}`);*/
   }
   
 }
 //envio de plantillas
 
-//se quitara metodo
-onSendWelcome = async (id: any): Promise<any> => {
- 
-  const template = {
-    name: "bienvenido",
-    language: {
-      code: "es_MX",
-    },
-  };
-  const WelcomeTemplate: any = {
-    messaging_product: "whatsapp",
-    to: id,
-    //to:"573205711428",
-    type: 'template',
-    template: template,
-  };
-
-  try {
-    const response = await axios
-      .post(urlSendMessage, WelcomeTemplate, { headers });
-      console.log(`mensaje enviado a ${id}`);
-    return response.data;
-  } catch (error:any) {
-    if (error.response) {
-      // The request was made and the server responded with a status code that falls out of the range of 2xx
-      console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
-      console.error(`Mensaje de error: ${error.response.data}`);
-    } else if (error.request) {
-      // The request was made but no response was received
-      console.error(`Error al enviar el mensaje. No se recibió respuesta.`);
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      console.error(`Error al enviar el mensaje: ${error.message}`);
-    }
-  }
-  return "ok";
-}
-
 onSendVerification = async (phone: any,codigo: number): Promise<any> => {
- //
-  //const verificationNumber= createNumber().toString();
- 
+
   const template:any={
    "messaging_product": "whatsapp",
       "recipient_type": "individual",
@@ -167,18 +115,14 @@ onSendVerification = async (phone: any,codigo: number): Promise<any> => {
       ]
     }
   }
-  //se debera mandar a guardar a la base de datos el codigo de la verificacion 
   try {
     const response = await axios
       .post(urlSendMessage, template, { headers });
       console.log(`mensaje enviado a ${phone}`);
       const verificationCodeService = new PrismaService();
-     // const verificationCodeData = await verificationCodeService
-     // .saveVerificationCode(phone, codigo);
     return response.data;
   } catch (error:any) {
     if (error.response) {
-      // The request was made and the server responded with a status code that falls out of the range of 2xx
       console.error(`Error al enviar el mensaje. Código de estado: ${error.response.status}`);
       console.error(`Detalle de error: ${error.response.data}`);
     } else if (error.request) {
@@ -189,13 +133,10 @@ onSendVerification = async (phone: any,codigo: number): Promise<any> => {
       console.error(`Error al enviar el mensaje: ${error.message}`);
     }
   }
-    
   return "ok";
-  
 }
 onSendTemplateVerification  = async (phone: any,numero: any): Promise<any> => {
- //console.log(phone)
- //console.log(numero)
+
   const payload={
     "destination": phone,
     "template": "codigo_de_recuperacion_de_contrasea",
@@ -248,27 +189,22 @@ onRequesWithoutVariables= async (payload:any) => {
     }
     const response = await axios
     .post(urlSendtemplate, payload, { headers });
-    //console.log(`respuesta del servidor ${response.data}`);
     this.prismaService.onFrontMessageReceived(rawTemplate);
-    console.log(`response ${response.data}`);
     return response.data;
   }catch(error:any){
-    //Todo: logger
-    console.log("error aquii!!!!!!!",error.response.data)
+    if (axios.isAxiosError(error)) {
+      logger.error('en sinvariables plantilla', error.response);
+    }
   }
-    
 }
 //1 variable texto
 onRequesFor1= async (payload:any) => {
   //Todo: podriamos usar un dto
   const {phone, texto,template,selectedTemplate}= payload
-  
   const plantillabody=selectedTemplate.components[0].text
   const nuevoTexto = plantillabody.replace(/\{\{([^}]+)\}\}/g, () => {
     return texto;
   });
-  
-  
   const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
   const Message:any={
     id ,
@@ -288,7 +224,6 @@ onRequesFor1= async (payload:any) => {
     WhatsappMessage:[Message]
   }
   const plantilla=template
-  //console.log(plantilla.name)
   try{
     const template:OneVariable={
       messaging_product: "whatsapp",
@@ -308,14 +243,14 @@ onRequesFor1= async (payload:any) => {
         }]
       }
       }
-
       const response = await axios
       .post(urlSendtemplate, template, { headers });
       this.prismaService.onFrontMessageReceived(rawTemplate);
       return response.data;
   }catch(error){
-    //Todo: logger
-  console.log(error)
+    if (axios.isAxiosError(error)) {
+      logger.error('error en una unavariable plantilla de texto', error.response);
+    }
   }
   
 
@@ -1822,7 +1757,7 @@ onSendDoc = async (payload:any) => {
     .post(urlSendMessage, JSON.stringify(docTemplate), { headers });
     console.log(response.data)
   return response.data;
-  }catch(error:any){
+  }catch(error:any){ 
     if (error.response) {
       console.error(`Error al enviar el documento. Código de estado: ${error.response.status}`);
       console.error(`Respuesta de error: ${error.response}`);
