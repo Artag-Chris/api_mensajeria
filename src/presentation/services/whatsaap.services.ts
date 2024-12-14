@@ -1688,7 +1688,6 @@ export class WhatsaapService {
   //aqui enviamos el documento al cliente
   onSendDoc = async (payload: any) => {
     const { to, mediaId } = payload;
-    console.log(payload);
   
     if (!mediaId) {
       return { error: 'Media ID no proporcionado' };
