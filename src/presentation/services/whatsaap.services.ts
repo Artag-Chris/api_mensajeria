@@ -1689,6 +1689,8 @@ export class WhatsaapService {
   onSendDoc = async (payload: any) => {
     const { to, mediaId } = payload;
   
+    
+    
     if (!mediaId) {
       return { error: 'Media ID no proporcionado' };
     }
@@ -1698,21 +1700,27 @@ export class WhatsaapService {
       "recipient_type": "individual",
       "to": to,
       "type": "document",
-      "document": mediaId
+      "document": {
+        "id": mediaId,
+       "filename": "documento.pdf"
+      }
     }
-  
+   
     try {
       const response = await axios
         .post(urlSendMessage, JSON.stringify(docTemplate), { headers });
-      console.log(response.data)
       return response.data;
     } catch (error: any) {
+      
       if (axios.isAxiosError(error)) {
         console.log(error.response);
         logger.error('error en busqueda de documento subido', error.response);
+        
       }
       return { error: 'Error al enviar el mensaje' };
     }
+      
   }
+    
 }
 

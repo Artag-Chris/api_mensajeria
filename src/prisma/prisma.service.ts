@@ -564,10 +564,10 @@ class PrismaService extends PrismaClient {
 
   //zona usuario
   //obtenemos los mensajes de texto de solo los usuarios
-  async onRequestUsers( payload:any) {
-    //obtenemos los usuarios menos el bot
-    //si tenemos varios bots deberemos filtrarlos de otra manera
-
+  async onRequestUsers(payload: any) {
+    // Obtenemos los usuarios menos el bot
+    // Si tenemos varios bots deberemos filtrarlos de otra manera
+  
     try {
       const customers = await prismaService.customer.findMany({
         orderBy: {
@@ -576,48 +576,24 @@ class PrismaService extends PrismaClient {
         where: {
           attending: 0,
           NOT: {
-            phone: envs.BOT_NUMBER, // Excluye el teléfono del bot
+            phone: envs.BOT_NUMBER, // Excluye el teléfono del bot
           },
         },
-         include: {
-           WhatsappMessage: {
-             take: 1,
-             orderBy: {
-               timestamp: 'desc',
-             },
-        /*   },
-           WhatsappAudio: {
-            // take: 1,
-             orderBy: {
-               timestamp: 'desc',
-             }
-           },
-           WhatsappImage: {
-            // take: 1,
-             orderBy: {
-               timestamp: 'desc',
-             }
-           },
-           WhatsappVideo: {
-            // take: 1,
-             orderBy: {
-               timestamp: 'desc',
-             }
-           },
-           WhatsappDoc: {
-            // take: 1,
-             orderBy: {
-               timestamp: 'desc',
-             }
-               */
-           },
-           
-         },
-         
+        include: {
+          WhatsappMessage: {
+            where: {
+              status: 'unread', // Solo mensajes no leídos
+            },
+            take: 1,
+            orderBy: {
+              timestamp: 'desc',
+            },
+          },
+        },
       });
       return customers;
     } catch (error) {
-      //TODO: deberemos crear un logger con este error
+      // TODO: deberemos crear un logger con este error
       console.log(error);
     }
   }
