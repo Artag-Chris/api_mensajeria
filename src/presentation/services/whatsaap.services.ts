@@ -1638,12 +1638,16 @@ export class WhatsaapService {
   //enviamos mensajes de imagenes
   onSendImage = async (payload: any) => {
     const { to, mediaId } = payload
+
     const imageTemplate: any = {
       "messaging_product": "whatsapp",
       "recipient_type": "individual",
       "to": to,
       "type": "image",
-      "image": mediaId
+      "image": {
+        "id": mediaId,
+      }
+      
     }
     try {
       const response = await axios
@@ -1654,6 +1658,7 @@ export class WhatsaapService {
       if (axios.isAxiosError(error)) {
         logger.error('error en onSendImage', error.response);
       }
+        
     }
 
   }
@@ -1670,7 +1675,9 @@ export class WhatsaapService {
       "recipient_type": "individual",
       "to": to,
       "type": "video",
-      "video": mediaId
+      "video": {
+        "id": mediaId,
+      }
     }
 
     try {
@@ -1689,8 +1696,6 @@ export class WhatsaapService {
   onSendDoc = async (payload: any) => {
     const { to, mediaId } = payload;
   
-    
-    
     if (!mediaId) {
       return { error: 'Media ID no proporcionado' };
     }
