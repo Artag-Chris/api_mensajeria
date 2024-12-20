@@ -1694,11 +1694,14 @@ export class WhatsaapService {
   }
   //aqui enviamos el documento al cliente
   onSendDoc = async (payload: any) => {
-    const { to, mediaId } = payload;
+  
+    const { to, mediaId,nombre } = payload;
+  
   
     if (!mediaId) {
       return { error: 'Media ID no proporcionado' };
     }
+    const filename = nombre;
   
     const docTemplate: any = {
       "messaging_product": "whatsapp",
@@ -1707,7 +1710,7 @@ export class WhatsaapService {
       "type": "document",
       "document": {
         "id": mediaId,
-       "filename": "documento.pdf"
+        "filename": `${filename}.pdf`
       }
     }
    
