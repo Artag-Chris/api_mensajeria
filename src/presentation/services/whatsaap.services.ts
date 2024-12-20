@@ -47,7 +47,7 @@ export class WhatsaapService {
       return JSON.stringify(phoneToSend);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en busqueda de telefonos', error.response);
+        logger.error('error en busqueda de telefonos', error.response?.data);
       }
     }
   };
@@ -62,7 +62,7 @@ export class WhatsaapService {
       return response.data.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en busqueda de plantillas', error.response);
+        logger.error('error en busqueda de plantillas', error.response?.data);
       }
     }
 
@@ -111,7 +111,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
-        logger.error('en envio de plantilla de verificacion', error.response);
+        logger.error('en envio de plantilla de verificacion', error.response?.data);
       }
     }
     return "ok";
@@ -171,7 +171,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
-        logger.error('en sinvariables plantilla', error.response);
+        logger.error('en sinvariables plantilla', error.response?.data);
       }
     }
   }
@@ -227,7 +227,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en una unavariable plantilla de texto', error.response);
+        logger.error('error en una unavariable plantilla de texto', error.response?.data);
       }
     }
 
@@ -294,7 +294,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en dos variables plantilla de texto', error.response);
+        logger.error('error en dos variables plantilla de texto', error.response?.data);
       }
     }
 
@@ -365,7 +365,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en tres variables plantilla de texto', error.response);
+        logger.error('error en tres variables plantilla de texto', error.response?.data);
       }
     }
   }
@@ -440,7 +440,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en cuatro variables plantilla de texto', error.response);
+        logger.error('error en cuatro variables plantilla de texto', error.response?.data);
       }
     }
   }
@@ -502,7 +502,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en sin variables plantilla de imagen', error.response);
+        logger.error('error en sin variables plantilla de imagen', error.response?.data);
       }
     }
   }
@@ -576,7 +576,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en una variable plantilla de imagen', error.response);
+        logger.error('error en una variable plantilla de imagen', error.response?.data);
       }
     }
   }
@@ -655,7 +655,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en dos variables plantilla de imagen', error.response);
+        logger.error('error en dos variables plantilla de imagen', error.response?.data);
       }
     }
 
@@ -740,7 +740,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en tres variables plantilla de imagen', error.response);
+        logger.error('error en tres variables plantilla de imagen', error.response?.data);
       }
     }
   }
@@ -828,7 +828,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en cuatro variables plantilla de imagen', error.response);
+        logger.error('error en cuatro variables plantilla de imagen', error.response?.data);
       }
     }
 
@@ -896,7 +896,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en sin variables plantilla de documento', error.response);
+        logger.error('error en sin variables plantilla de documento', error.response?.data);
       }
     }
   }
@@ -974,7 +974,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en una variables plantilla de documento', error.response);
+        logger.error('error en una variables plantilla de documento', error.response?.data);
       }
     }
   }
@@ -1054,7 +1054,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en 2 variables plantilla de documento', error.response);
+        logger.error('error en 2 variables plantilla de documento', error.response?.data);
       }
     }
   }
@@ -1138,7 +1138,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en 3 variables plantilla de documento', error.response);
+        logger.error('error en 3 variables plantilla de documento', error.response?.data);
       }
     }
   }
@@ -1227,7 +1227,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en 4 variables documento', error.response);
+        logger.error('error en 4 variables documento', error.response?.data);
       }
     }
   }
@@ -1288,7 +1288,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en sin variables video', error.response);
+        logger.error('error en sin variables video', error.response?.data);
       }
     }
 
@@ -1363,7 +1363,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en 1 variable video', error.response);
+        logger.error('error en 1 variable video', error.response?.data);
       }
     }
   }
@@ -1442,7 +1442,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en 2 variable video', error.response);
+        logger.error('error en 2 variable video', error.response?.data);
       }
     }
   }
@@ -1524,7 +1524,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en 3 variables video', error.response);
+        logger.error('error en 3 variables video', error.response?.data);
       }
     }
   }
@@ -1613,7 +1613,7 @@ export class WhatsaapService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en 4 variables video', error.response);
+        logger.error('error en 4 variables video', error.response?.data);
       }
     }
   }
@@ -1630,7 +1630,9 @@ export class WhatsaapService {
       return response.data;
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en onSendText', error.response);
+        console.log(error.response);
+        logger.error('error en busqueda de documento subido', error.response?.data);
+        
       }
     }
     return "ok";
@@ -1647,7 +1649,6 @@ export class WhatsaapService {
       "image": {
         "id": mediaId,
       }
-      
     }
     try {
       const response = await axios
@@ -1656,7 +1657,9 @@ export class WhatsaapService {
 
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en onSendImage', error.response);
+        console.log(error.response);
+        logger.error('error en busqueda de documento subido', error.response?.data);
+        
       }
         
     }
@@ -1688,7 +1691,8 @@ export class WhatsaapService {
     } catch (error: any) {
       //logger
       if (axios.isAxiosError(error)) {
-        logger.error('error en onSendVideo', error.response);
+        console.log(error.response);
+        logger.error('error en busqueda de documento subido', error.response?.data);
       }
     }
   }
@@ -1721,9 +1725,8 @@ export class WhatsaapService {
     } catch (error: any) {
       
       if (axios.isAxiosError(error)) {
-        console.log(error.response);
-        logger.error('error en busqueda de documento subido', error.response);
-        
+        console.log(error.response?.data);
+        logger.error('error en busqueda de documento subido', error.response?.data); 
       }
       return { error: 'Error al enviar el mensaje' };
     }
