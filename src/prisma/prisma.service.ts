@@ -1,12 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 import { envs } from '../config/envs';
 import { createNumber } from '../domain/functions/createNumber';
+import logger from '../config/adapters/winstonAdapter';
 
 class PrismaService extends PrismaClient {
-  /**********************************************************************
+  /**************************************************************************************************
     clase de Prisma que se encargara de la comunicacion con la base de datos
-    de whatsapp. ya no se guardara tableta de verificacion en la base de datos
-  ***********************************************************************/
+    ya no se guardara tableta de verificacion en la base de datos
+  ***************************************************************************************************/
   constructor() {
     //TODO: se colocara un logger para registro de errores
     //TODO: se quuitaran los console.log 
@@ -21,14 +22,10 @@ class PrismaService extends PrismaClient {
   //mensaje recibido del bot de whatsapp
    async onMessageReceived(payload:any) {
     const { name, phone, type, id, body, display_phone_number } = payload;
-//TODO: deberemos cambiar este metodo 
-//1 deberamos buscar en la base de datos si el usuario existe y si no
-//crearemos el usuario 
-//2 si existe simplemente agregaremos el mensaje a la base de datos
-//para evitar el error de id que se esta generando
+
     try {
       await prismaService.customer.upsert({
-        where: { phone}, // Campo único para buscar el registro
+        where: { phone }, // Campo único para buscar el registro
         update: {
           name,
           phone,
@@ -74,23 +71,19 @@ class PrismaService extends PrismaClient {
       });
       
       return 'Texto recibido';
-    } catch (error) {
-//TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error: any) {
+      logger.error('Error al procesar el mensaje', error.message);
       return 'Error al procesar el mensaje';
     }
   }
   //mensajes que enviamos desde el front texto
   async onFrontMessageReceived(payload: any) {
-   //TODO: deberemos cambiar este metodo como el pasado de arriba
-   //deberemos crear un dto de la informacion del mensaje para mas control
 
     try {
       const {name,phone,identification,attending, lastActive,
-        detail,WhatsappMessage} =payload;
-        const {id,message,to,status,direction,type,attendant}=WhatsappMessage[0];
-   
-   
+        WhatsappMessage} =payload;
+        const {id,message,to,direction,type,attendant}=WhatsappMessage[0];
+
       await prismaService.customer.upsert({
         where: { phone}, // Campo único para buscar el registro
         update: {
@@ -136,18 +129,16 @@ class PrismaService extends PrismaClient {
           },
         }, 
       });  
-      console.log('guardado');
+      console.log('Agente escribio al cliente');
       return "recibido del front";
-    } catch (error) {
-      //TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error: any) {
+      logger.error('Error al procesar el mensaje del front', error.message);
       return 'Error al procesar el mensaje del front';
     }
   }
   //imagen que enviamos desde el front
   async onFrontMessageImageReceived(payload: any) {
-    //TODO: deberemos cambiar este metodo como el pasado de arriba
-    //deberemos crear un dto de la informacion del mensaje para mas control
+ 
     try {
       const {name,phone,to,message,id } =payload;
         await prismaService.customer.upsert({
@@ -196,15 +187,13 @@ class PrismaService extends PrismaClient {
           }, 
         });  
      return "recibido del front";
-    } catch (error) {
-      //TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error:any) {
+      logger.error('Error al procesar la imagen del front', error.message);
       return 'Error al procesar el mensaje del front';
     }
   }
   async onFrontMessageDocReceived(payload: any) {
-    //TODO: deberemos cambiar este metodo como el pasado de arriba
-    //deberemos crear un dto de la informacion del mensaje para mas control
+
     try {
       const { name, phone, to, message, id } = payload;
   
@@ -255,16 +244,14 @@ class PrismaService extends PrismaClient {
       });
   
       return "recibido del front";
-    } catch (error) {
-      //TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error: any) {
+      logger.error('Error al procesar el documento del front', error.message);
       return 'Error al procesar el mensaje del front';
     }
   }
   //video que enviamos desde el front
   async onFrontMessageVideoReceived(payload: any) {
-    //TODO: deberemos cambiar este metodo como el pasado de arriba
-    //deberemos crear un dto de la informacion del mensaje para mas control
+
     try {
       const { name, phone, to, message, id } = payload;
   
@@ -315,16 +302,14 @@ class PrismaService extends PrismaClient {
       });
   
       return "recibido del front";
-    } catch (error) {
-      //TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error: any) {
+      logger.error('Error al procesar el video del front', error.message);
       return 'Error al procesar el mensaje del front';
     }
   }
   //imagenes recividas desde el bot
   async onImageReceived(payload: any) {
-    //TODO: deberemos cambiar este metodo como el pasado de arriba
-    //deberemos crear un dto de la informacion del mensaje para mas control
+
     try {
       const { name, phone, to, message, type, id } = payload;
   
@@ -375,16 +360,14 @@ class PrismaService extends PrismaClient {
       });
   
       return 'Imagen recibida';
-    } catch (error) {
-      //TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error:any) {
+      logger.error('Error al procesar la imagen en onImageReceived', error.message);
       return 'Error al procesar la imagen';
     }
   }
   //audios recividos desde el bot
   async onAudioReceived(payload: any) {
-    //TODO: deberemos cambiar este metodo como el pasado de arriba
-    //deberemos crear un dto de la informacion del mensaje para mas control
+
     try {
       const { name, phone, to, message, type, id } = payload;
   
@@ -435,16 +418,13 @@ class PrismaService extends PrismaClient {
       });
   
       return 'Audio recibido';
-    } catch (error) {
-      //TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error:any) {
+      logger.error('Error al procesar el audio en onAudioReceived', error.message);
       return 'Error al procesar el audio';
     }
   }
   //videos recividos desde el bot
   async onVideoReceived(payload: any) {
-    //TODO: deberemos cambiar este metodo como el pasado de arriba
-    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const { name, phone, to, message, type, id } = payload;
   
@@ -495,16 +475,13 @@ class PrismaService extends PrismaClient {
       });
   
       return 'Video recibido';
-    } catch (error) {
-      //TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error:any) {
+      logger.error('Error al procesar el video en onVideoReceived', error.message);
       return 'Error al procesar el video';
     }
   }
   //documentos recividos desde el bot
   async onDocumentReceived(payload: any) {
-    //TODO: deberemos cambiar este metodo como el pasado de arriba
-    //deberemos crear un dto de la informacion del mensaje para mas control
     try {
       const { name, phone, to, message, type, id } = payload;
   
@@ -555,9 +532,8 @@ class PrismaService extends PrismaClient {
       });
   
       return 'Documento recibido';
-    } catch (error) {
-      //TODO: deberemos crear un logger con este error
-      console.error(error);
+    } catch (error:any) {
+      logger.error('Error al procesar el documento en onDocumentReceived', error.message);
       return 'Error al procesar el documento';
     }
   }
@@ -592,9 +568,9 @@ class PrismaService extends PrismaClient {
         },
       });
       return customers;
-    } catch (error) {
-      // TODO: deberemos crear un logger con este error
-      console.log(error);
+    } catch (error:any) {
+      logger.error('Error al obtener los usuarios', error.message);
+      return 'Error al obtener los usuarios';
     }
   }
   //aqui busca un usuario especifico 
@@ -602,49 +578,23 @@ class PrismaService extends PrismaClient {
   async onSearchForUser( id:any) {
 
   //usuario especifico
+  //TODO:
+  /********* 
+   * buscaremos a un usuario especifico y nos traeremos todos sus mensajes
+   * 
+   */
 
     try {
       const user = await prismaService.customer.findUnique({
         where: {
           phone: id,
         },
-        //se excluye todos los mensajes del usuario se podrian habilitar
-        // include: {
-        //   WhatsappMessage: {
-        //     //take: 1,
-        //     orderBy: {
-        //       timestamp: 'desc',
-        //     },
-        //   },
-        //   WhatsappAudio: {
-        //     // take: 1,
-        //      orderBy: {
-        //        timestamp: 'desc',
-        //      }
-        //    },
-        //    WhatsappImage: {
-        //     // take: 1,
-        //      orderBy: {
-        //        timestamp: 'desc',
-        //      }
-        //    },
-        //    WhatsappVideo: {
-        //     // take: 1,
-        //      orderBy: {
-        //        timestamp: 'desc',
-        //      }
-        //    },
-        //    WhatsappDoc: {
-        //     // take: 1,
-        //      orderBy: {
-        //        timestamp: 'desc',
-        //      }
-        //    },
-        // },
+    
       });
       return user;
-    } catch (error) {
-      console.log(error);
+    } catch (error:any) {
+      logger.error('Error al obtener el usuario especifico', error.message);
+      return 'Error al obtener el usuario';
     }
   }
   //metodo no usado 
@@ -656,122 +606,127 @@ class PrismaService extends PrismaClient {
     //metodo para colocar los mensajes del usuario en leido 
     //osea que ya no los pediremos de la base de datos
    
-    const user = await this.customer.findUnique({
-      where: {
-        phone: phone,
-      },
-      include: {
-        WhatsappMessage: true,
-        WhatsappImage: true,
-        WhatsappAudio: true,
-        WhatsappVideo: true,
-        WhatsappDoc: true,
-      },
-    });
-  
-    if (user) {
-      await this.whatsappMessage.updateMany({
+    try {
+      const user = await this.customer.findUnique({
         where: {
-          customerId: user.id,
-          to: botNumber,
+          phone: phone,
         },
-        data: {
-          status: 'read',
+        include: {
+          WhatsappMessage: true,
+          WhatsappImage: true,
+          WhatsappAudio: true,
+          WhatsappVideo: true,
+          WhatsappDoc: true,
         },
       });
-  
-      await this.whatsappImage.updateMany({
-        where: {
-          customerId: user.id,
-          to: botNumber,
-        },
-        data: {
-          status: 'read',
-        },
-      });
-  
-      await this.whatsappAudio.updateMany({
-        where: {
-          customerId: user.id,
-          to: botNumber,
-        },
-        data: {
-          status: 'read',
-        },
-      });
-  
-      await this.whatsappVideo.updateMany({
-        where: {
-          customerId: user.id,
-          to: botNumber,
-        },
-        data: {
-          status: 'read',
-        },
-      });
-  
-      await this.whatsappDoc.updateMany({
-        where: {
-          customerId: user.id,
-          to: botNumber,
-        },
-        data: {
-          status: 'read',
-        },
-      });
-  
-      // Marcar mensajes del bot a read
-      //para que no 
-      await this.whatsappMessage.updateMany({
-        where: {
-          attendant:0,
-          to: phone,
-        },
-        data: {
-          status: 'read',
-        },
-      });
-  
-      await this.whatsappImage.updateMany({
-        where: {
-          attendant:0,
-          to: phone,
-        },
-        data: {
-          status: 'read',
-        },
-      });
-  
-      await this.whatsappAudio.updateMany({
-        where: {
-          attendant:0,
-          to: phone,
-        },
-        data: {
-          status: 'read',
-        },
-      });
-  
-      await this.whatsappVideo.updateMany({
-        where: {
-          attendant:0,
-          to: phone,
-        },
-        data: {
-          status: 'read',
-        },
-      });
-  
-      await this.whatsappDoc.updateMany({
-        where: {
-          attendant:0,
-          to: phone,
-        },
-        data: {
-          status: 'read',
-        },
-      });
+    
+      if (user) {
+        await this.whatsappMessage.updateMany({
+          where: {
+            customerId: user.id,
+            to: botNumber,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        await this.whatsappImage.updateMany({
+          where: {
+            customerId: user.id,
+            to: botNumber,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        await this.whatsappAudio.updateMany({
+          where: {
+            customerId: user.id,
+            to: botNumber,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        await this.whatsappVideo.updateMany({
+          where: {
+            customerId: user.id,
+            to: botNumber,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        await this.whatsappDoc.updateMany({
+          where: {
+            customerId: user.id,
+            to: botNumber,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        // Marcar mensajes del bot a read
+        //para que no 
+        await this.whatsappMessage.updateMany({
+          where: {
+            attendant:0,
+            to: phone,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        await this.whatsappImage.updateMany({
+          where: {
+            attendant:0,
+            to: phone,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        await this.whatsappAudio.updateMany({
+          where: {
+            attendant:0,
+            to: phone,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        await this.whatsappVideo.updateMany({
+          where: {
+            attendant:0,
+            to: phone,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+    
+        await this.whatsappDoc.updateMany({
+          where: {
+            attendant:0,
+            to: phone,
+          },
+          data: {
+            status: 'read',
+          },
+        });
+      }
+    }catch (error:any) {
+      logger.error('Error al marcar los mensajes como leidos', error.message);
     }
+  
   }
 
   //metodo no impplementado
@@ -1076,7 +1031,7 @@ onRequestAuth = async (phone: any) => {
   }
 }
   async init() {
-    try {
+    try { 
       await this.$connect();
       console.log(`Conexión a la base de datos establecida correctamente.`);
     } catch (error) {
@@ -1086,6 +1041,7 @@ onRequestAuth = async (phone: any) => {
 
   async destroy() {
     await this.$disconnect();
+    console.log('Conexión a la base de datos cerrada.');
   }
 }
 
@@ -1093,11 +1049,13 @@ const prismaService = new PrismaService();
 
 process.on('SIGINT', async () => {
   await prismaService.destroy();
+  console.log('Conexión a la base de datos cerrada.');
   process.exit(0);
 });
 
 process.on('SIGTERM', async () => {
   await prismaService.destroy();
+  console.log('Conexión a la base de datos cerrada.');
   process.exit(0);
 });
 
