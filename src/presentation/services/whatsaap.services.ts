@@ -177,12 +177,15 @@ export class WhatsaapService {
   }
   //1 variable texto
   onRequesFor1 = async (payload: any) => {
+    
     //Todo: podriamos usar un dto
     const { phone, texto, template, selectedTemplate } = payload
     const plantillabody = selectedTemplate.components[0].text
+   
     const nuevoTexto = plantillabody.replace(/\{\{([^}]+)\}\}/g, () => {
       return texto;
     });
+  
     const id = (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)).toString();
     const Message: any = {
       id,
@@ -202,6 +205,7 @@ export class WhatsaapService {
       WhatsappMessage: [Message]
     }
     const plantilla = template
+   
     try {
       const template: OneVariable = {
         messaging_product: "whatsapp",
@@ -221,13 +225,15 @@ export class WhatsaapService {
           }]
         }
       }
+     
       const response = await axios
         .post(urlSendtemplate, template, { headers });
+        
       this.prismaService.onFrontMessageReceived(rawTemplate);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        logger.error('error en una unavariable plantilla de texto', error.response?.data);
+        logger.error('error en una unavariable plantilla de texto', error);
       }
     }
 

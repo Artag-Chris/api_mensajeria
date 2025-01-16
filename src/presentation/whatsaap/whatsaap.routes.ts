@@ -8,6 +8,8 @@ export class whatsappRoutes{
     const router= Router();
     const whatsaapController =new WhatsaapController();  
 
+    router.get(`/`,whatsaapController.index);
+
     //rutas de whatsapp relacionadas con el servicio
     router.get(`/getphones`,whatsaapController.getPhones);
     router.get(`/getCustomers`,whatsaapController.getCustomers);

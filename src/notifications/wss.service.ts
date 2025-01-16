@@ -1,25 +1,19 @@
-import { Server } from 'http';
+import { Server } from 'https';
 import { WebSocket, WebSocketServer } from 'ws';
 import PrismaService from '../prisma/prisma.service';
 import logger from '../config/adapters/winstonAdapter';
+
 interface Options {
   server: Server;
-  path?: string; // ws
+  path?: string; // wss
 }
 
 export class WssService {
-
-   /**************************************************************************************************
-    clase refrenete a la coneccion por websocket se encarga de enviar mensajes a los clientes conectados
-    y de parsear la data que manda el bot de whatsapp.
-    aqui estan los cambios de whatsapp a websocket
-   ***************************************************************************************************/
-
   private static _instance: WssService;
   private wss: WebSocketServer;
 
   private constructor(options: Options) {
-    //si tuvieramos https se cambiara a wss
+    // Cambiamos a wss para servidor HTTPS
     const { server, path = '/ws' } = options;
 
     this.wss = new WebSocketServer({ server, path });

@@ -8,6 +8,9 @@ export class WhatsaapController {
     private readonly  whatsaapService=new WhatsaapService(),
   ) {}
 
+  public index = async (req: Request, res: Response) => {
+    res.json({ message: "hello world" });
+  }
 ///de aqui se pueden traer las plantillas y despues se arreglan a las necesidades 
   public getTemplates = async (req: Request, res: Response) => {
     this.whatsaapService.onRequesForTemplates().then((data) => res.json(data));

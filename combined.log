@@ -164,3 +164,409 @@
 2024-12-21T14:23:45.788Z error: Error al procesar el mensaje
 2024-12-21T14:24:13.929Z error: Error al procesar el mensaje
 2024-12-21T14:28:13.440Z error: Error al procesar el mensaje
+2024-12-21T16:40:22.031Z error: error en dos variables plantilla de texto
+2024-12-21T16:49:13.251Z error: error en dos variables plantilla de texto
+2024-12-21T16:50:44.241Z error: Error al procesar el mensaje
+2024-12-21T16:50:58.351Z error: Error al procesar el mensaje
+2024-12-21T17:37:29.730Z error: Error al procesar el mensaje
+2024-12-23T16:11:01.055Z error: Error al procesar el mensaje
+2024-12-23T16:24:30.752Z error: Error al procesar el mensaje
+2024-12-23T16:29:47.256Z error: Error al procesar el mensaje
+2024-12-23T18:26:20.629Z error: Error al procesar el mensaje
+2024-12-23T18:36:05.927Z error: Error al procesar el mensaje
+2024-12-23T18:36:09.652Z error: Error al procesar el mensaje
+2024-12-23T18:38:01.897Z error: Error al procesar el mensaje
+2024-12-23T18:39:04.016Z error: Error al procesar el mensaje
+2024-12-23T18:40:36.648Z error: Error al procesar el mensaje
+2024-12-23T18:42:24.079Z error: Error al procesar el mensaje
+2024-12-23T18:44:35.228Z error: Error al procesar el mensaje
+2024-12-23T18:46:31.235Z error: Error al procesar el mensaje
+2024-12-23T19:20:56.437Z error: Error al procesar el mensaje
+2024-12-23T19:40:20.063Z error: Error al procesar el mensaje
+2024-12-23T19:42:38.108Z error: Error al procesar el mensaje
+2024-12-23T21:00:08.978Z error: Error al procesar el mensaje
+2024-12-23T21:32:54.058Z error: error en dos variables plantilla de texto
+2024-12-23T21:33:00.243Z error: error en dos variables plantilla de texto
+2024-12-23T21:33:08.225Z error: error en dos variables plantilla de texto
+2024-12-23T21:33:15.928Z error: Error al procesar el mensaje
+2024-12-23T21:33:17.001Z error: error en dos variables plantilla de texto
+2024-12-23T21:34:40.139Z error: Error al procesar el mensaje
+2024-12-23T21:58:00.561Z error: Error al procesar el mensaje
+2024-12-24T20:06:45.115Z error: Error al procesar el mensaje
+2024-12-26T16:45:39.101Z error: Error al procesar el mensaje
+2024-12-26T18:59:39.617Z error: error en una unavariable plantilla de texto
+2024-12-26T19:07:05.681Z error: Error al procesar el mensaje
+2024-12-26T20:09:32.515Z error: Error al procesar el mensaje
+2024-12-26T22:21:15.207Z error: Error al procesar el mensaje
+2024-12-27T13:20:30.496Z error: Error al procesar el mensaje
+2024-12-27T13:20:30.551Z error: Error al procesar el mensaje
+2024-12-27T16:23:20.588Z error: Error al procesar el mensaje
+2024-12-27T16:23:20.710Z error: Error al procesar el mensaje
+2024-12-27T19:09:52.504Z error: Error al procesar el mensaje
+2024-12-27T19:10:00.126Z error: Error al procesar el mensaje
+2024-12-27T19:10:49.522Z error: Error al procesar el mensaje
+2024-12-27T19:19:43.509Z error: Error al procesar el mensaje
+2024-12-27T19:41:09.617Z error: Error al procesar el mensaje
+2024-12-27T19:41:31.194Z error: Error al procesar el mensaje
+2024-12-27T19:41:49.156Z error: Error al procesar el mensaje
+2024-12-27T19:46:40.635Z error: Error al procesar el mensaje
+2024-12-27T20:11:04.134Z error: Error al procesar el mensaje
+2024-12-27T20:18:45.539Z error: Error al procesar el mensaje
+2024-12-27T20:31:19.163Z error: Error al procesar el mensaje
+2024-12-27T20:39:33.341Z error: Error al procesar el mensaje
+2024-12-27T20:50:47.207Z error: Error al procesar el mensaje
+2024-12-27T20:58:44.516Z error: Error al procesar el mensaje
+2024-12-27T21:13:12.600Z error: Error al procesar el mensaje
+2024-12-27T21:16:02.072Z error: Error al procesar el mensaje
+2024-12-27T21:17:43.539Z error: Error al procesar el mensaje
+2024-12-27T21:23:30.324Z error: Error al procesar el mensaje
+2024-12-28T14:50:23.297Z error: Error al procesar el mensaje
+2024-12-28T15:25:47.171Z error: Error al procesar el mensaje
+2024-12-28T17:03:19.306Z error: Error al procesar el mensaje
+2024-12-30T15:28:13.996Z error: error en una unavariable plantilla de texto
+2024-12-30T15:28:14.215Z error: error en una unavariable plantilla de texto
+2024-12-30T15:28:14.220Z error: error en una unavariable plantilla de texto
+2024-12-30T20:42:44.100Z error: Error al procesar el mensaje
+2024-12-31T21:24:06.551Z error: Error al procesar el mensaje
+2025-01-02T16:59:28.267Z error: Error al procesar el mensaje
+2025-01-02T19:00:19.756Z error: Error al procesar el mensaje
+2025-01-02T19:01:03.219Z error: Error al procesar el mensaje
+2025-01-02T19:03:10.332Z error: Error al procesar el mensaje
+2025-01-02T19:31:00.348Z error: Error al procesar el mensaje
+2025-01-03T06:06:36.544Z error: Error al procesar el mensaje
+2025-01-03T13:11:00.020Z error: Error al procesar el mensaje
+2025-01-03T13:26:06.993Z error: Error al procesar el mensaje
+2025-01-03T16:13:06.269Z error: Error al procesar el mensaje
+2025-01-03T19:01:02.349Z error: Error al procesar el mensaje
+2025-01-03T20:25:34.008Z error: Error al procesar el mensaje
+2025-01-03T20:43:36.327Z error: Error al procesar el mensaje
+2025-01-03T21:05:31.074Z error: Error al procesar el mensaje
+2025-01-04T14:47:24.162Z error: Error al procesar el mensaje
+2025-01-07T14:03:17.536Z error: Error al procesar el mensaje
+2025-01-07T15:39:07.679Z error: Error al procesar el mensaje
+2025-01-07T15:42:18.819Z error: Error al procesar el mensaje
+2025-01-07T16:02:08.160Z error: Error al procesar el mensaje
+2025-01-07T16:19:13.028Z error: Error al procesar el mensaje
+2025-01-07T16:25:30.628Z error: Error al procesar el mensaje
+2025-01-07T17:39:33.501Z error: Error al procesar el mensaje
+2025-01-07T18:12:21.561Z error: Error al procesar el mensaje
+2025-01-07T19:49:35.031Z error: Error al procesar el mensaje
+2025-01-07T19:51:30.256Z error: Error al procesar el mensaje
+2025-01-07T19:52:23.854Z error: Error al procesar el mensaje
+2025-01-07T20:00:25.782Z error: Error al procesar el mensaje
+2025-01-07T20:00:34.082Z error: Error al procesar el mensaje
+2025-01-07T20:10:56.826Z error: Error al procesar el mensaje
+2025-01-07T20:20:23.967Z error: Error al procesar el mensaje
+2025-01-08T16:19:13.272Z error: Error al procesar el mensaje
+2025-01-08T16:19:13.283Z error: Error al procesar el mensaje
+2025-01-08T16:39:34.243Z error: Error al procesar el mensaje
+2025-01-08T16:39:34.249Z error: Error al procesar el mensaje
+2025-01-08T18:05:17.557Z error: error en una unavariable plantilla de texto
+2025-01-08T18:06:03.658Z error: error en una unavariable plantilla de texto
+2025-01-08T18:06:29.721Z error: Error al procesar el mensaje
+2025-01-08T18:06:58.189Z error: error en una unavariable plantilla de texto
+2025-01-08T18:09:26.554Z error: error en una unavariable plantilla de texto
+2025-01-08T18:10:30.246Z error: error en una unavariable plantilla de texto
+2025-01-08T18:11:25.241Z error: error en una unavariable plantilla de texto
+2025-01-08T18:14:01.415Z error: error en una unavariable plantilla de texto
+2025-01-08T18:15:16.617Z error: error en una unavariable plantilla de texto
+2025-01-08T18:16:58.706Z error: error en una unavariable plantilla de texto
+2025-01-08T18:18:45.921Z error: AxiosError: Request failed with status code 404
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:23:24.376Z error: AxiosError: Request failed with status code 404
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:25:17.577Z error: AxiosError: Request failed with status code 404
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:26:50.652Z error: AxiosError: Request failed with status code 404
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:29:43.446Z error: AxiosError: Request failed with status code 404
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:31:08.424Z error: AxiosError: Request failed with status code 404
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:33:36.443Z error: AxiosError: Request failed with status code 404
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:37:53.018Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:40:56.382Z error: AxiosError: Request failed with status code 404
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-08T18:55:43.244Z error: Error al procesar el mensaje
+2025-01-09T11:33:57.264Z error: Error al procesar el mensaje
+2025-01-09T13:21:15.508Z error: Error al procesar el mensaje
+2025-01-09T13:48:25.879Z error: Error al procesar el mensaje
+2025-01-09T16:22:42.699Z error: Error al procesar el mensaje
+2025-01-09T16:25:05.393Z error: Error al procesar el mensaje
+2025-01-09T16:25:06.164Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-09T16:25:07.650Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-09T16:25:11.662Z error: Error al procesar el mensaje
+2025-01-09T16:25:33.590Z error: Error al procesar el mensaje
+2025-01-09T16:25:35.948Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-09T16:27:27.969Z error: Error al procesar el mensaje
+2025-01-09T16:27:59.210Z error: Error al procesar el mensaje
+2025-01-09T16:36:54.562Z error: Error al procesar el mensaje
+2025-01-09T16:37:15.499Z error: Error al procesar el mensaje
+2025-01-09T17:03:42.143Z error: Error al procesar el mensaje
+2025-01-09T17:43:23.763Z error: Error al procesar el mensaje
+2025-01-09T17:47:14.669Z error: Error al procesar el mensaje
+2025-01-09T17:56:28.467Z error: Error al procesar el mensaje
+2025-01-09T18:34:08.249Z error: Error al procesar el mensaje
+2025-01-09T19:02:41.546Z error: Error al procesar el mensaje del front
+2025-01-09T19:05:06.485Z error: Error al procesar el mensaje
+2025-01-09T19:08:49.317Z error: Error al procesar el mensaje
+2025-01-09T19:09:08.454Z error: Error al procesar el mensaje
+2025-01-09T19:21:46.046Z error: Error al procesar el mensaje
+2025-01-09T19:22:23.616Z error: Error al procesar el mensaje
+2025-01-09T19:30:56.404Z error: Error al procesar el mensaje
+2025-01-09T19:53:11.938Z error: Error al procesar el mensaje
+2025-01-09T20:33:06.923Z error: Error al procesar el mensaje
+2025-01-09T20:33:58.707Z error: Error al procesar el mensaje
+2025-01-09T20:36:56.008Z error: Error al procesar el mensaje
+2025-01-09T20:37:05.856Z error: Error al procesar el mensaje
+2025-01-09T20:37:21.969Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-09T20:37:54.565Z error: Error al procesar el mensaje
+2025-01-09T20:38:59.922Z error: Error al procesar el mensaje
+2025-01-09T20:39:32.375Z error: Error al procesar el mensaje
+2025-01-09T20:43:43.208Z error: Error al procesar el mensaje
+2025-01-09T20:48:44.374Z error: Error al procesar el mensaje
+2025-01-09T20:50:27.818Z error: Error al procesar el mensaje
+2025-01-09T21:11:49.688Z error: Error al procesar el mensaje
+2025-01-09T21:35:18.601Z error: Error al procesar el mensaje
+2025-01-09T21:44:04.905Z error: Error al procesar el mensaje
+2025-01-10T13:18:06.350Z error: Error al procesar el mensaje
+2025-01-10T13:37:08.223Z error: Error al procesar el mensaje
+2025-01-10T13:42:03.228Z error: Error al procesar el mensaje
+2025-01-10T14:36:01.378Z error: Error al procesar el mensaje
+2025-01-10T14:38:07.568Z error: Error al procesar el mensaje
+2025-01-10T15:08:36.573Z error: Error al procesar el mensaje
+2025-01-10T16:03:29.194Z error: Error al procesar el mensaje
+2025-01-10T16:29:33.225Z error: Error al procesar el mensaje
+2025-01-10T16:29:56.364Z error: Error al procesar el mensaje
+2025-01-10T16:30:05.580Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-10T16:30:10.341Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-10T16:30:22.431Z error: Error al procesar el mensaje
+2025-01-10T16:32:35.643Z error: Error al procesar el mensaje
+2025-01-10T16:47:46.851Z error: Error al procesar el mensaje
+2025-01-10T16:50:01.099Z error: Error al procesar el mensaje
+2025-01-10T16:56:23.853Z error: Error al procesar el mensaje
+2025-01-10T16:56:35.546Z error: Error al procesar el mensaje
+2025-01-10T17:07:49.824Z error: Error al procesar el mensaje
+2025-01-10T18:08:24.034Z error: Error al procesar el mensaje
+2025-01-10T18:58:12.272Z error: Error al procesar el mensaje
+2025-01-10T19:02:09.652Z error: Error al procesar el mensaje
+2025-01-10T19:07:36.269Z error: Error al procesar el mensaje
+2025-01-10T19:08:33.987Z error: Error al procesar el mensaje
+2025-01-10T19:32:12.430Z error: Error al procesar el mensaje
+2025-01-10T19:49:10.267Z error: Error al procesar el mensaje
+2025-01-10T19:59:21.510Z error: Error al procesar el mensaje
+2025-01-11T14:18:29.165Z error: Error al procesar el mensaje
+2025-01-11T14:18:57.216Z error: Error al procesar el mensaje
+2025-01-11T14:19:03.532Z error: Error al procesar el mensaje
+2025-01-11T14:19:11.212Z error: Error al procesar el mensaje
+2025-01-11T14:19:14.540Z error: Error al procesar el mensaje
+2025-01-11T14:19:17.904Z error: Error al procesar el mensaje
+2025-01-11T14:19:20.406Z error: Error al procesar el mensaje
+2025-01-11T15:50:01.712Z error: Error al procesar el mensaje
+2025-01-11T15:51:09.190Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-11T15:51:14.733Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-11T15:51:37.129Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-11T15:52:03.334Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-11T15:52:35.941Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-11T15:52:36.230Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-11T15:52:57.903Z error: Error al procesar el mensaje
+2025-01-11T15:53:29.454Z error: Error al procesar el mensaje
+2025-01-11T15:53:34.782Z error: Error al procesar el mensaje
+2025-01-11T15:55:33.599Z error: Error al procesar el mensaje
+2025-01-11T15:57:18.146Z error: Error al procesar el mensaje
+2025-01-11T16:09:16.777Z error: Error al procesar el mensaje
+2025-01-11T16:20:01.265Z error: Error al procesar el mensaje
+2025-01-11T16:22:53.820Z error: Error al procesar el mensaje
+2025-01-11T16:26:08.209Z error: Error al procesar el mensaje
+2025-01-11T16:27:19.870Z error: Error al procesar el mensaje
+2025-01-11T16:35:11.694Z error: Error al procesar el mensaje
+2025-01-11T16:49:25.804Z error: Error al procesar el mensaje
+2025-01-11T16:53:30.871Z error: Error al procesar el mensaje
+2025-01-11T16:53:43.470Z error: Error al procesar el mensaje
+2025-01-11T16:54:18.590Z error: Error al procesar el mensaje
+2025-01-11T16:54:38.961Z error: Error al procesar el mensaje
+2025-01-11T17:01:59.093Z error: Error al procesar el mensaje
+2025-01-11T17:48:25.846Z error: Error al procesar el mensaje
+2025-01-11T17:51:49.856Z error: Error al procesar el mensaje
+2025-01-13T15:21:23.833Z error: Error al procesar el mensaje
+2025-01-13T15:21:28.509Z error: Error al procesar el mensaje
+2025-01-13T16:32:51.986Z error: Error al procesar el mensaje
+2025-01-13T18:19:20.420Z error: Error al procesar el mensaje
+2025-01-13T19:03:26.478Z error: Error al procesar el mensaje
+2025-01-13T19:31:04.256Z error: Error al procesar el mensaje
+2025-01-13T20:44:15.589Z error: Error al procesar el mensaje
+2025-01-13T20:49:02.641Z error: Error al procesar el mensaje
+2025-01-13T21:17:13.742Z error: Error al procesar el mensaje
+2025-01-13T21:22:42.497Z error: Error al procesar el mensaje
+2025-01-13T21:24:38.146Z error: Error al procesar el mensaje
+2025-01-14T13:17:25.806Z error: Error al procesar el mensaje
+2025-01-14T14:17:14.433Z error: Error al procesar el mensaje
+2025-01-14T14:28:34.835Z error: Error al procesar el mensaje
+2025-01-14T15:04:35.016Z error: Error al procesar el mensaje
+2025-01-14T15:18:50.548Z error: Error al procesar el mensaje
+2025-01-14T16:01:26.137Z error: Error al procesar el mensaje
+2025-01-14T17:00:14.565Z error: Error al procesar el mensaje
+2025-01-14T17:03:21.651Z error: Error al procesar el mensaje
+2025-01-14T17:12:42.524Z error: Error al procesar el mensaje
+2025-01-15T15:50:17.857Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-15T15:50:18.632Z error: AxiosError: Request failed with status code 400
+    at settle (/home/node/app/node_modules/axios/lib/core/settle.js:19:12)
+    at BrotliDecompress.handleStreamEnd (/home/node/app/node_modules/axios/lib/adapters/http.js:599:11)
+    at BrotliDecompress.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at Axios.request (/home/node/app/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-01-15T16:21:24.479Z error: Error al procesar el mensaje
+2025-01-15T17:53:32.252Z error: Error al procesar el mensaje
+2025-01-16T14:05:22.608Z error: Error al procesar el mensaje
+2025-01-16T14:44:04.038Z error: Error al procesar el mensaje
+2025-01-16T15:44:57.243Z error: Error al procesar el mensaje
+2025-01-16T18:30:33.629Z error: Error al procesar el mensaje
